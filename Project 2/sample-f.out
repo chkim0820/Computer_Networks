@@ -1,0 +1,6 @@
+INC: HTTP/1.1 200 OK
+INC: Server: Apache
+INC: Accept-Ranges: bytes
+INC: Content-Length: 6569
+INC: Connection: close
+INC: Content-Type: text/html; charset=UTF-8

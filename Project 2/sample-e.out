@@ -1,0 +1,6 @@
+DBG: host: www.icir.org
+DBG: web_file: /mallman/
+DBG: output_file: /dev/null
+OUT: GET /mallman/ HTTP/1.0
+OUT: Host: www.icir.org
+OUT: User-Agent: CWRU CSDS 325 SimpleClient 1.0

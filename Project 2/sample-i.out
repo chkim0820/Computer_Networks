@@ -1,0 +1,32 @@
+OUT: GET /mallman/325-samples/r1.html HTTP/1.0
+OUT: Host: www.icir.org
+OUT: User-Agent: CWRU CSDS 325 SimpleClient 1.0
+INC: HTTP/1.1 301 Moved Permanently
+INC: Date: Thu, 21 Sep 2023 12:50:26 GMT
+INC: Server: Apache
+INC: Location: http://www.icir.org/mallman/325-samples/r2.html
+INC: Content-Length: 317
+INC: Connection: close
+INC: Content-Type: text/html; charset=iso-8859-1
+OUT: GET /mallman/325-samples/r2.html HTTP/1.0
+OUT: Host: www.icir.org
+OUT: User-Agent: CWRU CSDS 325 SimpleClient 1.0
+INC: HTTP/1.1 301 Moved Permanently
+INC: Date: Thu, 21 Sep 2023 12:50:34 GMT
+INC: Server: Apache
+INC: Location: http://www.icir.org/mallman/325-samples/r3.html
+INC: Content-Length: 317
+INC: Connection: close
+INC: Content-Type: text/html; charset=iso-8859-1
+OUT: GET /mallman/325-samples/r3.html HTTP/1.0
+OUT: Host: www.icir.org
+OUT: User-Agent: CWRU CSDS 325 SimpleClient 1.0
+INC: HTTP/1.1 200 OK
+INC: Date: Thu, 21 Sep 2023 12:50:38 GMT
+INC: Server: Apache
+INC: Last-Modified: Thu, 27 Sep 2018 15:50:38 GMT
+INC: ETag: "32-576dc4cdd2f80"
+INC: Accept-Ranges: bytes
+INC: Content-Length: 50
+INC: Connection: close
+INC: Content-Type: text/html; charset=UTF-8

@@ -1,0 +1,3 @@
+OUT: GET / HTTP/1.0
+OUT: Host: www.icir.org
+OUT: User-Agent: CWRU CSDS 325 SimpleClient 1.0

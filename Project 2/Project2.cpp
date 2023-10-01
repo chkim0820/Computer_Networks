@@ -7,6 +7,11 @@
 #include <iostream>
 #include <string>
 #include <sys/socket.h>
+#include <strings.h>
+#include <string.h>
+#include <netdb.h>
+#include <netinet/in.h>
+
 
 using namespace std;
 
@@ -23,10 +28,15 @@ char* filename = nullptr;
 
 #define ERROR 1
 #define REQUIRED_ARGC 3
-#define HOST_POS 1
-#define PORT_POS 2
+#define PORT_NUM 80
 #define PROTOCOL "tcp"
 #define BUFLEN 1024
+
+int errorExit (const char *format, const char *arg) {
+    fprintf (stderr, format, arg);
+    fprintf (stderr, "\n");
+    exit (ERROR);
+}
 
 int parseArgs(int argc, char* argv[]) {
     int urlIndex = -1;
@@ -58,13 +68,6 @@ int parseArgs(int argc, char* argv[]) {
         exit(ERROR); // wrong input; try again with 
     }
     return urlIndex;
-}
-
-int errorExit (char *format, char *arg)
-{
-    fprintf (stderr,format,arg);
-    fprintf (stderr,"\n");
-    exit (ERROR);
 }
 
 void optionU(char* arg) {
@@ -106,13 +109,59 @@ void optionD() {
 
 
 void optionQ() {
-    // int sd = socket(PF_INET, SOCK_STREAM, );
+    struct sockaddr_in sin;
+    struct hostent *hinfo;
+    struct protoent *procinfo;
+    char buffer [BUFLEN];
+    int sd, ret;
 
+    /* lookup the hostname */
+    hinfo = gethostbyname(hostname);
+    if (hinfo == NULL)
+        errorExit("cannot find name: %s", hostname);
 
-    // string httpVer; 
-    // cout << "GET " << urlFile << " HTTP/" << httpVer << "\r\n";
-    // cout << "Host: " << hostname << "\r\n";
-    // cout << "User-Agent: CWRU CSDS 325 SimpleClient 1.0\r\n";
+    /* set endpoint information */
+    memset((char*)&sin, 0x0, sizeof(sin)); // for memory
+    sin.sin_family = AF_INET;
+    sin.sin_port = htons(PORT_NUM); // for http
+    memcpy ((char *)&sin.sin_addr, hinfo->h_addr, hinfo->h_length);
+
+    if ((procinfo = getprotobyname(PROTOCOL)) == NULL)
+        errorExit ("cannot find protocol information for %s", PROTOCOL);
+
+    /* allocate a socket */
+    /*   would be SOCK_DGRAM for UDP */
+    sd = socket(PF_INET, SOCK_STREAM, procinfo->p_proto);
+    if (sd < 0)
+        errorExit("cannot create socket",NULL);
+
+    /* connect the socket */
+    if (connect(sd, (struct sockaddr *)&sin, sizeof(sin)) < 0)
+        errorExit("cannot connect", NULL);
+
+    /* Snd an HTTP request */
+    char http_request[BUFLEN];
+    snprintf(http_request, sizeof(http_request), 
+        "GET %s HTTP/1.0\r\n"
+                "Host: %s\r\n"
+                "User-Agent: CWRU CSDS 325 SimpleClient 1.0\r\n"
+                "\r\n",
+             urlFile, hostname);
+    send(sd, http_request, strlen(http_request), 0);
+
+    /* snarf whatever server provides and print it */
+    memset(buffer,0x0,BUFLEN);
+    ret = read(sd,buffer,BUFLEN - 1);
+    if (ret < 0)
+        errorExit("reading error",NULL);
+   
+    /* close & exit */
+    close(sd);
+    
+    // Printing outputs
+    fprintf(stdout, "OUT: GET %s HTTP/1.0\r\n", urlFile); //FIX
+    fprintf(stdout, "OUT: Host: %s\r\n", hostname);
+    fprintf(stdout, "OUT: User-Agent: CWRU CSDS 325 SimpleClient 1.0\r\n");
 }
 
 

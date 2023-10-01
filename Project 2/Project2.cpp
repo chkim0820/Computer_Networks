@@ -26,6 +26,8 @@ char* urlFile = nullptr;
 char* hostname = nullptr;
 char* filename = nullptr;
 
+#define COMPARE_ARG(arg, opt) (0 == strncasecmp(arg, opt, strlen(opt)))
+
 #define ERROR 1
 #define REQUIRED_ARGC 3
 #define PORT_NUM 80
@@ -42,17 +44,17 @@ int parseArgs(int argc, char* argv[]) {
     int urlIndex = -1;
     for (int i = 1; i < argc; i++) { // go through all arguments
         char* arg = argv[i];
-        if (0 == strncasecmp(arg, "-u", 2)) // FIX; use define?
+        if COMPARE_ARG(arg, "-u") // FIX; use define?
             uIndex = i;
-        else if (0 == strncasecmp(arg, "-o", 2))
+        else if COMPARE_ARG(arg, "-o")
             oIndex = i;
-        else if (0 == strncasecmp(arg, "-d", 2))
+        else if COMPARE_ARG(arg, "-d")
             dIndex = i;
-        else if (0 == strncasecmp(arg, "-q", 2))
+        else if COMPARE_ARG(arg, "-q")
             qIndex = i;
-        else if (0 == strncasecmp(arg, "-r", 2))
+        else if COMPARE_ARG(arg, "-r")
             rIndex = i;
-        else if (0 == strncasecmp(arg, "http://",7))
+        else if COMPARE_ARG(arg, "http://")
             urlIndex = i;
         else if (i == oIndex + 1) { // FIX
             filename = new char[strlen(arg)];
@@ -158,9 +160,6 @@ void optionQ() {
     fprintf(stdout, "OUT: Host: %s\r\n", hostname);
     fprintf(stdout, "OUT: User-Agent: CWRU CSDS 325 SimpleClient 1.0\r\n");
 }
-
-
-
 
 
 

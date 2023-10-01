@@ -42,7 +42,7 @@ int parseArgs(int argc, char* argv[]) {
     int urlIndex = -1;
     for (int i = 1; i < argc; i++) { // go through all arguments
         char* arg = argv[i];
-        if (0 == strncasecmp(arg, "-u", 2)) // account for diff. cases
+        if (0 == strncasecmp(arg, "-u", 2)) // FIX; use define?
             uIndex = i;
         else if (0 == strncasecmp(arg, "-o", 2))
             oIndex = i;
@@ -58,57 +58,15 @@ int parseArgs(int argc, char* argv[]) {
             filename = new char[strlen(arg)];
             strcpy(filename, arg);
         }
-        else{
-            fprintf(stderr, "Invalid argument %s\n", arg);
-            exit(ERROR);
-        }
+        else
+            errorExit("Invalid argument %s", arg);
     }
-    if (uIndex == -1 || oIndex == -1 || argc < 5) { // FIX: check for url and filename, too?
-        fprintf(stderr, "Valid arguments required; ./proj2 -u URL [-d] [-q] [-r] -o filename\n");
-        exit(ERROR); // wrong input; try again with 
-    }
+    if (uIndex == -1 || oIndex == -1 || argc < 5)
+        errorExit("Valid arguments required:\n./proj2 -u URL [-d] [-q] [-r] -o filename", NULL);
     return urlIndex;
 }
 
-void optionU(char* arg) {
-    // Safety feature; deallocate if previously allocated
-    if (url != nullptr)
-        delete[] url;
-    if (hostname != nullptr)
-        delete[] hostname;
-    if (urlFile != nullptr)
-        delete[] urlFile;
-
-    // Copying whole arg into url
-    url = new char[strlen(arg) + 1]; // Saves the whole url
-    strcpy(url, arg);
-
-    // Assigning hostname from arg
-    char* tok = strtok(arg + 7, "/"); // Skip "http://"
-    hostname = new char[strlen(tok) + 1];
-    if (tok != nullptr)
-        strcpy(hostname, tok);
-    else { // Nothing after "http://"
-        fprintf(stderr, "No valid hostname could be found");    
-        exit(ERROR);
-    }
-
-    // Assigning urlFile if exists
-    urlFile = new char[strlen(arg)];
-    strcpy(urlFile, url + strlen(arg));
-
-    if (urlFile[0] == '\0' || urlFile == nullptr)
-        strcpy(urlFile, "/");
-}
-
-void optionD() {
-    fprintf(stdout, "DBG: host: %s\n", hostname);
-    fprintf(stdout, "DBG: web_file: %s\n", urlFile);
-    fprintf(stdout, "DBG: output_file: %s\n", filename);
-}
-
-
-void optionQ() {
+void httpConnect() {
     struct sockaddr_in sin;
     struct hostent *hinfo;
     struct protoent *procinfo;
@@ -147,7 +105,8 @@ void optionQ() {
                 "User-Agent: CWRU CSDS 325 SimpleClient 1.0\r\n"
                 "\r\n",
              urlFile, hostname);
-    send(sd, http_request, strlen(http_request), 0);
+    if (send(sd, http_request, strlen(http_request), 0) < 0)
+        errorExit("cannot send", NULL);
 
     /* snarf whatever server provides and print it */
     memset(buffer,0x0,BUFLEN);
@@ -157,7 +116,43 @@ void optionQ() {
    
     /* close & exit */
     close(sd);
-    
+}
+
+void optionU(char* arg) {
+    // Safety feature; deallocate if previously allocated
+    if (url != nullptr)
+        delete[] url;
+    if (hostname != nullptr)
+        delete[] hostname;
+    if (urlFile != nullptr)
+        delete[] urlFile;
+
+    // Copying whole arg into url
+    url = new char[strlen(arg) + 1]; // Saves the whole url
+    strcpy(url, arg);
+
+    // Assigning hostname from arg
+    char* tok = strtok(arg + 7, "/"); // Skip "http://"
+    hostname = new char[strlen(tok) + 1];
+    if (tok != nullptr)
+        strcpy(hostname, tok);
+    else // nothing after 'http://'
+        errorExit("No valid hostname could be found", NULL); 
+
+    // Assigning urlFile if exists
+    urlFile = new char[strlen(arg)];
+    strcpy(urlFile, url + strlen(arg));
+    if (urlFile[0] == '\0' || urlFile == nullptr)
+        strcpy(urlFile, "/");
+}
+
+void optionD() {
+    fprintf(stdout, "DBG: host: %s\n", hostname);
+    fprintf(stdout, "DBG: web_file: %s\n", urlFile);
+    fprintf(stdout, "DBG: output_file: %s\n", filename);
+}
+
+void optionQ() {
     // Printing outputs
     fprintf(stdout, "OUT: GET %s HTTP/1.0\r\n", urlFile); //FIX
     fprintf(stdout, "OUT: Host: %s\r\n", hostname);
@@ -185,9 +180,10 @@ int main(int argc, char* argv[]) {
     if (dIndex != -1)
         optionD();
 
-    // to implement:
-    if (qIndex != -1)
+    if (qIndex != -1){
+        httpConnect();
         optionQ();
+    }
     optionO();
     if (rIndex != -1)
         optionR();

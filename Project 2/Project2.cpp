@@ -1,3 +1,12 @@
+// literals
+// buffer size?
+// general organization
+// extra libraries?
+// memories?
+// o option outputs? error
+// ./proj2 -r -u http://case.edu/ -o case.html?
+
+
 /**
  * @file Project2.cpp
  * @author Chaehyeon Kim cxk445
@@ -20,6 +29,11 @@ using namespace std;
 #define PORT_NUM 80
 #define PROTOCOL "tcp"
 #define BUFLEN 1024
+#define HTTP_REQUEST(s, maxLen, urlFile, hostname) \
+        snprintf(s, maxLen, "GET %s HTTP/1.0\r\n" \
+                "Host: %s\r\n" \
+                "User-Agent: CWRU CSDS 325 SimpleClient 1.0\r\n" \
+                "\r\n", urlFile, hostname)
 
 /* Global variables */
 int uIndex = INT_ERROR;
@@ -53,19 +67,26 @@ void errorExit (const char *format, const char *arg) {
  */
 int parseArgs(int argc, char* argv[]) {
     int urlIndex = INT_ERROR;
+    // Values to compare each arg to
+    const char* u = "-u";
+    const char* o = "-o";
+    const char* d = "-d";
+    const char* q = "-q";
+    const char* r = "-r";
+    const char* http = "http://";
     for (int i = 1; i < argc; i++) { // go through all arguments
-        char* arg = argv[i];
-        if COMPARE_ARG(arg, "-u")
+        const char* arg = argv[i];
+        if COMPARE_ARG(arg, u)
             uIndex = i;
-        else if COMPARE_ARG(arg, "-o")
+        else if COMPARE_ARG(arg, o)
             oIndex = i;
-        else if COMPARE_ARG(arg, "-d")
+        else if COMPARE_ARG(arg, d)
             dIndex = i;
-        else if COMPARE_ARG(arg, "-q")
+        else if COMPARE_ARG(arg, q)
             qIndex = i;
-        else if COMPARE_ARG(arg, "-r")
+        else if COMPARE_ARG(arg, r)
             rIndex = i;
-        else if COMPARE_ARG(arg, "http://")
+        else if COMPARE_ARG(arg, http)
             urlIndex = i;
         else if (i == oIndex + 1) { // FIX
             filename = new char[strlen(arg)];
@@ -114,12 +135,7 @@ string httpConnect() {
 
     // Send an HTTP request
     char http_request[BUFLEN]; // saves http_request
-    snprintf(http_request, sizeof(http_request), 
-        "GET %s HTTP/1.0\r\n"
-                "Host: %s\r\n"
-                "User-Agent: CWRU CSDS 325 SimpleClient 1.0\r\n"
-                "\r\n",
-             urlFile, hostname);
+    HTTP_REQUEST(http_request, sizeof(http_request), urlFile, hostname);
     if (send(sd, http_request, strlen(http_request), 0) < 0)
         errorExit("cannot send", NULL);
 
@@ -218,7 +234,7 @@ void optionO(string response) {
     string downloaded = response.substr(start, string::npos); // after empty line to end
     int errCode = stoi(response.substr(9, 3)); // fetch error code
     if (errCode != HTTP_ERROR)
-        errorExit("ERROR: non-200 response code\n%s: No such file or directory", filename);
+        errorExit("ERROR: non-200 response code", filename);
 
     // Save contents to designated file name
     ofstream toFile(filename);

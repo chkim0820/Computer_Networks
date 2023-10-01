@@ -12,7 +12,6 @@
 #include <netdb.h>
 #include <netinet/in.h>
 
-
 using namespace std;
 
 // Global variables
@@ -44,7 +43,7 @@ int parseArgs(int argc, char* argv[]) {
     int urlIndex = -1;
     for (int i = 1; i < argc; i++) { // go through all arguments
         char* arg = argv[i];
-        if COMPARE_ARG(arg, "-u") // FIX; use define?
+        if COMPARE_ARG(arg, "-u")
             uIndex = i;
         else if COMPARE_ARG(arg, "-o")
             oIndex = i;
@@ -68,7 +67,7 @@ int parseArgs(int argc, char* argv[]) {
     return urlIndex;
 }
 
-void httpConnect() {
+string httpConnect() {
     struct sockaddr_in sin;
     struct hostent *hinfo;
     struct protoent *procinfo;
@@ -115,9 +114,11 @@ void httpConnect() {
     ret = read(sd,buffer,BUFLEN - 1);
     if (ret < 0)
         errorExit("reading error",NULL);
-   
-    /* close & exit */
+
+    /* close & return buffer */
     close(sd);
+    string retBuffer = buffer;
+    return retBuffer;
 }
 
 void optionU(char* arg) {
@@ -155,16 +156,26 @@ void optionD() {
 }
 
 void optionQ() {
-    // Printing outputs
+    // Printing outputs //FIX so that OUT: is directly added to the actual input
     fprintf(stdout, "OUT: GET %s HTTP/1.0\r\n", urlFile); //FIX
     fprintf(stdout, "OUT: Host: %s\r\n", hostname);
     fprintf(stdout, "OUT: User-Agent: CWRU CSDS 325 SimpleClient 1.0\r\n");
 }
 
-
-
-void optionR() {
-
+void optionR(const char* buffer) {
+    /* Creating a temporary buffer and cutting everything out after "\r\n\r\n" */
+    char* temp = new char[strlen(buffer) + 1];
+    strcpy(temp, buffer); 
+    char* stopping = strstr(temp, "\r\n\r\n");
+    for (int i = 0; *stopping && i < 4; i++) // go to the first character after "\r\n\r\n"
+        stopping++;
+    temp[strlen(temp) - strlen(stopping)] = '\0'; // char first one after stopping
+    // Output line by line
+    char* line = strtok(temp, "\r\n");
+    while (line != nullptr) { // until empty line with only "\r\n"
+        fprintf(stdout, "INC: %s\n", line);
+        line = strtok(nullptr, "\r\n");
+    }
 }
 
 void optionO() {
@@ -179,11 +190,10 @@ int main(int argc, char* argv[]) {
     if (dIndex != -1)
         optionD();
 
-    if (qIndex != -1){
-        httpConnect();
+    string buffer = httpConnect();
+    if (qIndex != -1)
         optionQ();
-    }
-    optionO();
     if (rIndex != -1)
-        optionR();
+        optionR(buffer.c_str());
+    optionO();
 }

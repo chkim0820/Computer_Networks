@@ -1,10 +1,11 @@
-// literals
+// literals; Too many defines or is it good? or more? (strings for error messages?)
 // buffer size?
 // general organization
 // extra libraries?
 // memories?
 // o option outputs? error
 // ./proj2 -r -u http://case.edu/ -o case.html?
+// httpConnect() too big?
 
 
 /**
@@ -21,7 +22,6 @@
 using namespace std;
 
 /* Define macros */
-#define COMPARE_ARG(arg, opt) (0 == strncasecmp(arg, opt, strlen(opt)))
 #define ERROR 1
 #define INT_ERROR -1
 #define HTTP_ERROR 200
@@ -29,11 +29,16 @@ using namespace std;
 #define PORT_NUM 80
 #define PROTOCOL "tcp"
 #define BUFLEN 1024
-#define HTTP_REQUEST(s, maxLen, urlFile, hostname) \
-        snprintf(s, maxLen, "GET %s HTTP/1.0\r\n" \
-                "Host: %s\r\n" \
-                "User-Agent: CWRU CSDS 325 SimpleClient 1.0\r\n" \
-                "\r\n", urlFile, hostname)
+#define ERROR_POS 9
+#define ERROR_LEN 3
+#define SKIP_RN 4
+#define HTTP_LENGTH 7
+
+#define COMPARE_ARG(arg, opt) (0 == strncasecmp(arg, opt, strlen(opt)))
+#define HTTP_REQUEST(s, maxLen, urlFile, hostname) snprintf(s, maxLen, "GET %s HTTP/1.0\r\n" \
+                                                            "Host: %s\r\n" \
+                                                            "User-Agent: CWRU CSDS 325 SimpleClient 1.0\r\n" \
+                                                            "\r\n", urlFile, hostname)
 
 /* Global variables */
 int uIndex = INT_ERROR;
@@ -68,25 +73,19 @@ void errorExit (const char *format, const char *arg) {
 int parseArgs(int argc, char* argv[]) {
     int urlIndex = INT_ERROR;
     // Values to compare each arg to
-    const char* u = "-u";
-    const char* o = "-o";
-    const char* d = "-d";
-    const char* q = "-q";
-    const char* r = "-r";
-    const char* http = "http://";
     for (int i = 1; i < argc; i++) { // go through all arguments
         const char* arg = argv[i];
-        if COMPARE_ARG(arg, u)
+        if COMPARE_ARG(arg, "-u")
             uIndex = i;
-        else if COMPARE_ARG(arg, o)
+        else if COMPARE_ARG(arg, "-o")
             oIndex = i;
-        else if COMPARE_ARG(arg, d)
+        else if COMPARE_ARG(arg, "-d")
             dIndex = i;
-        else if COMPARE_ARG(arg, q)
+        else if COMPARE_ARG(arg, "-q")
             qIndex = i;
-        else if COMPARE_ARG(arg, r)
+        else if COMPARE_ARG(arg, "-r")
             rIndex = i;
-        else if COMPARE_ARG(arg, http)
+        else if COMPARE_ARG(arg, "http://")
             urlIndex = i;
         else if (i == oIndex + 1) { // FIX
             filename = new char[strlen(arg)];
@@ -165,15 +164,16 @@ void optionU(char* arg) {
         delete[] urlFile;
 
     // Allocating memory
-    url = new char[strlen(arg) + 1];
-    hostname = new char[strlen(arg)];
-    urlFile = new char[strlen(arg)];
+    const int size = strlen(arg) + 1; 
+    url = new char[size];
+    hostname = new char[size];
+    urlFile = new char[size];
 
     // Copying whole arg into url
     strcpy(url, arg);
 
     // Assigning hostname from arg
-    char* tok = strtok(arg + 7, "/"); // Skip "http://"
+    char* tok = strtok(arg + HTTP_LENGTH, "/"); // Skip "http://"
     if (tok != nullptr)
         strcpy(hostname, tok);
     else // nothing after 'http://'
@@ -199,7 +199,7 @@ void optionD() {
  */
 void optionQ() {
     // Printing outputs //FIX so that OUT: is directly added to the actual input
-    fprintf(stdout, "OUT: GET %s HTTP/1.0\r\n", urlFile); //FIX
+    fprintf(stdout, "OUT: GET %s HTTP/1.0\r\n", urlFile);
     fprintf(stdout, "OUT: Host: %s\r\n", hostname);
     fprintf(stdout, "OUT: User-Agent: CWRU CSDS 325 SimpleClient 1.0\r\n");
 }
@@ -213,7 +213,7 @@ void optionR(const char* response) {
     char* tempResp = new char[strlen(response) + 1]; // allocate memory
     strcpy(tempResp, response); // copy over original response
     char* stopping = strstr(tempResp, "\r\n\r\n"); // everything after empty line; stopping point
-    for (int i = 0; *stopping && i < 4; i++) // go to the first character after "\r\n\r\n"
+    for (int i = 0; *stopping && i < SKIP_RN; i++) // go to the first character after "\r\n\r\n"
         stopping++;
     tempResp[strlen(tempResp) - strlen(stopping)] = '\0'; // char first one after stopping
 
@@ -230,9 +230,9 @@ void optionR(const char* response) {
  * @param response received http response
  */
 void optionO(string response) {
-    int start = response.find("\r\n") + 4; // find the empty line & skip over that line
+    int start = response.find("\r\n") + SKIP_RN; // find the empty line & skip over that line
     string downloaded = response.substr(start, string::npos); // after empty line to end
-    int errCode = stoi(response.substr(9, 3)); // fetch error code
+    int errCode = stoi(response.substr(ERROR_POS, ERROR_LEN)); // fetch error code
     if (errCode != HTTP_ERROR)
         errorExit("ERROR: non-200 response code", filename);
 

@@ -8,6 +8,7 @@
 // httpConnect() too big?
 // File sizes sometimes not correct
 // Not working for M
+// sha1 correct for sample G
 
 
 /**
@@ -232,15 +233,15 @@ void optionR(const char* response) {
  * @param response received http response
  */
 void optionO(string response) {
-    int start = response.find("\r\n") + SKIP_RN; // find the empty line & skip over that line
+    int start = response.find("\r\n\r\n") + SKIP_RN; // find the empty line & skip over that line
     string downloaded = response.substr(start, string::npos); // after empty line to end
     int errCode = stoi(response.substr(ERROR_POS, ERROR_LEN)); // fetch error code
     if (errCode != HTTP_ERROR)
         errorExit("ERROR: non-200 response code", filename);
 
     // Save contents to designated file name
-    ofstream toFile(filename);
-    toFile << downloaded;
+    ofstream toFile(filename, ios::binary);
+    toFile.write(downloaded.c_str(), downloaded.size());
     toFile.close();
 }
 

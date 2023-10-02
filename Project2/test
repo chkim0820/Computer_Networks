@@ -40,11 +40,11 @@ sha1sum small-test.dat
 echo
 
 # Sample I; skipped for now
-# echo "Testing sample I"
-# ./proj2 -f -q -r -u http://www.icir.org/mallman/325-samples/r1.html -o redirect.html > i-result.txt
-# diff -u sample-i.out i-result.txt
-# sha1sum redirect.html
-# echo
+echo "Testing sample I"
+./proj2 -f -q -r -u http://www.icir.org/mallman/325-samples/r1.html -o redirect.html |egrep -v -e '^INC: Date: ' > i-result.txt
+diff -u sample-i.out i-result.txt
+sha1sum redirect.html
+echo
 
 # Sample J
 echo "Testing sample J"
@@ -66,6 +66,6 @@ echo
 
 # Sample N
 echo "Testing sample N"
-./proj2 -u http://www.sigcomm.org -r -o sigcomm.out |egrep -v -e '^INC: (date|set-cookie): ' > n-result.txt
+./proj2 -u http://www.sigcomm.org -r -o sigcomm.out|egrep -v -e '^INC: Date: ' > n-result.txt
 diff -u n-result.txt sample-n.out
 sha1sum sigcomm.out

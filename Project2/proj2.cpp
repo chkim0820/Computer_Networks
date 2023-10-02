@@ -3,6 +3,7 @@
  * @author Chaehyeon Kim cxk445
  */
 
+#include <iostream>
 #include <unistd.h>
 #include <cstring>
 #include <fstream>
@@ -37,6 +38,7 @@ int oIndex = INT_ERROR;
 int dIndex = INT_ERROR;
 int qIndex = INT_ERROR;
 int rIndex = INT_ERROR;
+int fIndex = INT_ERROR;
 char* url = nullptr;
 char* urlFile = nullptr;
 char* hostname = nullptr;
@@ -76,6 +78,8 @@ int parseArgs(int argc, char* argv[]) {
             qIndex = i;
         else if COMPARE_ARG(arg, "-r")
             rIndex = i;
+        else if COMPARE_ARG(arg, "-f")
+            fIndex = i;
         else if COMPARE_ARG(arg, "http://")
             urlIndex = i;
         else if (i == oIndex + 1) { // FIX
@@ -227,17 +231,25 @@ void optionR(const char* response) {
  * @brief Executes option O when called; saves contents to filename
  * @param response received http response
  */
-void optionO(string response) {
+int optionO(string response) {
     int start = response.find("\r\n\r\n") + SKIP_RN; // find the empty line & skip over that line
     string downloaded = response.substr(start, string::npos); // after empty line to end
     int errCode = stoi(response.substr(ERROR_POS, ERROR_LEN)); // fetch error code
-    if (errCode != HTTP_ERROR)
+    if (errCode != HTTP_ERROR && fIndex < 0)
         errorExit("ERROR: non-200 response code", filename);
 
     // Save contents to designated file name
     ofstream toFile(filename, ios::binary);
     toFile.write(downloaded.c_str(), downloaded.size());
     toFile.close();
+    return errCode;
+}
+
+string optionF(string response) {
+    int start = response.find("Location: ") + strlen("Location: "); // find the empty line & skip over that line
+    int end = response.find("\r\n", start);
+    string redirect = response.substr(start, end - start);
+    return redirect;
 }
 
 /**
@@ -248,15 +260,27 @@ void optionO(string response) {
  */
 int main(int argc, char* argv[]) {
     int urlIndex = parseArgs(argc, argv); // maybe urlIndex could be returned instead?
+    char* url = argv[urlIndex];
 
-    optionU(argv[urlIndex]);
-    if (dIndex != INT_ERROR)
-        optionD();
+    while (true) {
+        optionU(url);
+        if (dIndex != INT_ERROR)
+            optionD();
 
-    string httpResponse = httpConnect();
-    if (qIndex != INT_ERROR)
-        optionQ();
-    if (rIndex != INT_ERROR)
-        optionR(httpResponse.c_str());
-    optionO(httpResponse);
+        string httpResponse = httpConnect();
+        if (qIndex != INT_ERROR)
+            optionQ();
+        if (rIndex != INT_ERROR)
+            optionR(httpResponse.c_str());
+        int errCode = optionO(httpResponse);
+
+        // Extra credits
+        if (errCode == 200)
+            break;
+        else {
+            string tempURL = optionF(httpResponse);
+            url = new char[tempURL.length()];
+            strcpy(url, tempURL.c_str());
+        }
+    }
 }

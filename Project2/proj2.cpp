@@ -27,10 +27,10 @@ using namespace std;
 #define HTTP_LENGTH 7
 
 #define COMPARE_ARG(arg, opt) (0 == strncasecmp(arg, opt, strlen(opt)))
-#define HTTP_REQUEST(s, maxLen, urlFile, hostname) snprintf(s, maxLen, "GET %s HTTP/1.0\r\n" \
+#define HTTP_REQUEST(s, maxLen, urlFile, httpVer, hostname) snprintf(s, maxLen, "GET %s HTTP/%s\r\n" \
                                                             "Host: %s\r\n" \
-                                                            "User-Agent: CWRU CSDS 325 SimpleClient 1.0\r\n" \
-                                                            "\r\n", urlFile, hostname)
+                                                            "User-Agent: CWRU CSDS 325 SimpleClient %s\r\n" \
+                                                            "\r\n", urlFile, httpVer, hostname, httpVer)
 
 /* Global variables */
 int uIndex = INT_ERROR;
@@ -39,6 +39,7 @@ int dIndex = INT_ERROR;
 int qIndex = INT_ERROR;
 int rIndex = INT_ERROR;
 int fIndex = INT_ERROR;
+int cIndex = INT_ERROR;
 char* url = nullptr;
 char* urlFile = nullptr;
 char* hostname = nullptr;
@@ -80,6 +81,8 @@ int parseArgs(int argc, char* argv[]) {
             rIndex = i;
         else if COMPARE_ARG(arg, "-f")
             fIndex = i;
+        else if COMPARE_ARG(arg, "-c")
+            cIndex = i;
         else if COMPARE_ARG(arg, "http://")
             urlIndex = i;
         else if (i == oIndex + 1) { // FIX
@@ -102,7 +105,7 @@ string httpConnect() {
     struct sockaddr_in sin;
     struct hostent *hinfo;
     struct protoent *procinfo;
-    char buffer [BUFLEN];
+    char buffer[BUFLEN];
     int sd, ret;
 
     //lookup the hostname
@@ -129,7 +132,10 @@ string httpConnect() {
 
     // Send an HTTP request
     char http_request[BUFLEN]; // saves http_request
-    HTTP_REQUEST(http_request, sizeof(http_request), urlFile, hostname);
+    string httpVer = "1.0";
+    if (cIndex != INT_ERROR)
+        httpVer = "1.1";
+    HTTP_REQUEST(http_request, sizeof(http_request), urlFile, httpVer.c_str(), hostname);
     if (send(sd, http_request, strlen(http_request), 0) < 0)
         errorExit("cannot send", NULL);
 
@@ -245,11 +251,20 @@ int optionO(string response) {
     return errCode;
 }
 
+/**
+ * @brief Executed when option f called; redirects to the url after "Location: "
+ * @param response http response
+ * @return string url to be redirected to
+ */
 string optionF(string response) {
     int start = response.find("Location: ") + strlen("Location: "); // find the empty line & skip over that line
     int end = response.find("\r\n", start);
     string redirect = response.substr(start, end - start);
     return redirect;
+}
+
+void optionC() {
+
 }
 
 /**

@@ -1,0 +1,71 @@
+#!/bin/bash
+
+# Sample A
+echo "Testing sample A"
+./proj2 -u http://www.icir.org -d -o icir.html > a-result.txt
+diff -u sample-a.out a-result.txt
+sha1sum icir.html
+echo
+
+# Sample D
+echo "Testing sample D"
+./proj2 -o icir.org -u http://www.icir.org/ -q > d-result.txt
+diff -u sample-d.out d-result.txt
+sha1sum icir.html
+echo
+
+# Sample E
+echo "Testing sample E"
+./proj2 -d -o /dev/null -u http://www.icir.org/mallman/ -q > e-result.txt
+diff -u sample-e.out e-result.txt
+echo
+
+# Sample F
+echo "Testing sample F"
+./proj2 -o /dev/null -u http://www.icir.org/mallman/ -r |egrep -v -e '^INC: Date: ' > f-result.txt
+diff -u sample-f.out f-result.txt
+echo
+
+# Sample G
+echo "Testing sample G"
+./proj2 -u http://www.icir.org/mallman/test-files/small.txt -o small.txt > g-result.txt
+sha1sum small.txt
+echo
+
+
+# Sample H
+echo "Testing sample H"
+./proj2 -u http://www.icir.org/mallman/test-files/small-test.dat -o small-test.dat > h-result.txt
+sha1sum small-test.dat
+echo
+
+# Sample I; skipped for now
+# echo "Testing sample I"
+# ./proj2 -f -q -r -u http://www.icir.org/mallman/325-samples/r1.html -o redirect.html > i-result.txt
+# diff -u sample-i.out i-result.txt
+# sha1sum redirect.html
+# echo
+
+# Sample J
+echo "Testing sample J"
+./proj2 -o icsi.gif -u http://www.icir.org/mallman/test-files/ICSI_color.gif > j-result.txt
+sha1sum icsi.gif
+echo
+
+# Sample K
+echo "Testing sample K"
+./proj2 -o med-test.dat -u http://www.icir.org/mallman/test-files/med-test.dat > k-result.txt
+sha1sum med-test.dat
+echo
+
+# Sample M
+echo "Testing sample M"
+./proj2 -o gf128M -u http://www.icir.org/mallman/test-files/gf128M > m-result.txt
+sha1sum gf128M
+echo
+
+# Sample N
+echo "Testing sample N"
+./proj2 -u http://www.sigcomm.org -r -o sigcomm.out |egrep -v -e '^INC: (date|set-cookie): ' > n-result.txt
+diff -u n-result.txt sample-n.out
+sha1sum sigcomm.out

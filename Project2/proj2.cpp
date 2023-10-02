@@ -6,6 +6,8 @@
 // o option outputs? error
 // ./proj2 -r -u http://case.edu/ -o case.html?
 // httpConnect() too big?
+// File sizes sometimes not correct
+// Not working for M
 
 
 /**

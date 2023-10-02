@@ -1,16 +1,3 @@
-// literals; Too many defines or is it good? or more? (strings for error messages?)
-// buffer size?
-// general organization
-// extra libraries?
-// memories?
-// o option outputs? error
-// ./proj2 -r -u http://case.edu/ -o case.html?
-// httpConnect() too big?
-// File sizes sometimes not correct
-// Not working for M
-// sha1 correct for sample G
-
-
 /**
  * @file Project2.cpp
  * @author Chaehyeon Kim cxk445

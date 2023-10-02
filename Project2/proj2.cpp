@@ -8,6 +8,7 @@
 #include <fstream>
 #include <sys/socket.h>
 #include <netdb.h>
+#include <vector>
 
 using namespace std;
 
@@ -128,16 +129,23 @@ string httpConnect() {
     if (send(sd, http_request, strlen(http_request), 0) < 0)
         errorExit("cannot send", NULL);
 
-    // snarf whatever server provides and print it
-    memset(buffer,0x0,BUFLEN);
-    ret = read(sd,buffer,BUFLEN - 1);
-    if (ret < 0)
-        errorExit("reading error",NULL);
+    // Loop for getting responses
+    std::vector<char> httpResponse;
+    while (true) {
+        memset(buffer, 0x0, BUFLEN);
+        ret = read(sd, buffer, BUFLEN - 1);
+        if (ret < 0)
+            errorExit("reading error", NULL);
+        else if (ret == 0) // end of loop; break
+            break;
+        else
+            httpResponse.insert(httpResponse.end(), buffer, buffer + ret); // append data to httpResponse
+    }
 
     // close & return http response
     close(sd);
-    string httpResponse = buffer;
-    return httpResponse;
+    string retResponse(httpResponse.begin(), httpResponse.end());
+    return retResponse;
 }
 
 /**

@@ -66,6 +66,6 @@ echo
 
 # Sample N
 echo "Testing sample N"
-./proj2 -u http://www.sigcomm.org -r -o sigcomm.out|egrep -v -e '^INC: Date: ' > n-result.txt
+./proj2 -u http://www.sigcomm.org -r -o sigcomm.out |egrep -v -e '^INC: (date|set-cookie): ' > n-result.txt
 diff -u n-result.txt sample-n.out
 sha1sum sigcomm.out

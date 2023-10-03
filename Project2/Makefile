@@ -1,13 +1,13 @@
 CXX = g++
 CFLAGS = -Wall -Werror -g
-TARGETS = proj2
+TARGETS = proj2 test
 
 all: $(TARGETS)
 
 proj2: proj2.cpp
 	$(CXX) $(CFLAGS) -o $@ $<
 
-test: 
+test: # Not sure if this works
 	bash test
 
 %.o: %.cpp

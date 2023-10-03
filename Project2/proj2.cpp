@@ -115,7 +115,7 @@ string httpVer() {
 }
 
 /**
- * @brief Sending and receiving http request/response
+ * @brief Sending and receiving http request/response; socket.c referenced
  * @param buffer buffer from socketConnect()
  * @param sd sd from socketConnect()
  * @return string http response

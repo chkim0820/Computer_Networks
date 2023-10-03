@@ -1,0 +1,11 @@
+Name: Chaehyeon Kim
+Case ID: cxk445
+Filename: notes.txt
+Date created: 10/01/2023
+Description: notes.txt to be read during grading process
+
+-   I tried implementing chunked encoding, but it messed up the code I had before.
+    Here is a link to what I had before reverting the code back: https://bin.birdflop.com/nabucazaki.cpp
+    The code doesn't work, but I would appreciate it if it could be considered for extra credit if it is possible.
+        -   If it deducts more points, please just discard... The code is quite messy.
+-   Thanks!

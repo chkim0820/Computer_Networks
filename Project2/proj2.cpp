@@ -1,6 +1,8 @@
 /**
  * @file proj2.cpp
  * @author Chaehyeon Kim cxk445
+ * @brief Script for a simple command line-based web client
+ * @date 2023-09-25
  */
 
 #include <iostream>
@@ -26,7 +28,9 @@ using namespace std;
 #define SKIP_RN 4
 #define HTTP_LENGTH 7
 
+/* Comparing arguments case-insensitive */
 #define COMPARE_ARG(arg, opt) (0 == strncasecmp(arg, opt, strlen(opt)))
+/* For building a http request */
 #define HTTP_REQUEST(s, maxLen, urlFile, httpVer, hostname) snprintf(s, maxLen, "GET %s HTTP/%s\r\n" \
                                                             "Host: %s\r\n" \
                                                             "User-Agent: CWRU CSDS 325 SimpleClient\r\n" \
@@ -232,7 +236,6 @@ void optionD() {
  * @brief Executes option Q when called; printing http request
  */
 void optionQ() {
-    // Printing outputs //FIX so that OUT: is directly added to the actual input
     fprintf(stdout, "OUT: GET %s HTTP/1.0\r\n", urlFile);
     fprintf(stdout, "OUT: Host: %s\r\n", hostname);
     fprintf(stdout, "OUT: User-Agent: CWRU CSDS 325 SimpleClient 1.0\r\n");
@@ -244,7 +247,7 @@ void optionQ() {
  */
 void optionR(const char* response) {
     // Creating a temporary variable containing everything after "\r\n\r\n"; strtok can't differentiate duplicated \r\n
-    char* tempResp = new char[strlen(response) + 1]; // allocate memory
+    char* tempResp = new char[strlen(response) + 1];
     strcpy(tempResp, response); // copy over original response
     char* stopping = strstr(tempResp, "\r\n\r\n"); // everything after empty line; stopping point
     for (int i = 0; *stopping && i < SKIP_RN; i++) // go to the first character after "\r\n\r\n"
@@ -289,6 +292,9 @@ string optionF(string response) {
     return redirect;
 }
 
+/**
+ * @brief For when -C option is called; wasn't implemented 
+ */
 void optionC() {
 
 }
@@ -300,7 +306,7 @@ void optionC() {
  * @return int returns int
  */
 int main(int argc, char* argv[]) {
-    int urlIndex = parseArgs(argc, argv); // maybe urlIndex could be returned instead?
+    int urlIndex = parseArgs(argc, argv);
     char* url = argv[urlIndex];
 
     while (true) {

@@ -3,6 +3,7 @@
  * @author Chaehyeon Kim cxk445
  */
 
+#include <iostream>
 #include <unistd.h>
 #include <cstring>
 #include <fstream>
@@ -28,7 +29,7 @@ using namespace std;
 #define COMPARE_ARG(arg, opt) (0 == strncasecmp(arg, opt, strlen(opt)))
 #define HTTP_REQUEST(s, maxLen, urlFile, httpVer, hostname) snprintf(s, maxLen, "GET %s HTTP/%s\r\n" \
                                                             "Host: %s\r\n" \
-                                                            "User-Agent: CWRU CSDS 325 SimpleClient 1.0\r\n" \
+                                                            "User-Agent: CWRU CSDS 325 SimpleClient\r\n" \
                                                             "\r\n", urlFile, httpVer, hostname)
 
 /* Global variables */
@@ -110,79 +111,35 @@ string httpVer() {
 }
 
 /**
- * @brief Loop for decoding chunk-encoded data 
- * @param response http response
- * @return string decoded data
- */
-string chunkedEncodingLoop(string response) {
-    size_t chunkSize;
-    std::vector<char> decodedResponse;
-
-    while (true) {
-        string chunkString;
-        size_t pos = response.find("\r\n");
-        if (pos == string::npos)
-            errorExit("Wrong chunk format", NULL);
-        chunkString = response.substr(0, pos);
-        response = response.substr(pos + 2);
-
-        try {
-            chunkSize = std::stoul(chunkString, nullptr, 16);
-            if (chunkSize == 0) // Check for end of line
-                break;
-        } catch (const std::exception& e) {
-            errorExit("Failed to parse chunk size", e.what());
-        }
-
-        // Read and append the chunk data
-        if (response.length() < chunkSize + 2) {
-            errorExit("Invalid chunk data", NULL);
-        }
-        decodedResponse.insert(decodedResponse.end(), response.begin(), response.begin() + chunkSize);
-        response = response.substr(chunkSize + 2); // Skip "\r\n"    }
-    }
-    return response;
-}
-
-/**
  * @brief Sending and receiving http request/response
  * @param buffer buffer from socketConnect()
  * @param sd sd from socketConnect()
  * @return string http response
  */
 string httpConnect(char buffer[BUFLEN], int sd) {
-    // Send an http request
-    char httpRequest[BUFLEN]; // saves http_request
-    HTTP_REQUEST(httpRequest, sizeof(httpRequest), urlFile, httpVer().c_str(), hostname);
-    if (send(sd, httpRequest, strlen(httpRequest), 0) < 0)
+    int ret = INT_ERROR;
+    // Send an HTTP request
+    char http_request[BUFLEN]; // saves http_request
+    string httpVer = "1.0";
+    if (cIndex != INT_ERROR)
+        httpVer = "1.1";
+    HTTP_REQUEST(http_request, sizeof(http_request), urlFile, httpVer.c_str(), hostname);
+    if (send(sd, http_request, strlen(http_request), 0) < 0)
         errorExit("cannot send", NULL);
-    
-    // Loop for http responses
-    int ret;
+
+    // Loop for getting responses
     std::vector<char> httpResponse;
-    
     while (true) {
         memset(buffer, 0x0, BUFLEN);
-        ret = recv(sd, buffer, BUFLEN - 1, 0);
+        ret = read(sd, buffer, BUFLEN - 1);
         if (ret < 0)
             errorExit("reading error", NULL);
         else if (ret == 0) // end of loop; break
             break;
-
-        // Append received results
-        size_t currentSize = httpResponse.size();
-        httpResponse.resize(currentSize + ret);
-        httpResponse.insert(httpResponse.end(), buffer, buffer + ret);
+        else
+            httpResponse.insert(httpResponse.end(), buffer, buffer + ret); // append data to httpResponse
     }
     string retResponse(httpResponse.begin(), httpResponse.end());
-    
-    // For if -C was called
-    if (cIndex != INT_ERROR) {
-        // Check the response for "Transfer-Encoding" in the response
-        size_t pos = retResponse.find("Transfer-Encoding: chunked");
-        if (pos != string::npos) // -C option called
-            retResponse = chunkedEncodingLoop(retResponse);
-    }
     return retResponse;
 }
 
@@ -218,7 +175,7 @@ string socketConnect() {
     // connect the socket
     if (connect(sd, (struct sockaddr *)&sin, sizeof(sin)) < 0)
         errorExit("cannot connect", NULL);
-    
+
     // http request & response
     string response = httpConnect(buffer, sd);
 
@@ -276,7 +233,7 @@ void optionD() {
  */
 void optionQ() {
     // Printing outputs //FIX so that OUT: is directly added to the actual input
-    fprintf(stdout, "OUT: GET %s HTTP/%s\r\n", urlFile, httpVer().c_str());
+    fprintf(stdout, "OUT: GET %s HTTP/1.0\r\n", urlFile);
     fprintf(stdout, "OUT: Host: %s\r\n", hostname);
     fprintf(stdout, "OUT: User-Agent: CWRU CSDS 325 SimpleClient 1.0\r\n");
 }
@@ -300,20 +257,6 @@ void optionR(const char* response) {
         fprintf(stdout, "INC: %s\r\n", line);
         line = strtok(nullptr, "\r\n");
     }
-
-    // int headerLength = response.find("\r\n\r\n");
-    // string tempResp = response.substr(0, headerLength);
-
-    // // Output line by line
-    // int start = 400;
-    // int end = tempResp.find("\r\n");
-    // while (end != INT_ERROR) { // until empty line with only "\r\n"
-    //     string line = tempResp.substr(start, end - start);
-    //     cout << line << endl;
-    //     fprintf(stdout, "INC: %s\r\n", line.c_str());
-    //     start = end + SKIP_RN;
-    //     end = tempResp.find("\r\n", start);
-    // }
 }
 
 /**
@@ -347,7 +290,7 @@ string optionF(string response) {
 }
 
 void optionC() {
-    fprintf(stdout, "in option c");
+
 }
 
 /**
@@ -359,7 +302,7 @@ void optionC() {
 int main(int argc, char* argv[]) {
     int urlIndex = parseArgs(argc, argv); // maybe urlIndex could be returned instead?
     char* url = argv[urlIndex];
-    
+
     while (true) {
         optionU(url);
         if (dIndex != INT_ERROR)
@@ -380,7 +323,5 @@ int main(int argc, char* argv[]) {
             url = new char[tempURL.length()];
             strcpy(url, tempURL.c_str());
         }
-        if (cIndex != INT_ERROR)
-            optionC();
     }
 }

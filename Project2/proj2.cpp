@@ -120,14 +120,14 @@ string httpVer() {
  * @param sd sd from socketConnect()
  * @return string http response
  */
-string httpConnect(char buffer[BUFLEN], int sd) {
+string httpConnect(char buffer[BUFLEN], int sd) { // Grade deduction; uses too much memory (read & write consequently instead of holding everything)
     int ret = INT_ERROR;
     // Send an HTTP request
     char http_request[BUFLEN]; // saves http_request
     string httpVer = "1.0";
     if (cIndex != INT_ERROR)
         httpVer = "1.1";
-    HTTP_REQUEST(http_request, sizeof(http_request), urlFile, httpVer.c_str(), hostname);
+    HTTP_REQUEST(http_request, sizeof(http_request), urlFile, httpVer.c_str(), hostname); // Grade deduction; urlFile might have been invalid
     if (send(sd, http_request, strlen(http_request), 0) < 0)
         errorExit("cannot send", NULL);
 
@@ -218,7 +218,7 @@ void optionU(char* arg) {
         errorExit("No valid hostname could be found", NULL); 
 
     // Assigning urlFile if exists (optional)
-    strcpy(urlFile, url + strlen(arg));
+    strcpy(urlFile, url + strlen(arg)); // Grade deduction; might not have access to /etc
     if (urlFile[0] == '\0' || urlFile == nullptr)
         strcpy(urlFile, "/");
 }
@@ -296,7 +296,7 @@ string optionF(string response) {
  * @brief For when -C option is called; wasn't implemented 
  */
 void optionC() {
-
+    // Only needed to change HTTP 1.0 to 1.1
 }
 
 /**
@@ -322,7 +322,7 @@ int main(int argc, char* argv[]) {
         int errCode = optionO(httpResponse);
 
         // Extra credits
-        if (errCode == 200)
+        if (errCode == 200) // Got grade deduction; use constants!!!
             break;
         else {
             string tempURL = optionF(httpResponse);

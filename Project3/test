@@ -7,3 +7,73 @@
 
 
 #!/bin/bash
+
+# Sample 1
+echo "Testing sample 1"
+mkdir -p ~/doc-root; seq 5 > ~/doc-root/5.txt
+./proj3 -n 1947 -a foobar -d ~/doc-root
+echo -e -n "GET /5.txt HTTP/1.1\r\n\r\n" |nc eecslab-10.case.edu 1947
+diff
+echo
+
+# Sample 2
+echo "Testing sample 2"
+mkdir -p ~/doc-root
+rm -f ~/doc-root/*
+./proj3 -n 1947 -a foobar -d ~/doc-root
+echo -e -n "GET / HTTP/1.1\r\n\r\n" |nc eecslab-10.case.edu 1947
+diff
+echo
+
+# Sample 3
+echo "Testing sample 3"
+./proj3 -n 1947 -a foobar -d ~/web-stuff
+echo -e -n "GET / HTTP/1.1\n\r\n" |nc eecslab-10.case.edu 1947
+diff
+echo
+
+
+# Sample 4
+echo "Testing sample 4"
+./proj3 -n 1947 -a foobar -d ~/web-stuff
+echo -e -n "GETFILE / HTTP/1.1\r\n\r\n" |nc eecslab-10.case.edu 1947
+diff
+echo
+
+# Sample 5
+echo "Testing sample 5"
+mkdir -p ~/325-web-store
+cd ~/325-web-store
+wget http://www.icir.org/mallman/test-files/small.txt
+./proj3 -n 1947 -a foobar -d ~/325-web-store
+echo -e -n "GET /small.txt HTTP/1.1\r\n\r\n" |nc eecslab-10.case.edu 1947
+
+# Sample 6
+echo "Testing sample 6"
+mkdir -p ~/325-web-store
+cd ~/325-web-store
+wget http://www.icir.org/mallman/test-files/small-test.dat
+./proj3 -n 1947 -a foobar -d ~/325-web-store
+echo -e -n "GET /small-test.dat HTTP/1.1\r\n\r\n" |nc eecslab-10.case.edu 1947 |sha1sum
+diff
+echo
+
+# Sample 7
+echo "Testing sample 7"
+mkdir -p ~/325-web-stuff/foo
+cd ~/325-web-stuff/foo
+wget http://www.icir.org/mallman/test-files/ICSI_color.gif
+./proj3 -n 1947 -a foobar -d ~/325-web-stuff
+echo -e -n "GET /foo/ICSI_color.gif HTTP/1.1\r\n\r\n" |nc eecslab-10.case.edu 1947 |sha1sum
+diff
+echo
+
+# Sample 8
+echo "Testing sample 8"
+mkdir -p ~/325-web-docs
+cd ~/325-web-docs
+wget http://www.icir.org/mallman/test-files/gf128M
+./proj3 -n 1947 -a foobar -d ~/325-web-docs
+echo -e -n "GET /gf128M HTTP/1.1\r\n\r\n" |nc eecslab-10.case.edu 1947 |sha1sum
+diff
+echo

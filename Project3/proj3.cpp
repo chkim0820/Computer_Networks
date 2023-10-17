@@ -18,6 +18,7 @@
 #include <unistd.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
+#include <vector>
 
 using namespace std;
 
@@ -90,36 +91,76 @@ void parseArgs(int argc, char* argv[]) {
         errorExit("Some or all of the required specifications are not present", NULL);
 }
 
-void httpRequest(int clientSocket) {
-    char request[BUFLEN];
-    char buffer[BUFLEN];
-    char method[10]; // FIX; arg length
-    char arg[10];
-    char ver[10];
-    recv(clientSocket, request, BUFLEN, 0); // FIX: longer requests?
-    sscanf(request, "%s %s HTTP/", method, arg);
-    docDirectory = docDirectory + arg;
+void requestLine(string method, string arg, string httpVer) {
+    // check if "HTTP/"
+    if (httpVer.substr(0, 4) != "HTTP/")
+        errorExit("HTTP/1.1 400 Malformed Request\r\n\r\n", NULL);
 
-    int file = open(docDirectory.c_str(), O_RDONLY);
-    if (file == -1)
-        ;// FIX: error message
-    else {
-        int readLen;
-        while ((readLen = read(file, buffer, BUFLEN)) > 0)
-            write(clientSocket, buffer, readLen);
-        if (readLen < 0)
-            ; // FIX: error message
+    if (method == "GET")
+        ;
+    else if (method == "SHUTDOWN")
+        ;
+    else
+        errorExit("HTTP/1.1 405 Unsupported Method\r\n\r\n", NULL);
+}
+
+void httpRequest(const char* buffer, int len) {    
+    // Parse http request
+    std::vector<char> httpResponse;
+    httpResponse.insert(httpResponse.begin(), buffer, buffer + len); // append data to httpResponse
+    if (httpResponse.empty())
+        errorExit("HTTP response is empty", NULL);
+
+    bool rEncountered = false;
+    bool firstLine = true;
+    vector<string> rqLineElem;
+    string word = "";
+    for (const char& character : httpResponse) {
+        bool isN = (character == '\n');
+        if (character == '\r') {
+            rEncountered = true;
+            if (firstLine) {
+                if (rqLineElem.size() != 3)
+                    errorExit("HTTP/1.1 400 Malformed Request\r\n\r\n", NULL);
+                requestLine(rqLineElem[0], rqLineElem[1], rqLineElem[2]);
+                firstLine = false;
+            }
+        }
+        else if ((rEncountered && !isN) || (!rEncountered && isN))
+            errorExit("HTTP/1.1 400 Malformed Request\r\n\r\n", NULL);
+        else {
+            rEncountered = false;
+            if (firstLine) {
+                if (character == ' ') {
+                    rqLineElem.push_back(word);
+                    word.clear();
+                }
+                else
+                    word = word + character;
+            }
+        }
     }
+    bool emptyEnd = (httpResponse.size() > 1 && 
+                     httpResponse[httpResponse.back() - 1] == '\r' && httpResponse[httpResponse.back()] == '\n');
+    if (firstLine && !emptyEnd)
+        errorExit("Request line not present or no empty line present", NULL);
 }
 
 void clientSocket(int clientSocket) {
-    httpRequest(clientSocket);
-    char buffer[BUFLEN];
-    int readLen;
+    while (true) {    
+        char buffer[BUFLEN];
+        int receivedLen;
+        memset(buffer, 0x0, sizeof(buffer)); // Clear the buffer
 
-    if (write(clientSocket, buffer, readLen) < 0)
-        errorExit("Error writing message: %s", docDirectory.c_str());
+        receivedLen = recv(clientSocket, buffer, sizeof(buffer), 0);
 
+        if (receivedLen < 0)
+            errorExit("Error reading from socket", NULL);
+        else if (receivedLen == 0)
+            break;
+        // Process the HTTP request in the buffer
+        httpRequest(buffer, receivedLen);
+    }
 }
 
 /**
@@ -132,40 +173,39 @@ void serverConnect() {
     unsigned int addressLen;
     int sd, sd2;
 
-    /* determine protocol; only proceed if TCP */
+    // determine protocol; only proceed if TCP
     if ((protocolInfo = getprotobyname(PROTOCOL)) == NULL) // Retrieves TCP information
         errorExit("cannot find protocol information for %s", PROTOCOL);
 
-    /* setup endpoint urlInfo */
+    // setup endpoint urlInfo
     memset((char*)&sin, 0x0, sizeof(sin));
     sin.sin_family = AF_INET; // IPv4 address family
     sin.sin_addr.s_addr = INADDR_ANY; // Bind to all available network interfaces
     sin.sin_port = htons((u_short)stoi(port)); // Set to the port number specified; converted to big endian
 
-    /* allocate a socket */
-    /* SOCK_STREAM for TCP; would be SOCK_DGRAM for UDP */
+    // allocate a socket; SOCK_STREAM for TCP; would be SOCK_DGRAM for UDP
     sd = socket(PF_INET, SOCK_STREAM, protocolInfo->p_proto);
     if (sd < 0)
         errorExit("cannot create socket", NULL);
 
-    /* bind the socket; local IP address & port */
+    // bind the socket; local IP address & port 
     if (bind(sd, (struct sockaddr*)&sin, sizeof(sin)) < 0)
         errorExit("cannot bind to port %s", port.c_str());
 
-    /* listen for incoming connections; 1 max. pending connections */
+    // listen for incoming connections; 1 max. pending connections
     if (listen(sd, QLEN) < 0)
         errorExit("cannot listen on port %s\n", port.c_str());
     
-    /* accept a connection */
+    // accept a connection
     addressLen = sizeof(addr);
     sd2 = accept(sd,&addr,&addressLen); // Handles communication with each client
     if (sd2 < 0)
         errorExit ("error accepting connection", NULL);
 
-    /* read & write message to the connection (sd2) */
+    // read & write message to the connection (sd2)
     clientSocket(sd2);
 
-    /* close connections and exit */
+    // close connections and exit
     close(sd);
     close(sd2);
 }

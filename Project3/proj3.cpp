@@ -36,9 +36,9 @@ using namespace std;
 int N_ARG = -1;
 int D_ARG = -1;
 int A_ARG = -1;
-string port = nullptr;
-string docDirectory = nullptr;
-string authToken = nullptr;
+string port = "";
+string docDirectory = "";
+string authToken = "";
 
 /* Methods */
 
@@ -49,7 +49,6 @@ string authToken = nullptr;
  */
 void errorExit (const char *format, const char *arg) {
     fprintf(stderr, format, arg);
-    fprintf(stderr, "\n");
     exit(ERROR);
 }
 
@@ -93,46 +92,54 @@ void parseArgs(int argc, char* argv[]) {
 
 void requestLine(string method, string arg, string httpVer) {
     // check if "HTTP/"
-    if (httpVer.substr(0, 4) != "HTTP/")
+    if (httpVer.length() != 8 || // ignoring what's after "http/" per the instruction
+        (httpVer.length() > 5 && httpVer.substr(0, 5) != "HTTP/"))
         errorExit("HTTP/1.1 400 Malformed Request\r\n\r\n", NULL);
 
-    if (method == "GET")
-        ;
-    else if (method == "SHUTDOWN")
-        ;
-    else
-        errorExit("HTTP/1.1 405 Unsupported Method\r\n\r\n", NULL);
+    // if (method == "GET")
+    //     ;
+    // else if (method == "SHUTDOWN")
+    //     ;
+    // else
+    //     errorExit("HTTP/1.1 405 Unsupported Method\r\n\r\n", NULL);
 }
 
-void httpRequest(const char* buffer, int len) {    
+void httpRequest(const char* buffer, int len) {   
     // Parse http request
     std::vector<char> httpResponse;
     httpResponse.insert(httpResponse.begin(), buffer, buffer + len); // append data to httpResponse
     if (httpResponse.empty())
         errorExit("HTTP response is empty", NULL);
-
     bool rEncountered = false;
-    bool firstLine = true;
+    int lineNum = 0;
     vector<string> rqLineElem;
     string word = "";
     for (const char& character : httpResponse) {
         bool isN = (character == '\n');
-        if (character == '\r') {
+        if (character == '\r')
             rEncountered = true;
-            if (firstLine) {
-                if (rqLineElem.size() != 3)
-                    errorExit("HTTP/1.1 400 Malformed Request\r\n\r\n", NULL);
-                requestLine(rqLineElem[0], rqLineElem[1], rqLineElem[2]);
-                firstLine = false;
-            }
-        }
         else if ((rEncountered && !isN) || (!rEncountered && isN))
             errorExit("HTTP/1.1 400 Malformed Request\r\n\r\n", NULL);
+        else if (isN) {
+            if (lineNum == 0) {
+                bool wordEmpty = word.empty();
+                if (!wordEmpty)
+                    rqLineElem.push_back(word);
+                if (wordEmpty || rqLineElem.size() != 3)
+                    errorExit("HTTP/1.1 400 Malformed Request\r\n\r\n", NULL);
+                requestLine(rqLineElem[0], rqLineElem[1], rqLineElem[2]);
+                
+            }
+            lineNum = lineNum + 1;
+        }
         else {
             rEncountered = false;
-            if (firstLine) {
+            if (lineNum == 0) {
                 if (character == ' ') {
-                    rqLineElem.push_back(word);
+                    if (!word.empty())
+                        rqLineElem.push_back(word);
+                    else
+                        errorExit("HTTP/1.1 400 Malformed Request\r\n\r\n", NULL);
                     word.clear();
                 }
                 else
@@ -140,10 +147,12 @@ void httpRequest(const char* buffer, int len) {
             }
         }
     }
-    bool emptyEnd = (httpResponse.size() > 1 && 
-                     httpResponse[httpResponse.back() - 1] == '\r' && httpResponse[httpResponse.back()] == '\n');
-    if (firstLine && !emptyEnd)
-        errorExit("Request line not present or no empty line present", NULL);
+    bool emptyEnd = (httpResponse.size() > 1 &&
+                     httpResponse[httpResponse.size() - 2] == '\r' && httpResponse.back() == '\n');
+    if (lineNum > 1 && emptyEnd)
+        return;
+    else
+        errorExit("HTTP/1.1 400 Malformed Request\r\n\r\n", NULL);
 }
 
 void clientSocket(int clientSocket) {
@@ -217,6 +226,11 @@ void serverConnect() {
 * @return int Main method return value
 */
 int main(int argc, char* argv[]) {
+    char* ch = new char[40];
+    string arg = "method arg http/1.0\r\n\r\n";
+    strcpy(ch, "method arg HTTP/1.0\r\n\r\n");
+    httpRequest(ch, arg.length());
+    exit(1);
     parseArgs(argc, argv); // When returned, all required inputs present (at least number-wise)
 
     serverConnect();

@@ -3,3 +3,6 @@ Case ID: cxk445
 Filename: notes.txt
 Date created: 10/05/2023
 Description: notes.txt to be read during HW3 grading process
+
+    -   I didn't check what version of HTTP it is and if they're valid since I didn't know exactly what versions were acceptable. 
+        I just checked that the argument was the correct length. 

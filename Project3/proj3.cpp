@@ -25,6 +25,18 @@ using namespace std;
 #define QLEN 1
 #define PROTOCOL "tcp"
 #define BUFLEN 1024
+#define START 0
+#define EMPTY 0
+#define HTTP 5
+#define HTTP_LEN 8
+#define REQ_ARG 3
+#define MIN_RESP 2
+#define R_POS 2
+#define ARG_FIN 4
+#define FIN 1
+#define PORT_POS 0
+#define DOC_POS 1
+#define AUTH_POS 2
 
 // Comparing arguments case-insensitive 
 #define COMPARE_ARG(arg, opt) (0 == strncasecmp(arg, opt, strlen(arg)))
@@ -78,35 +90,75 @@ void parseArgs(int argc, char* argv[]) {
         errorExit("Some or all of the required options are not present", nullptr);
 }
 
+/**
+ * @brief Sending the input response to the client socket  
+ * @param clientSocket Socket to be returned to the client
+ * @param response Response to be sent to the client
+ */
 void writeToSocket(const int clientSocket, string response) {
-    string retResponse = "HTTP/1.1 " + response + "\r\n\r\n";
-    char buffer[retResponse.length() + 1];
+    string retResponse = "HTTP/1.1 " + response + "\r\n\r\n"; // Formatting the response
+    char buffer[retResponse.length() + 1]; // String response into char[]
     memset(buffer, 0x0, sizeof(buffer));
     strcpy(buffer, retResponse.c_str());
-    if (send(clientSocket, buffer, strlen(buffer), 0) < 0)
+    if (send(clientSocket, buffer, strlen(buffer), 0) < 0) // Send the response (buffer) to client socket
         errorExit("Error while sending response to the socket", NULL);
 }
 
-bool sendFile(FILE* file, const int clientSocket) { // FIX: Make sure lines end with \r\n
+/**
+ * @brief Sending the requested file to the client socket
+ * @param file Requested file
+ * @param clientSocket Socket to be returned to the client
+ */
+void sendFile(FILE* file, const int clientSocket) { 
     char buffer[BUFLEN];
     memset(buffer, 0x0, sizeof(buffer)); 
     size_t lenRead;
 
-    while ((lenRead = fread(buffer, CHAR_SIZE, BUFLEN, file)) > 0) { // check \r\n
-        if (send(clientSocket, buffer, strlen(buffer), 0) < 0)
-            errorExit("Error while reading the input file", nullptr);
+    while ((lenRead = fread(buffer, CHAR_SIZE, BUFLEN, file)) > 0) { // Check \r\n
+        char* line = strchr(buffer, '\n'); // Points at the first '\n' after buffer (as pointer here)    
+        if (line == nullptr && lenRead == sizeof(buffer)) { // If super long line; \n not present but still processed
+            if (send(clientSocket, buffer, BUFLEN, 0) < 0)
+                errorExit("Error while reading the input file", nullptr);
+        }
+        while (line != nullptr) {
+            size_t lineLen = line - buffer + 1; // length of line to be sent
+            char* rPos = strchr(buffer, '\r');
+            bool rMissing = false; // \r missing; only \n
+            if ((line - rPos) != 1) { // if \r is not before \n
+                lineLen -= 1; // Only append up till before \n
+                rMissing = true;
+            }
+            if (send(clientSocket, buffer, lineLen, 0) < 0)
+                errorExit("Error while reading the input file", nullptr);
+            if (rMissing) { // If \r was missing
+                const char* emptyEnd = "\r\n"; // Manually add \r\n at the end of the sentence
+                if (send(clientSocket, emptyEnd, strlen(emptyEnd), 0) < 0)
+                    errorExit("Error while reading the input file", nullptr);
+                lineLen += 1; // Add back
+            }
+            memmove(buffer, line + 1, lenRead - lineLen); // shift up buffer's pointer
+            lenRead -= lineLen; // Update total amount left
+            line = strchr(buffer, '\n'); // Find the next \n
+        }
     }
+    const char* emptyLine = "\r\n";
+    if (send(clientSocket, emptyLine, strlen(emptyLine), 0) < 0)
+        errorExit("Error while adding an empty line to the client socket", nullptr);
     fclose(file);
-    return true;
 }
 
-void getMethod(string arg, const int clientSocket) { // arg is the filename & docDirectory/Root is terminal input; also check if input arg valid
-    if (arg[0] != '/') {
+/**
+ * @brief Called when "GET" method is specified
+ * @param filename Argument (file name) of the "GET" method
+ * @param clientSocket Socket to be returned to the client
+ */
+void getMethod(string filename, const int clientSocket) {
+    if (filename.front() != '/') { // Filename doesn't start with '\'
         writeToSocket(clientSocket, "406 Invalid Filename");
         return;
     }        
-    if (arg == "/")
-        arg = "/homepage.html";
+    if (filename == "/") // If only '\', convert filename to 
+        filename = "/homepage.html";
 
     // Check if docDirectory from terminal input is valid
     filesystem::path path(docDirectory);
@@ -114,11 +166,11 @@ void getMethod(string arg, const int clientSocket) { // arg is the filename & do
         errorExit("The input document directory is invalid", nullptr);
     
     // Combine file and base directory for a full directory
-    string fullDirectory = docDirectory + arg;
+    string fullDirectory = docDirectory + filename;
 
     // Opening a file if it exists
     FILE* file = fopen(fullDirectory.c_str(), "rb");
-    if (file != nullptr) { // requested file exists
+    if (file != nullptr) { // Requested file exists
         writeToSocket(clientSocket, "200 OK");
         sendFile(file, clientSocket);
     }
@@ -126,120 +178,151 @@ void getMethod(string arg, const int clientSocket) { // arg is the filename & do
         writeToSocket(clientSocket, "404 File Not Found");
 }
 
-bool shutdownMethod(string arg, const int clientSocket) { // arg used to authenticate client
-    if (arg != authToken) { // no match
+/**
+ * @brief Called when "SHUTDOWN" method is specified
+ * @param arg Argument to the "SHUTDOWN" method for authentication
+ * @param clientSocket Socket to be returned to the client
+ * @return true TCP connection is to be closed
+ * @return false TCP connection is to kept open
+ */
+bool shutdownMethod(string arg, const int clientSocket) {
+    if (arg != authToken) { // The argument doesn't match authentication token given in the terminal
         writeToSocket(clientSocket, "403 Operation Forbidden");
         return false;
     }
-    // argument in HTTP request matches -a authToken; shut down
+    // Argument in HTTP request matches -a authToken; shut down
     writeToSocket(clientSocket, "200 Server Shutting Down");
     return true;
 }
 
+/**
+ * @brief Processes the request line of the HTTP request sent by the client
+ * @param method Method specified in the request
+ * @param arg Argument specified in the request
+ * @param httpVer HTTP version specified in the request
+ * @param clientSocket Socket to be returned to the client 
+ * @return true TCP connection is to be closed
+ * @return false TCP connection is to kept open
+ */
 bool requestLine(string method, string arg, string httpVer, const int clientSocket) {
-    // check if "HTTP/"
-    if (httpVer.length() != 8 || // ignoring what's after "http/" per the instruction
-        (httpVer.length() > 5 && httpVer.substr(0, 5) != "HTTP/")) {
+    // Check if "HTTP/"
+    if (httpVer.length() != HTTP_LEN || // Ignoring what's after "http/" per the instruction; just check it's the same length
+        (httpVer.length() > HTTP && httpVer.substr(START, HTTP) != "HTTP/")) { // Check if it starts with "HTTP/"
         writeToSocket(clientSocket, "501 Protocol Not Implemented");
         return false;
     }
     if (method == "GET") { // "GET" method requested
         getMethod(arg, clientSocket);
-        return true;
+        return true; // Connection closed regardless when "GET" called
     }
     else if (method == "SHUTDOWN") // "SHUTDOWN" method requested
         return shutdownMethod(arg, clientSocket);
-    else {
+    else { // Other unsupported method requested
         writeToSocket(clientSocket, "405 Unsupported Method");
         return false;
     }
 }
 
+/**
+ * @brief Processes and parses the HTTP request 
+ * @param buffer Contains a part of the request to be processed
+ * @param len Length of the content in the buffer 
+ * @param clientSocket Socket to be returned to the client 
+ * @param firstIt Indicates whether this call is the first iteration of the whole HTTP request processing
+ * @return vector<string> Contains the request line and/or indication of whether end of request has been reached or request is malformed 
+ */
 vector<string> httpRequest(const char* buffer, int len, const int clientSocket, bool firstIt) {
-    // Parse http request
-    std::vector<char> httpResponse;
-    bool malRequest = false;
-    httpResponse.insert(httpResponse.begin(), buffer, buffer + len); // append data to httpResponse
-    if (httpResponse.empty())
+    std::vector<char> request; // To store request
+    bool malRequest = false; // Flag for whether the request is malformed or not
+    request.insert(request.begin(), buffer, buffer + len); // Append buffer to request
+    if (request.empty()) // Input buffer is empty; malformed
         malRequest = true;
-    bool rEncountered = false;
-    bool firstLine = true;
-    vector<string> requestLineElem;
-    string word = "";
-    for (const char& character : httpResponse) {
-        bool isN = (character == '\n');
-        bool isR = (character == '\r');
+
+    bool rEncountered = false; // Indicates whether '\r' is encountered
+    bool firstLine = true; // Indicates whether the iteration is on the first line of the request
+    vector<string> requestLineElem; // Stores parts of valid request lines
+    string word = ""; // To be kept for later processing; words in valid request lines
+
+    // For each character in the request
+    for (const char& character : request) { 
+        bool isN = (character == '\n'); // Current character is '\n'
+        bool isR = (character == '\r'); // Current character is '\r'
         if (isR)
             rEncountered = true;
-        else if ((rEncountered && !isN) || (!rEncountered && isN)) {
+        else if ((rEncountered && !isN) || (!rEncountered && isN)) { // If '\r' or '\n' are out-of-order, wrongly-formatted, etc.
             malRequest = true;
             break;
         }
-        else if (firstIt && firstLine) {
-            if (isN || character == ' ') {    
+        else if (firstIt && firstLine) { // If first line of the first iteration (chunk) of the whole request to be processed
+            if (isN || character == ' ') { // Space or end of sentence reached
                 bool wordEmpty = word.empty();
-                if (!wordEmpty)
+                if (!wordEmpty) // Add the word to vector containing words if word not empty
                     requestLineElem.push_back(word);
-                if (wordEmpty || requestLineElem.size() != 3) {
+                if (isN && (wordEmpty || requestLineElem.size() != REQ_ARG)) { // At the end of line && not 3 words added; malformed request
                     malRequest = true;
                     break;
                 }
-                word.clear();
+                word.clear(); // Clear for next iteration/word
             }
             else
                 word = word + character;
         }
-        if (!isR)
+        if (!isR) // reset
             rEncountered = false;
     }
-    size_t responseSize = httpResponse.size();
-    bool emptyEnd = ((responseSize > 1) &&
-                     httpResponse[responseSize - 2] == '\r' && httpResponse.back() == '\n');
-    bool emptyLineEnd = (responseSize > 2 && (httpResponse[responseSize - 3] == '\n'));
-    if (emptyEnd && (emptyLineEnd == true || responseSize == 2))
-        requestLineElem.push_back("TRUE");
-    else
-        malRequest = true;
-    if (malRequest)
+    if (!malRequest) { // FIX: cut off at \r and just \n
+        size_t responseSize = request.size(); // Size of request
+        bool emptyEnd = ((responseSize >= MIN_RESP) && request.back() == '\n'); // Request ends with \n --> ends with \r\n b/c of check above
+        bool emptyLineEnd = (responseSize > MIN_RESP && (request[responseSize - REQ_ARG] == '\n')); // Request ends with an empty line at the end
+        if (emptyEnd && (emptyLineEnd == true || responseSize == MIN_RESP)) // Ends correctly && line ends with empty line 
+            requestLineElem.push_back("TRUE");
+    }
+    if (malRequest) // If flagged as a malformed request
         requestLineElem.push_back("MAL_REQUEST");
     return requestLineElem;
-}
+} // FIX: could also not end with \r\n b/c of the body
 
+/**
+ * @brief Processes the client socket 
+ * @param cs Socket to be returned to the client 
+ * @return true TCP connection is to be closed
+ * @return false TCP connection is to be kept open
+ */
 bool clientSocket(const int cs) {
-    bool firstIt = true;
-    vector<string> request;
-    bool notEmpty = false;
-    bool malRequest = false;
+    bool firstIt = true; // First iteration; calling httpRequest for the first time
+    vector<string> request; // Contains the returned values from httpRequest()
+    bool notEmpty = false; // Flags whether request (above) is empty or not
+    bool malRequest = false; // Flags whether request is malformed or not
     while (true) {    
         char buffer[BUFLEN];
         memset(buffer, 0x0, sizeof(buffer)); // Clear the buffer
         size_t receivedLen = recv(cs, buffer, sizeof(buffer), 0);
-        if (receivedLen < 0) {
+        if (receivedLen < 0) { // Error occurred while reading data from the socket
             malRequest = true;
             break;
         }
         // Process the HTTP request in the buffer
         vector<string> returnValues = httpRequest(buffer, receivedLen, cs, firstIt);
-        if (returnValues.back() == "MAL_REQUEST") {
+        if (returnValues.back() == "MAL_REQUEST") { // Flagged as malformed request
             malRequest = true;
             break;
         }
-        size_t vecSize = returnValues.size();
-        if (vecSize > 2)
+        size_t vecSize = returnValues.size(); // How many elements are contained in returnValues vector
+        if (vecSize >= REQ_ARG) // Has 3 or 4 elements; request line returned
             request = returnValues;
-        notEmpty = !request.empty();
-        if (vecSize == 4 || (vecSize == 1 && notEmpty))
+        notEmpty = !request.empty(); // Vector is not empty
+        if (vecSize == ARG_FIN || (vecSize == FIN && notEmpty)) // If it indicates that the end of request with an empty line was reached, break loop
             break;
-        else if (vecSize == 3 || (vecSize == 0 && notEmpty))
+        else if (vecSize == REQ_ARG || (vecSize == EMPTY && notEmpty)) // If the end of request has not been reached, keep looping
             continue;
-        else {
+        else { // Else, flag as malformed request
             malRequest = true;
             break;
         }
-        firstIt = false;
+        firstIt = false; // After first iteration, set to false
     }
     if (notEmpty && !malRequest)
-        return requestLine(request[0], request[1], request[2], cs);
+        return requestLine(request[PORT_POS], request[DOC_POS], request[AUTH_POS], cs);
     else {
         writeToSocket(cs, "400 Malformed Request");
         return false;
@@ -252,45 +335,44 @@ bool clientSocket(const int cs) {
 void serverConnect() {
     struct sockaddr_in sin; // Stores info about network endpoint for the server
     struct sockaddr addr;
-    struct protoent *protocolInfo; // retrieves network protocols; for TCP
+    struct protoent *protocolInfo; // Retrieves network protocols; for TCP
     unsigned int addressLen;
     bool closeConnection = false;
-    // int sd, sd2;
 
-    // determine protocol; only proceed if TCP
+    // Determine protocol; only proceed if TCP
     if ((protocolInfo = getprotobyname(PROTOCOL)) == nullptr) // Retrieves TCP information
         errorExit("cannot find protocol information for %s", PROTOCOL);
 
-    // setup endpoint urlInfo
+    // Setup endpoint urlInfo
     memset((char*)&sin, 0x0, sizeof(sin));
     sin.sin_family = AF_INET; // IPv4 address family
     sin.sin_addr.s_addr = INADDR_ANY; // Bind to all available network interfaces
     sin.sin_port = htons((u_short)stoi(port)); // Set to the port number specified; converted to big endian
 
-    // allocate a socket; SOCK_STREAM for TCP; would be SOCK_DGRAM for UDP
+    // Allocate a socket; SOCK_STREAM for TCP; would be SOCK_DGRAM for UDP
     int sd = socket(PF_INET, SOCK_STREAM, protocolInfo->p_proto);
     if (sd < 0)
         errorExit("cannot create socket", nullptr);
 
-    // bind the socket; local IP address & port 
+    // Bind the socket; local IP address & port 
     if (bind(sd, (struct sockaddr*)&sin, sizeof(sin)) < 0)
         errorExit("cannot bind to port %s", port.c_str());
 
-    // listen for incoming connections; 1 max. pending connections
+    // Listen for incoming connections; 1 max. pending connections
     if (listen(sd, QLEN) < 0)
         errorExit("cannot listen on port %s\n", port.c_str());
     
     while (!closeConnection) {
-        // accept a connection
+        // Accept a connection
         addressLen = sizeof(addr);
         const int sd2 = accept(sd,&addr,&addressLen); // Handles communication with each client
         if (sd2 >= 0) {
-            // read, write, and send to the connection (sd2)
+            // Read, write, and send to the connection (sd2)
             closeConnection = clientSocket(sd2);
             close(sd2);
-        } // if invalid, don't send an error message but continue looking for a connection
+        } // If invalid, don't send an error message but continue looking for a connection
     }
-    // close connections and exit
+    // Close connections and exit
     close(sd);
 }
 

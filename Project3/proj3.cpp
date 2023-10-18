@@ -46,6 +46,7 @@ string authToken = "";
  */
 void errorExit (const char *format, const char *arg) {
     fprintf(stderr, format, arg);
+    fprintf (stderr, "\r\n");
     exit(ERROR);
 }
 
@@ -70,35 +71,47 @@ void parseArgs(int argc, char* argv[]) {
         else if (i == A_ARG + 1)
             authToken = arg;
         else
-            errorExit("Invalid or out-of-order argument %s\r\n\r\n", arg);
+            errorExit("Invalid or out-of-order argument %s", arg);
     }
     if (N_ARG == INT_ERROR || D_ARG == INT_ERROR || A_ARG == INT_ERROR || // Not all options are present
         port.empty() || docDirectory.empty() || authToken.empty()) // Specifications not all present 
-        errorExit("Some or all of the required options are not present\r\n\r\n", nullptr);
+        errorExit("Some or all of the required options are not present", nullptr);
 }
 
-void sendFile(FILE* file, const int clientSocket) { // FIX: Make sure lines end with \r\n
+void writeToSocket(const int clientSocket, string response) {
+    string retResponse = "HTTP/1.1 " + response + "\r\n\r\n";
+    char buffer[retResponse.length() + 1];
+    memset(buffer, 0x0, sizeof(buffer));
+    strcpy(buffer, retResponse.c_str());
+    if (send(clientSocket, buffer, strlen(buffer), 0) < 0)
+        errorExit("Error while sending response to the socket", NULL);
+}
+
+bool sendFile(FILE* file, const int clientSocket) { // FIX: Make sure lines end with \r\n
     char buffer[BUFLEN];
     memset(buffer, 0x0, sizeof(buffer)); 
     size_t lenRead;
 
     while ((lenRead = fread(buffer, CHAR_SIZE, BUFLEN, file)) > 0) { // check \r\n
         if (send(clientSocket, buffer, strlen(buffer), 0) < 0)
-            errorExit("Error while reading file", nullptr);
+            errorExit("Error while reading the input file", nullptr);
     }
     fclose(file);
+    return true;
 }
 
 void getMethod(string arg, const int clientSocket) { // arg is the filename & docDirectory/Root is terminal input; also check if input arg valid
-    if (arg[0] != '/')
-        errorExit("HTTP/1.1 406 Invalid Filename\r\n\r\n", nullptr);
+    if (arg[0] != '/') {
+        writeToSocket(clientSocket, "406 Invalid Filename");
+        return;
+    }        
     if (arg == "/")
         arg = "/homepage.html";
 
     // Check if docDirectory from terminal input is valid
     filesystem::path path(docDirectory);
-    if (!filesystem::is_directory(path))
-        errorExit("The base directory given by the terminal is incorrect", nullptr);
+    if (!filesystem::is_directory(path)) 
+        errorExit("The input document directory is invalid", nullptr);
     
     // Combine file and base directory for a full directory
     string fullDirectory = docDirectory + arg;
@@ -106,37 +119,38 @@ void getMethod(string arg, const int clientSocket) { // arg is the filename & do
     // Opening a file if it exists
     FILE* file = fopen(fullDirectory.c_str(), "rb");
     if (file != nullptr) { // requested file exists
-        fprintf(stdout, "HTTP/1.1 200 OK\r\n\r\n");
+        writeToSocket(clientSocket, "200 OK");
         sendFile(file, clientSocket);
     }
-    else // FIX; decide whether to use errorExit or fprintf
-        fprintf(stderr, "HTTP/1.1 404 File Not Found\r\n\r\n");
+    else
+        writeToSocket(clientSocket, "404 File Not Found");
 }
 
-void shutdownMethod(string arg) { // arg used to authenticate client
-    if (arg != authToken) // no match
-        fprintf(stdout, "HTTP/1.1 403 Operation Forbidden\r\n\r\n");
-    else // argument in HTTP request matches -a authToken
-        fprintf(stdout, "HTTP/1.1 200 Server Shutting Down\r\n\r\n");
-        // continue accepting further connections and requests
+bool shutdownMethod(string arg, const int clientSocket) { // arg used to authenticate client
+    if (arg != authToken) { // no match
+        writeToSocket(clientSocket, "403 Operation Forbidden");
+        return false;
+    }
+    // argument in HTTP request matches -a authToken; shut down
+    writeToSocket(clientSocket, "200 Server Shutting Down");
+    return true;
 }
 
 bool requestLine(string method, string arg, string httpVer, const int clientSocket) {
     // check if "HTTP/"
     if (httpVer.length() != 8 || // ignoring what's after "http/" per the instruction
-        (httpVer.length() > 5 && httpVer.substr(0, 5) != "HTTP/"))
-        errorExit("HTTP/1.1 400 Malformed Request\r\n\r\n", nullptr);
-
+        (httpVer.length() > 5 && httpVer.substr(0, 5) != "HTTP/")) {
+        writeToSocket(clientSocket, "501 Protocol Not Implemented");
+        return false;
+    }
     if (method == "GET") { // "GET" method requested
         getMethod(arg, clientSocket);
         return true;
     }
-    else if (method == "SHUTDOWN") {// "SHUTDOWN" method requested
-        shutdownMethod(arg);
-        return true;
-    }
+    else if (method == "SHUTDOWN") // "SHUTDOWN" method requested
+        return shutdownMethod(arg, clientSocket);
     else {
-        errorExit("HTTP/1.1 405 Unsupported Method\r\n\r\n", nullptr);
+        writeToSocket(clientSocket, "405 Unsupported Method");
         return false;
     }
 }
@@ -144,9 +158,10 @@ bool requestLine(string method, string arg, string httpVer, const int clientSock
 vector<string> httpRequest(const char* buffer, int len, const int clientSocket, bool firstIt) {
     // Parse http request
     std::vector<char> httpResponse;
+    bool malRequest = false;
     httpResponse.insert(httpResponse.begin(), buffer, buffer + len); // append data to httpResponse
     if (httpResponse.empty())
-        errorExit("HTTP/1.1 400 Malformed Request\r\n\r\n", nullptr);
+        malRequest = true;
     bool rEncountered = false;
     bool firstLine = true;
     vector<string> requestLineElem;
@@ -156,15 +171,19 @@ vector<string> httpRequest(const char* buffer, int len, const int clientSocket, 
         bool isR = (character == '\r');
         if (isR)
             rEncountered = true;
-        else if ((rEncountered && !isN) || (!rEncountered && isN))
-            errorExit("HTTP/1.1 400 Malformed Request\r\n\r\n", nullptr);
+        else if ((rEncountered && !isN) || (!rEncountered && isN)) {
+            malRequest = true;
+            break;
+        }
         else if (firstIt && firstLine) {
             if (isN || character == ' ') {    
                 bool wordEmpty = word.empty();
                 if (!wordEmpty)
                     requestLineElem.push_back(word);
-                if (wordEmpty || requestLineElem.size() != 3)
-                    errorExit("HTTP/1.1 400 Malformed Request\r\n\r\n", nullptr);
+                if (wordEmpty || requestLineElem.size() != 3) {
+                    malRequest = true;
+                    break;
+                }
                 word.clear();
             }
             else
@@ -177,27 +196,34 @@ vector<string> httpRequest(const char* buffer, int len, const int clientSocket, 
     bool emptyEnd = ((responseSize > 1) &&
                      httpResponse[responseSize - 2] == '\r' && httpResponse.back() == '\n');
     bool emptyLineEnd = (responseSize > 2 && (httpResponse[responseSize - 3] == '\n'));
-    if (emptyEnd) {
-        if (emptyLineEnd == true || responseSize == 2)
-            requestLineElem.push_back("TRUE");
-        return requestLineElem;
-    }
+    if (emptyEnd && (emptyLineEnd == true || responseSize == 2))
+        requestLineElem.push_back("TRUE");
     else
-        errorExit("HTTP/1.1 400 Malformed Request\r\n\r\n", nullptr);
+        malRequest = true;
+    if (malRequest)
+        requestLineElem.push_back("MAL_REQUEST");
+    return requestLineElem;
 }
 
-bool clientSocket(const int clientSocket) {
+bool clientSocket(const int cs) {
     bool firstIt = true;
     vector<string> request;
     bool notEmpty = false;
+    bool malRequest = false;
     while (true) {    
         char buffer[BUFLEN];
         memset(buffer, 0x0, sizeof(buffer)); // Clear the buffer
-        size_t receivedLen = recv(clientSocket, buffer, sizeof(buffer), 0);
-        if (receivedLen < 0)
-            errorExit("Error reading from socket", nullptr);
+        size_t receivedLen = recv(cs, buffer, sizeof(buffer), 0);
+        if (receivedLen < 0) {
+            malRequest = true;
+            break;
+        }
         // Process the HTTP request in the buffer
-        vector<string> returnValues = httpRequest(buffer, receivedLen, clientSocket, firstIt);
+        vector<string> returnValues = httpRequest(buffer, receivedLen, cs, firstIt);
+        if (returnValues.back() == "MAL_REQUEST") {
+            malRequest = true;
+            break;
+        }
         size_t vecSize = returnValues.size();
         if (vecSize > 2)
             request = returnValues;
@@ -206,14 +232,18 @@ bool clientSocket(const int clientSocket) {
             break;
         else if (vecSize == 3 || (vecSize == 0 && notEmpty))
             continue;
-        else
-            errorExit("No request line but already ended", nullptr);
+        else {
+            malRequest = true;
+            break;
+        }
         firstIt = false;
     }
-    if (notEmpty)
-        return requestLine(request[0], request[1], request[2], clientSocket);
-    else
-        errorExit("no correct formatting", nullptr);
+    if (notEmpty && !malRequest)
+        return requestLine(request[0], request[1], request[2], cs);
+    else {
+        writeToSocket(cs, "400 Malformed Request");
+        return false;
+    }
 }
 
 /**
@@ -224,6 +254,7 @@ void serverConnect() {
     struct sockaddr addr;
     struct protoent *protocolInfo; // retrieves network protocols; for TCP
     unsigned int addressLen;
+    bool closeConnection = false;
     // int sd, sd2;
 
     // determine protocol; only proceed if TCP
@@ -249,22 +280,16 @@ void serverConnect() {
     if (listen(sd, QLEN) < 0)
         errorExit("cannot listen on port %s\n", port.c_str());
     
-    while (true) {
+    while (!closeConnection) {
         // accept a connection
         addressLen = sizeof(addr);
         const int sd2 = accept(sd,&addr,&addressLen); // Handles communication with each client
-        if (sd2 < 0)
-            fprintf(stderr, "error accepting connection");
-
-        // read, write, and send to the connection (sd2)
-        bool closeConnection = clientSocket(sd2);
-        close(sd2);
-
-        // close connection when "GET" or "SHUTDOWN" methods are called
-        if (closeConnection)
-            break;
+        if (sd2 >= 0) {
+            // read, write, and send to the connection (sd2)
+            closeConnection = clientSocket(sd2);
+            close(sd2);
+        } // if invalid, don't send an error message but continue looking for a connection
     }
-
     // close connections and exit
     close(sd);
 }

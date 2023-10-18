@@ -22,6 +22,8 @@ using namespace std;
 #define ERROR 1
 #define INT_ERROR -1
 #define CHAR_SIZE 1
+#define R_ONLY 1
+#define NRN_ONLY 3
 #define QLEN 1
 #define PROTOCOL "tcp"
 #define BUFLEN 1024
@@ -105,6 +107,16 @@ void writeToSocket(const int clientSocket, string response) {
 }
 
 /**
+ * @brief Sending an empty line ('\r\n') to the socket
+ * @param clientSocket Socket to be returned to the client 
+ */
+void sendRN(int clientSocket) {
+    const char* emptyEnd = "\r\n"; // Manually add \r\n at the end of the sentence or at the very end
+    if (send(clientSocket, emptyEnd, strlen(emptyEnd), 0) < 0)
+        errorExit("Error while reading the input file", nullptr);
+}
+
+/**
  * @brief Sending the requested file to the client socket
  * @param file Requested file
  * @param clientSocket Socket to be returned to the client
@@ -116,9 +128,10 @@ void sendFile(FILE* file, const int clientSocket) {
 
     while ((lenRead = fread(buffer, CHAR_SIZE, BUFLEN, file)) > 0) { // Check \r\n
         char* line = strchr(buffer, '\n'); // Points at the first '\n' after buffer (as pointer here)    
-        if (line == nullptr && lenRead == sizeof(buffer)) { // If super long line; \n not present but still processed
+        if (line == nullptr) { // If super long line; \n not present but still processed
             if (send(clientSocket, buffer, BUFLEN, 0) < 0)
                 errorExit("Error while reading the input file", nullptr);
+            sendRN(clientSocket);
         }
         while (line != nullptr) {
             size_t lineLen = line - buffer + 1; // length of line to be sent
@@ -131,9 +144,7 @@ void sendFile(FILE* file, const int clientSocket) {
             if (send(clientSocket, buffer, lineLen, 0) < 0)
                 errorExit("Error while reading the input file", nullptr);
             if (rMissing) { // If \r was missing
-                const char* emptyEnd = "\r\n"; // Manually add \r\n at the end of the sentence
-                if (send(clientSocket, emptyEnd, strlen(emptyEnd), 0) < 0)
-                    errorExit("Error while reading the input file", nullptr);
+                sendRN(clientSocket);
                 lineLen += 1; // Add back
             }
             memmove(buffer, line + 1, lenRead - lineLen); // shift up buffer's pointer
@@ -141,9 +152,7 @@ void sendFile(FILE* file, const int clientSocket) {
             line = strchr(buffer, '\n'); // Find the next \n
         }
     }
-    const char* emptyLine = "\r\n";
-    if (send(clientSocket, emptyLine, strlen(emptyLine), 0) < 0)
-        errorExit("Error while adding an empty line to the client socket", nullptr);
+    sendRN(clientSocket); // Add an empty line at the end
     fclose(file);
 }
 
@@ -231,7 +240,7 @@ bool requestLine(string method, string arg, string httpVer, const int clientSock
  * @param firstIt Indicates whether this call is the first iteration of the whole HTTP request processing
  * @return vector<string> Contains the request line and/or indication of whether end of request has been reached or request is malformed 
  */
-vector<string> httpRequest(const char* buffer, int len, const int clientSocket, bool firstIt) {
+vector<string> httpRequest(const char* buffer, int len, const int clientSocket, bool firstIt, bool rEnd) {
     std::vector<char> request; // To store request
     bool malRequest = false; // Flag for whether the request is malformed or not
     request.insert(request.begin(), buffer, buffer + len); // Append buffer to request
@@ -243,13 +252,15 @@ vector<string> httpRequest(const char* buffer, int len, const int clientSocket, 
     vector<string> requestLineElem; // Stores parts of valid request lines
     string word = ""; // To be kept for later processing; words in valid request lines
 
+    if (rEnd && (request.front() != '\n')) {
+        requestLineElem.push_back("MAL_REQUEST");
+        return requestLineElem;
+    }
     // For each character in the request
     for (const char& character : request) { 
         bool isN = (character == '\n'); // Current character is '\n'
         bool isR = (character == '\r'); // Current character is '\r'
-        if (isR)
-            rEncountered = true;
-        else if ((rEncountered && !isN) || (!rEncountered && isN)) { // If '\r' or '\n' are out-of-order, wrongly-formatted, etc.
+        if (!rEnd && ((rEncountered && !isN) || (isN && !rEncountered))) { // If '\r' or '\n' are out-of-order, wrongly-formatted, etc.
             malRequest = true;
             break;
         }
@@ -267,20 +278,22 @@ vector<string> httpRequest(const char* buffer, int len, const int clientSocket, 
             else
                 word = word + character;
         }
-        if (!isR) // reset
-            rEncountered = false;
+        rEncountered = isR;
+        rEnd = false;
     }
-    if (!malRequest) { // FIX: cut off at \r and just \n
+    if (!malRequest) {
         size_t responseSize = request.size(); // Size of request
         bool emptyEnd = ((responseSize >= MIN_RESP) && request.back() == '\n'); // Request ends with \n --> ends with \r\n b/c of check above
         bool emptyLineEnd = (responseSize > MIN_RESP && (request[responseSize - REQ_ARG] == '\n')); // Request ends with an empty line at the end
         if (emptyEnd && (emptyLineEnd == true || responseSize == MIN_RESP)) // Ends correctly && line ends with empty line 
-            requestLineElem.push_back("TRUE");
+            requestLineElem.push_back("END_REACHED");// check if there's enough empty lines at the end
+        else if (request.back() == '\r') // Chunk ends with \r without \n
+            requestLineElem.push_back("R_END"); // Require that the next chunk starts with \n or return error
     }
     if (malRequest) // If flagged as a malformed request
         requestLineElem.push_back("MAL_REQUEST");
     return requestLineElem;
-} // FIX: could also not end with \r\n b/c of the body
+}
 
 /**
  * @brief Processes the client socket 
@@ -291,37 +304,36 @@ vector<string> httpRequest(const char* buffer, int len, const int clientSocket, 
 bool clientSocket(const int cs) {
     bool firstIt = true; // First iteration; calling httpRequest for the first time
     vector<string> request; // Contains the returned values from httpRequest()
-    bool notEmpty = false; // Flags whether request (above) is empty or not
     bool malRequest = false; // Flags whether request is malformed or not
-    while (true) {    
+    bool rEnd = false;
+    bool endReached = false;
+    while (!endReached) {    
         char buffer[BUFLEN];
         memset(buffer, 0x0, sizeof(buffer)); // Clear the buffer
-        size_t receivedLen = recv(cs, buffer, sizeof(buffer), 0);
+        size_t receivedLen = recv(cs, buffer, sizeof(buffer), 0); // FIX; increment
         if (receivedLen < 0) { // Error occurred while reading data from the socket
             malRequest = true;
             break;
         }
-        // Process the HTTP request in the buffer
-        vector<string> returnValues = httpRequest(buffer, receivedLen, cs, firstIt);
+        else if (receivedLen == 0)
+            break;
+        vector<string> returnValues = httpRequest(buffer, receivedLen, cs, firstIt, rEnd);
         if (returnValues.back() == "MAL_REQUEST") { // Flagged as malformed request
             malRequest = true;
             break;
         }
+        if (returnValues.back() == "R_END")
+            rEnd = true;
+        else
+            rEnd = false;
         size_t vecSize = returnValues.size(); // How many elements are contained in returnValues vector
         if (vecSize >= REQ_ARG) // Has 3 or 4 elements; request line returned
             request = returnValues;
-        notEmpty = !request.empty(); // Vector is not empty
-        if (vecSize == ARG_FIN || (vecSize == FIN && notEmpty)) // If it indicates that the end of request with an empty line was reached, break loop
-            break;
-        else if (vecSize == REQ_ARG || (vecSize == EMPTY && notEmpty)) // If the end of request has not been reached, keep looping
-            continue;
-        else { // Else, flag as malformed request
-            malRequest = true;
-            break;
-        }
+        if (returnValues.back() == "END_REACHED") // If it indicates that the end of request with an empty line was reached, break loop
+            endReached = true;
         firstIt = false; // After first iteration, set to false
-    }
-    if (notEmpty && !malRequest)
+    } // FIX; make sure it doesn't end at \r
+    if (!malRequest && endReached)
         return requestLine(request[PORT_POS], request[DOC_POS], request[AUTH_POS], cs);
     else {
         writeToSocket(cs, "400 Malformed Request");

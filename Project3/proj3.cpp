@@ -136,29 +136,31 @@ void sendFile(FILE* file) {
     size_t lenRead, lineLen;
 
     while ((lenRead = fread(buffer, CHAR_SIZE, BUFLEN, file)) > 0) { // Check \r\n
-        char line[BUFLEN];
-        memset(line, 0x0, sizeof(line)); 
-        while (sscanf(buffer, "%[^\n]", line) == 1) {
-            lineLen = strlen(line); // length of line to be sent
-            bool rPresent = (lineLen > 0 && line[lineLen - 1] == '\r');
-            if (!(lineLen == 1 && rPresent)) { // Avoid running for an empty line
-                if (lineLen > 0 && lenRead > 0) {
-                    if (rPresent) // \r was there before \n
-                        lineLen -= 1; // Only send what's before as the sentence
-                    if (send(clientSocket, line, lineLen, 0) < 0)
-                        errorExit("Error while reading the input file", nullptr);
-                    if (rPresent) // \r was there before \n
-                        lineLen += 1;
-                    memmove(buffer, buffer + lineLen + 1, lenRead - lineLen - 1); // shift up buffer's pointer
-                    lenRead -= (lineLen + 1);   
-                }
-                else if (lenRead <= 0) 
-                    break;
-            }
-            sendRN();
-        }
+        if (send(clientSocket, buffer, strlen(buffer), 0) < 0)
+            errorExit("Error while reading the input file", nullptr);
+        // char line[BUFLEN];
+        // memset(line, 0x0, sizeof(line)); 
+        // while (sscanf(buffer, "%[^\n]", line) == 1) {
+        //     lineLen = strlen(line); // length of line to be sent
+        //     bool rPresent = (lineLen > 0 && line[lineLen - 1] == '\r');
+        //     if (!(lineLen == 1 && rPresent)) { // Avoid running for an empty line
+        //         if (lineLen > 0 && lenRead > 0) {
+        //             if (rPresent) // \r was there before \n
+        //                 lineLen -= 1; // Only send what's before as the sentence
+        //             if (send(clientSocket, line, lineLen, 0) < 0)
+        //                 errorExit("Error while reading the input file", nullptr);
+        //             if (rPresent) // \r was there before \n
+        //                 lineLen += 1;
+        //             memmove(buffer, buffer + lineLen + 1, lenRead - lineLen - 1); // shift up buffer's pointer
+        //             lenRead -= (lineLen + 1);   
+        //         }
+        //         else if (lenRead <= 0) 
+        //             break;
+        //     }
+        //     sendRN();
+        // }
     }
-    sendRN(); // Add an empty line at the end
+    // sendRN(); // Add an empty line at the end
     fclose(file);
 }
 

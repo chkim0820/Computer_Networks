@@ -42,6 +42,7 @@ using namespace std;
 #define PORT_POS 0
 #define DOC_POS 1
 #define AUTH_POS 2
+#define RN 2
 
 // Comparing arguments case-insensitive 
 #define COMPARE_ARG(arg, opt) (0 == strncasecmp(arg, opt, strlen(arg)))
@@ -132,32 +133,29 @@ void sendRN() {
 void sendFile(FILE* file) { 
     char buffer[BUFLEN];
     memset(buffer, 0x0, sizeof(buffer)); 
-    size_t lenRead;
+    size_t lenRead, lineLen;
 
     while ((lenRead = fread(buffer, CHAR_SIZE, BUFLEN, file)) > 0) { // Check \r\n
-        char* line = strchr(buffer, '\n'); // Points at the first '\n' after buffer (as pointer here)    
-        if (line == nullptr) { // If super long line; \n not present but still processed
-            if (send(clientSocket, buffer, BUFLEN, 0) < 0)
-                errorExit("Error while reading the input file", nullptr);
+        char line[BUFLEN];
+        memset(line, 0x0, sizeof(line)); 
+        while (sscanf(buffer, "%[^\n]", line) == 1) {
+            lineLen = strlen(line); // length of line to be sent
+            bool rPresent = (lineLen > 0 && line[lineLen - 1] == '\r');
+            if (!(lineLen == 1 && rPresent)) { // Avoid running for an empty line
+                if (lineLen > 0 && lenRead > 0) {
+                    if (rPresent) // \r was there before \n
+                        lineLen -= 1; // Only send what's before as the sentence
+                    if (send(clientSocket, line, lineLen, 0) < 0)
+                        errorExit("Error while reading the input file", nullptr);
+                    if (rPresent) // \r was there before \n
+                        lineLen += 1;
+                    memmove(buffer, buffer + lineLen + 1, lenRead - lineLen - 1); // shift up buffer's pointer
+                    lenRead -= (lineLen + 1);   
+                }
+                else if (lenRead <= 0) 
+                    break;
+            }
             sendRN();
-        }
-        while (line != nullptr) {
-            size_t lineLen = line - buffer + 1; // length of line to be sent
-            char* rPos = strchr(buffer, '\r');
-            bool rMissing = false; // \r missing; only \n
-            if ((line - rPos) != 1) { // if \r is not before \n
-                lineLen -= 1; // Only append up till before \n
-                rMissing = true;
-            }
-            if (send(clientSocket, buffer, lineLen, 0) < 0)
-                errorExit("Error while reading the input file", nullptr);
-            if (rMissing) { // If \r was missing
-                sendRN();
-                lineLen += 1; // Add back
-            }
-            memmove(buffer, line + 1, lenRead - lineLen); // shift up buffer's pointer
-            lenRead -= lineLen; // Update total amount left
-            line = strchr(buffer, '\n'); // Find the next \n
         }
     }
     sendRN(); // Add an empty line at the end
@@ -355,7 +353,6 @@ void serverConnect() {
     struct sockaddr addr;
     struct protoent *protocolInfo; // Retrieves network protocols; for TCP
     unsigned int addressLen;
-    bool closeConnection = false;
     int sd, sd2;
 
     // Determine protocol; only proceed if TCP

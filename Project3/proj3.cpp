@@ -386,10 +386,9 @@ void serverConnect() {
         if ((sd2 = accept(sd,&addr,&addressLen)) >= 0) { // Handles communication with each client
             clientSocket = sd2;
             // Read, write, and send to the connection (sd2)
-            if (clientSocketProcess()) {
-                close(sd2);
+            if (clientSocketProcess()) 
                 break;
-            }
+            close(sd2);
         } // If invalid, don't send an error message but continue looking for a connection
         else 
             errorExit("cannot accept client request", nullptr);

@@ -5,7 +5,6 @@
 * @date 2023-10-05
 */
 
-#include <filesystem>
 #include <iostream>
 #include <fstream>
 #include <cstring>
@@ -15,6 +14,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <vector>
+#include <dirent.h>
 
 using namespace std;
 
@@ -169,14 +169,16 @@ void getMethod(string filename, const int clientSocket) {
     if (filename == "/") // If only '\', convert filename to 
         filename = "/homepage.html";
 
-    // Check if docDirectory from terminal input is valid
-    filesystem::path path(docDirectory);
-    if (!filesystem::is_directory(path)) 
-        errorExit("The input document directory is invalid", nullptr);
-    
     // Combine file and base directory for a full directory
     string fullDirectory = docDirectory + filename;
-
+    // Check if docDirectory from terminal input is valid
+    DIR *dir = opendir(fullDirectory.c_str());
+    if (!dir) {
+        writeToSocket(clientSocket, "404 File Not Found");
+        closedir(dir);
+        return;
+    }
+    
     // Opening a file if it exists
     FILE* file = fopen(fullDirectory.c_str(), "rb");
     if (file != nullptr) { // Requested file exists

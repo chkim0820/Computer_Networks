@@ -229,66 +229,80 @@ bool requestLine(string method, string arg, string httpVer) {
  * @param firstIt Indicates whether this call is the first iteration of the whole HTTP request processing
  * @return vector<string> Contains the request line and/or indication of whether end of request has been reached or request is malformed 
  */
-vector<string> httpRequest(const char* buffer, int len, bool firstIt, bool rEnd) {
-    // string request = buffer; // check if /n/r/n or other instances of an empty line is encountered
-    
-
-
-
-
-
-
-    std::vector<char> request; // To store request
-    bool malRequest = false; // Flag for whether the request is malformed or not
+vector<string> httpRequest(const char* buffer, size_t len, bool firstIt) {
+    if (!firstIt)
+        errorExit("Continues into second buffer; not expected", NULL);
+    vector<char> request; // To store the http request
     request.insert(request.begin(), buffer, buffer + len); // Append buffer to request
-    if (request.empty()) // Input buffer is empty; malformed
-        malRequest = true;
 
-    bool rEncountered = false; // Indicates whether '\r' is encountered
-    bool firstLine = true; // Indicates whether the iteration is on the first line of the request
+    bool malRequest, reqLine, beginLine, argsBuilt;
+    char currChar, prevChar, nextChar;
+    malRequest = false; // Flag for whether the request is malformed or not
+    reqLine = true; // Indicates whether the iteration is on the first line of the request
+    beginLine = true; // Indicates whether it is the beginning of the line or not
+    argsBuilt = false; // All 3 arguments in the request line has been added
     vector<string> requestLineElem; // Stores parts of valid request lines
     string word = ""; // To be kept for later processing; words in valid request lines
 
-    if (rEnd && (request.front() != '\n')) {
-        requestLineElem.push_back("MAL_REQUEST");
-        return requestLineElem;
-    }
-    // For each character in the request
-    for (const char& character : request) { 
-        bool isN = (character == '\n'); // Current character is '\n'
-        bool isR = (character == '\r'); // Current character is '\r'
-        if (!rEnd && ((rEncountered && !isN) || (isN && !rEncountered))) { // If '\r' or '\n' are out-of-order, wrongly-formatted, etc.
+    for (int i = 0; i < request.size(); i++) { 
+        // Initialize currChar, prevChar, and nextChar
+        currChar = request[i];
+        if (i > 0) // if previous char exists (not at the beginning)
+            prevChar= request[i - 1];
+        else // null if no previous char exists
+            prevChar = '\0';
+        if (i + 1 < request.size()) // Similarly for next char too
+            nextChar = request[i + 1];
+        else
+            nextChar = '\0';
+
+        // Malformed request; assume the header lines don't exceed the buffer size for now
+        if (currChar == ' ') { // current char is an empty space
+            if ((prevChar == ' ' || nextChar == ' ') || // more than one white space
+                (beginLine || nextChar == '\r')) // extra space at the start/end of line
+                malRequest = true;
+        }
+        else if (currChar == '\n' && (prevChar != '\r')) // line does not end with \r\n
             malRequest = true;
-            break;
+        else if (currChar == ':' && (!isalpha(prevChar) || nextChar != ' ')) // ':' is not surrounded by proper values
+            malRequest = true;
+        if (malRequest) {
+            requestLineElem.push_back("MAL_REQUEST");
+            return requestLineElem;
         }
-        else if (firstIt && firstLine) { // If first line of the first iteration (chunk) of the whole request to be processed
-            if (isN || character == ' ') { // Space or end of sentence reached
-                bool wordEmpty = word.empty();
-                if (!wordEmpty) // Add the word to vector containing words if word not empty
+
+        // request line; process
+        if (reqLine) {
+            if (currChar == ' ' || currChar == '\n') {
+                if (!word.empty())
                     requestLineElem.push_back(word);
-                if ((wordEmpty && !rEncountered) || (isN && requestLineElem.size() != REQ_ARG)) { // Empty word & not at end || not 3
-                    malRequest = true;
-                    break;
+                if (currChar == '\n' && requestLineElem.size() != REQ_ARG) { // At the end of line, not enough words
+                    requestLineElem.push_back("MAL_REQUEST");
+                    return requestLineElem;
                 }
-                word.clear(); // Clear for next iteration/word
+                if (currChar == '\n') {
+                    reqLine = false;
+                    argsBuilt = true;
+                }
+                word.clear();
             }
-            else if (character != '\r') // Only add to word if not '\r'
-                word = word + character;
+            else if (currChar != '\r') {
+                word = word + currChar;
+            }
         }
-        rEncountered = isR;
-        rEnd = false;
+        // Check for an empty line
+        if (beginLine && currChar == '\r' && nextChar == '\n') {
+            string flag;
+            if (argsBuilt)
+                flag = "END_REACHED";
+            else
+                flag = "MAL_REQUEST";
+            requestLineElem.push_back(flag);// check if there's enough empty lines at the end
+            return requestLineElem;
+        }
+        // End of line reached; reset line
+        beginLine = (currChar == '\n');
     }
-    if (!malRequest) {
-        size_t responseSize = request.size(); // Size of request
-        bool emptyEnd = ((responseSize >= MIN_RESP) && request.back() == '\n'); // Request ends with \n --> ends with \r\n b/c of check above
-        bool emptyLineEnd = (responseSize > MIN_RESP && (request[responseSize - REQ_ARG] == '\n')); // Request ends with an empty line at the end
-        if (emptyEnd && (emptyLineEnd == true || responseSize == MIN_RESP)) // Ends correctly && line ends with empty line 
-            requestLineElem.push_back("END_REACHED");// check if there's enough empty lines at the end
-        else if (request.back() == '\r') // Chunk ends with \r without \n
-            requestLineElem.push_back("R_END"); // Require that the next chunk starts with \n or return error
-    }
-    if (malRequest) // If flagged as a malformed request
-        requestLineElem.push_back("MAL_REQUEST");
     return requestLineElem;
 }
 
@@ -301,7 +315,6 @@ bool clientSocketProcess() {
     bool firstIt = true; // First iteration; calling httpRequest for the first time
     vector<string> request; // Contains the returned values from httpRequest()
     bool malRequest = false; // Flags whether request is malformed or not
-    bool rEnd = false;
     bool endReached = false;
     while (!endReached) {    
         char buffer[BUFLEN];
@@ -311,22 +324,17 @@ bool clientSocketProcess() {
             malRequest = true;
             break;
         }
-        else if (receivedLen == 0)
+        else if (receivedLen == 0) // End reached
             break;
-        vector<string> returnValues = httpRequest(buffer, receivedLen, firstIt, rEnd);
-        if (returnValues.back() == "MAL_REQUEST") { // Flagged as malformed request
+        request = httpRequest(buffer, receivedLen, firstIt);
+        if (request.back() == "MAL_REQUEST") { // Flagged as malformed request
             malRequest = true;
             break;
         }
-        if (returnValues.back() == "R_END")
-            rEnd = true;
-        else
-            rEnd = false;
-        size_t vecSize = returnValues.size(); // How many elements are contained in returnValues vector
-        if (vecSize >= REQ_ARG) // Has 3 or 4 elements; request line returned
-            request = returnValues;
-        if (returnValues.back() == "END_REACHED") // If it indicates that the end of request with an empty line was reached, break loop
+        else if (request.back() == "END_REACHED") { // If it indicates that the end of request with an empty line was reached, break loop
             endReached = true;
+            break;
+        }
         firstIt = false; // After first iteration, set to false
     }
     if (!malRequest && endReached)

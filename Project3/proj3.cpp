@@ -8,6 +8,7 @@
 #include <cstddef>
 #include <cstdio>
 #include <iostream>
+#include <sstream>
 #include <fstream>
 #include <cstring>
 #include <string>
@@ -43,6 +44,7 @@ using namespace std;
 #define DOC_POS 1
 #define AUTH_POS 2
 #define RN 2
+#define BYTE 1
 
 // Comparing arguments case-insensitive 
 #define COMPARE_ARG(arg, opt) (0 == strncasecmp(arg, opt, strlen(arg)))
@@ -133,34 +135,12 @@ void sendRN() {
 void sendFile(FILE* file) { 
     char buffer[BUFLEN];
     memset(buffer, 0x0, sizeof(buffer)); 
-    size_t lenRead, lineLen;
 
-    while ((lenRead = fread(buffer, CHAR_SIZE, BUFLEN, file)) > 0) { // Check \r\n
-        if (send(clientSocket, buffer, strlen(buffer), 0) < 0)
+    while (fread(buffer, BYTE, BUFLEN, file) > 0) { // Check \r\n
+        if (send(clientSocket, buffer, BUFLEN, 0) < 0)
             errorExit("Error while reading the input file", nullptr);
-        // char line[BUFLEN];
-        // memset(line, 0x0, sizeof(line)); 
-        // while (sscanf(buffer, "%[^\n]", line) == 1) {
-        //     lineLen = strlen(line); // length of line to be sent
-        //     bool rPresent = (lineLen > 0 && line[lineLen - 1] == '\r');
-        //     if (!(lineLen == 1 && rPresent)) { // Avoid running for an empty line
-        //         if (lineLen > 0 && lenRead > 0) {
-        //             if (rPresent) // \r was there before \n
-        //                 lineLen -= 1; // Only send what's before as the sentence
-        //             if (send(clientSocket, line, lineLen, 0) < 0)
-        //                 errorExit("Error while reading the input file", nullptr);
-        //             if (rPresent) // \r was there before \n
-        //                 lineLen += 1;
-        //             memmove(buffer, buffer + lineLen + 1, lenRead - lineLen - 1); // shift up buffer's pointer
-        //             lenRead -= (lineLen + 1);   
-        //         }
-        //         else if (lenRead <= 0) 
-        //             break;
-        //     }
-        //     sendRN();
-        // }
+        memset(buffer, 0x0, sizeof(buffer)); // reset memory
     }
-    // sendRN(); // Add an empty line at the end
     fclose(file);
 }
 
@@ -180,7 +160,6 @@ void getMethod(string filename) {
     DIR *dir = opendir(docDirectory.c_str());
     if (dir == NULL) {
         writeToSocket("404 File Not Found");
-        writeToSocket("here?");
         closedir(dir);
         return;
     }
@@ -248,6 +227,14 @@ bool requestLine(string method, string arg, string httpVer) {
  * @return vector<string> Contains the request line and/or indication of whether end of request has been reached or request is malformed 
  */
 vector<string> httpRequest(const char* buffer, int len, bool firstIt, bool rEnd) {
+    // string request = buffer; // check if /n/r/n or other instances of an empty line is encountered
+
+
+
+
+
+
+
     std::vector<char> request; // To store request
     bool malRequest = false; // Flag for whether the request is malformed or not
     request.insert(request.begin(), buffer, buffer + len); // Append buffer to request
@@ -316,7 +303,7 @@ bool clientSocketProcess() {
     while (!endReached) {    
         char buffer[BUFLEN];
         memset(buffer, 0x0, sizeof(buffer)); // Clear the buffer
-        size_t receivedLen = recv(clientSocket, buffer, sizeof(buffer), 0); // FIX; increment
+        size_t receivedLen = recv(clientSocket, buffer, sizeof(buffer), 0);
         if (receivedLen < 0) { // Error occurred while reading data from the socket
             malRequest = true;
             break;
@@ -338,7 +325,7 @@ bool clientSocketProcess() {
         if (returnValues.back() == "END_REACHED") // If it indicates that the end of request with an empty line was reached, break loop
             endReached = true;
         firstIt = false; // After first iteration, set to false
-    } // FIX; make sure it doesn't end at \r
+    }
     if (!malRequest && endReached)
         return requestLine(request[PORT_POS], request[DOC_POS], request[AUTH_POS]);
     else {

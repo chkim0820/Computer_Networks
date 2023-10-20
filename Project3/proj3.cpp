@@ -133,13 +133,16 @@ void sendRN() {
  * @param file Requested file
  */
 void sendFile(FILE* file) { 
+    size_t lengthRead;
     char buffer[BUFLEN];
     memset(buffer, 0x0, sizeof(buffer)); 
 
-    while (fread(buffer, BYTE, BUFLEN, file) > 0) { // Check \r\n
-        if (send(clientSocket, buffer, BUFLEN, 0) < 0)
+    lengthRead = fread(buffer, BYTE, BUFLEN, file);
+    while (lengthRead > 0) { // Check \r\n
+        if (send(clientSocket, buffer, lengthRead, 0) < 0)
             errorExit("Error while reading the input file", nullptr);
         memset(buffer, 0x0, sizeof(buffer)); // reset memory
+        lengthRead = fread(buffer, BYTE, BUFLEN, file);
     }
     fclose(file);
 }
@@ -228,7 +231,7 @@ bool requestLine(string method, string arg, string httpVer) {
  */
 vector<string> httpRequest(const char* buffer, int len, bool firstIt, bool rEnd) {
     // string request = buffer; // check if /n/r/n or other instances of an empty line is encountered
-
+    
 
 
 

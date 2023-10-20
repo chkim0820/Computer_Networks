@@ -235,12 +235,13 @@ vector<string> httpRequest(const char* buffer, size_t len, bool firstIt) {
     vector<char> request; // To store the http request
     request.insert(request.begin(), buffer, buffer + len); // Append buffer to request
 
-    bool malRequest, reqLine, beginLine, argsBuilt;
+    bool malRequest, reqLine, beginLine, argsBuilt, colonInteracted;
     char currChar, prevChar, nextChar;
     malRequest = false; // Flag for whether the request is malformed or not
     reqLine = true; // Indicates whether the iteration is on the first line of the request
     beginLine = true; // Indicates whether it is the beginning of the line or not
     argsBuilt = false; // All 3 arguments in the request line has been added
+    colonInteracted = false; // Whether colon has been interacted after new line started
     vector<string> requestLineElem; // Stores parts of valid request lines
     string word = ""; // To be kept for later processing; words in valid request lines
 
@@ -264,12 +265,16 @@ vector<string> httpRequest(const char* buffer, size_t len, bool firstIt) {
         }
         else if (currChar == '\n' && (prevChar != '\r')) // line does not end with \r\n
             malRequest = true;
-        else if (currChar == ':' && (!isalpha(prevChar) || nextChar != ' ')) // ':' is not surrounded by proper values
+        else if (!colonInteracted && currChar == ':' && (!isalpha(prevChar) || nextChar != ' ')) // ':' is not surrounded by proper values
             malRequest = true;
         if (malRequest) {
             requestLineElem.push_back("MAL_REQUEST");
             return requestLineElem;
         }
+
+        // if currChar is colon (:)
+        if (currChar == ':')
+            colonInteracted = true;
 
         // request line; process
         if (reqLine) {
@@ -302,6 +307,8 @@ vector<string> httpRequest(const char* buffer, size_t len, bool firstIt) {
         }
         // End of line reached; reset line
         beginLine = (currChar == '\n');
+        if (beginLine)
+            colonInteracted = false;
     }
     return requestLineElem;
 }

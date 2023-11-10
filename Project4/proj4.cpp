@@ -62,7 +62,7 @@ void parseArgs(int argc, char* argv[]) {
         else
             errorExit("Invalid, duplicate, or out-of-order argument %s", arg);
     }
-    if (argc != ARG_LENGTH || optionR == ERROR_INT || traceFile.empty()) // Specifications not all present 
+    if (argc != ARG_LENGTH || optionR == ERROR_INT || traceFile.empty() || !optDetermined) // Specifications not all present 
         errorExit("Incorrect arguments; too little or too many", nullptr);
 }
 

@@ -212,7 +212,7 @@ void convertByteOrders(int part, struct pkt_info *pinfo, struct meta_info *meta)
  * @return unsigned short VALID_PKT (1) if a packet was read and pinfo is setup for processing the packet & 
  *                        NO_PACKET (0) if we have hit the end of the file and no packet is available 
  */
-unsigned short nextPacket (int fd, struct pkt_info *pinfo, struct meta_info *meta) {
+unsigned short nextPacket (int fd, struct pkt_info *pinfo, struct meta_info *meta) {// FIX; maybe loop implementation?
     int bytesRead; // bytes read
     // Set memories & initialize fields to null
     memset(pinfo, 0x0, sizeof(struct pkt_info));
@@ -230,7 +230,7 @@ unsigned short nextPacket (int fd, struct pkt_info *pinfo, struct meta_info *met
     if (pinfo->caplen == 0) // Packet's length equals 0; nothing after meta information
         return VALID_PKT;
     if (pinfo->caplen > MAX_PKT_SIZE) // Packet is too big
-        errorExit("packet too big", nullptr); // FIX; maybe loop implementation?
+        errorExit("packet too big", nullptr); 
 
     // read the packet contents
     bytesRead = read(fd, pinfo->pkt, pinfo->caplen); // into pinfo's pkt field
@@ -353,7 +353,7 @@ void lengthAnalysis(int fd) {
         else if (pinfo.iph->protocol != IPPROTO_UDP) { // If UDP indicated in IP header
             transport = "U";
             if (pinfo.udph != nullptr) { // If UDP header exists
-                trans_hl = sizeof(struct udphdr); // Fixed header length
+                trans_hl = sizeof(struct udphdr);
                 payload_len = stoi(ip_len) - ((stoi)(trans_hl) + (stoi)(iphl));
             }
             else {
@@ -440,7 +440,9 @@ void packetCounting(int fd) {
         transactions[{source, dest}].total_pkts += 1;        
     }
     // Iterating through the hash map to print out values
-    for (const auto &[key, value] : transactions) {
+    for (auto it = transactions.begin(); it != transactions.end(); ++it) {
+        const source_dest_key &key = it->first;
+        const source_dest_value &value = it->second;
         // Output a line for each (src, dst) pair
         fprintf(stdout, "%s %s %s %s\r\n", 
                 key.sourceIP.c_str(), key.destIP.c_str(), 

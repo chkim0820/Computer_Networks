@@ -21,6 +21,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <arpa/inet.h> 
+#include <unordered_map>
 
 
 using namespace std;
@@ -50,8 +51,7 @@ using namespace std;
 /* Structs; taken from next.h */
 
 // meta information, using same layout as trace file
-struct meta_info
-{
+struct meta_info {
     unsigned int usecs; // microseconds; 10^-6 of a second
     unsigned int secs; // seconds
     unsigned short ignored;
@@ -59,8 +59,7 @@ struct meta_info
 };
 
 // record of information about the current packet
-struct pkt_info
-{
+struct pkt_info {
     unsigned short caplen; // captured length; from meta info
     double now; // time combining usecs and secs from meta info
     unsigned char pkt[MAX_PKT_SIZE]; // Stores the whole packet after meta-info
@@ -68,6 +67,14 @@ struct pkt_info
     struct iphdr *iph;          // ptr to IP header, if present, otherwise NULL
     struct tcphdr *tcph;        // ptr to TCP header, if present, otherwise NULL
     struct udphdr *udph;        // ptr to UDP header, if present, otherwise NULL
+};
+
+// For tracking packets sent between pairs of source/dest.
+struct source_dest_info {
+    string src_ip; // Source IP address; dotted-quad form
+    string dest_ip; // Destination IP address; dotted-quad form
+    int total_pkts; // Total number of TCP packets across all packets
+    int traffic_volume; // Total number of application layer bytes sent
 };
 
 /* Methods */
@@ -132,7 +139,7 @@ string truncDecimal(double num, int decimal) {
 
 string dottedQuadConversion(uint32_t ipAddress) {
     struct in_addr addr;
-    addr.s_addr = ipAddress; // ASK; is using inet_ntoa okay
+    addr.s_addr = ipAddress;
     return inet_ntoa(addr);
 }
 
@@ -255,8 +262,10 @@ void summaryMode(int fd) {
             INT_PRINT(total_pkts), INT_PRINT(ip_pkts));
 }
 
-// Print length information about each IP packet in the packet trace file
-// Ignore for non-IP packets or if ethernet header is not present
+/**
+ * @brief Print length information about each IP packet in the packet trace file
+ * @param fd File descriptor
+ */
 void lengthAnalysis(int fd) {
     struct pkt_info pinfo; // To contain packet information
     struct meta_info meta; // To contain meta information
@@ -322,16 +331,18 @@ void lengthAnalysis(int fd) {
     }
 }
 
-// Output a single line of info about each TCp packet
-// Non-TCP packets or packets w/o TCP header are ignored
+/**
+ * @brief Output a single line of info about each TCp packet
+ * @param fd File descriptor
+ */
 void packetPrinting(int fd) {
     struct pkt_info pinfo; // To contain packet information
     struct meta_info meta; // To contain meta information
     // Values to return
     double ts; // timestamp of the packet
     string src_ip; // source IP address
-    double src_port; // TCP's source port number
     string dst_ip; // destination IP address
+    double src_port; // TCP's source port number
     double dst_port; // TCP's destination port number
     double ip_id; // IP's ID field
     double ip_ttl; // IP's TTL field
@@ -367,17 +378,28 @@ void packetPrinting(int fd) {
 // Keep track of the number of packets & total amt. of app. layer data from host to each peers using TCP
 // Non-TCP packets ignored
 void packetCounting(int fd) {
-    // src_ip: IP address that sends the packets; dotted-quad notation
-    double src_ip;
-    // dst_ip: IP address that receives the packets; dotted-quad notation
-    double dst_ip;
-    // total_pkts: decimal rep. of total # of TCP packets from src_ip to dst_ip
-    int total_pkts;
-    // traffic_volume: decimal rep. of total # app. layer over TCP across all packets
-    int traffic_volume;
+    struct pkt_info pinfo; // To contain packet information
+    struct meta_info meta; // To contain meta information
+    unordered_map<pair<string, string>, source_dest_info> transactions;
 
-    // Output a line for each (src, dst) pair
-    fprintf(stdout, "%s %s %s %s\r\n", src_ip, dst_ip, total_pkts, traffic_volume);
+    // Iterating through all packets
+    while (nextPacket(fd, &pinfo, &meta) == VALID_PKT) {
+        if (pinfo.tcph == nullptr) // Non-TCP packets or TCP packets without headers; skip current packet
+            continue;
+        string source = dottedQuadConversion(pinfo.iph->saddr); // IP address that sends the packets
+        string dest = dottedQuadConversion(pinfo.iph->daddr); // IP address that receives the packets
+        int trafficVolume = pinfo.iph->tot_len - ((pinfo.tcph->doff * BYTE) + ((pinfo.iph->ihl) * BYTE));
+        
+        //input the values into the hash table
+        struct source_dest_info info;
+        transaction[make_pair(source, dest)];
+    }
+    // Iterating through the hash map to print out values
+    while (true) {
+        // Output a line for each (src, dst) pair
+        fprintf(stdout, "%s %s %s %s\r\n", 
+        src_ip.c_str(), dst_ip.c_str(), total_pkts, traffic_volume);
+    }
 }
 
 /**

@@ -5,8 +5,10 @@
 * @date 2023-10-25
 */
 
+#include <iterator>
 #include <stdio.h>
 #include <string>
+#include <tuple>
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
@@ -28,12 +30,18 @@ using namespace std;
 #define MAX_PKT_SIZE 1600
 #define VALID_PKT 1
 #define NO_PACKET 0
+#define PADDING 6
+#define BYTE 4
+#define META_INFO_BYTES 12
+#define PKT_BF_IP 34
+#define FOUR_BYTES 32
 
 // Comparing arguments case-insensitive 
 #define COMPARE_ARG(arg, opt) (0 == strncasecmp(arg, opt, strlen(arg)))
-
-/* Global variables */
-string traceFile = "";
+// Converting a double number to const char to print
+#define INT_PRINT(num) (to_string(num).c_str())
+// Converting an int number to const char to print
+#define DOUBLE_PRINT(num, dec) (truncDecimal(num, dec).c_str())
 
 /* Structs; taken from next.h */
 
@@ -43,15 +51,15 @@ struct meta_info
     unsigned int usecs; // microseconds; 10^-6 of a second
     unsigned int secs; // seconds
     unsigned short ignored;
-    unsigned short caplen; // Amount of data available
+    unsigned short caplen; // Amount of data available in the packet portion (doesn't include meta-info)
 };
 
 // record of information about the current packet
 struct pkt_info
 {
     unsigned short caplen; // captured length; from meta info
-    double now; // from meta info
-    unsigned char pkt [MAX_PKT_SIZE];
+    double now; // time combining usecs and secs from meta info
+    unsigned char pkt[MAX_PKT_SIZE]; // Stores the whole packet after meta-info
     struct ether_header *ethh;  // ptr to ethernet header, if present, otherwise NULL
     struct iphdr *iph;          // ptr to IP header, if present, otherwise NULL
     struct tcphdr *tcph;        // ptr to TCP header, if present, otherwise NULL
@@ -76,12 +84,13 @@ void errorExit (const char *format, const char *arg) {
  * @brief Parses the arguments given in the terminal 
  * @param argc Number of arguments
  * @param argv Arguments
- * @return string The mode to run the program in
+ * @return tuple<string, string> mode and tracefile extracted
  */
-string parseArgs(int argc, char* argv[]) {
+tuple<string, string> parseArgs(int argc, char* argv[]) {
     int indexR = ERROR_INT; // Saves the index of the "-r" argument; initialized to -1
     bool optDetermined = false; // Indicates whether mode determined or not; prevent multiple modes
     string mode = "";
+    string traceFile = "";
     for (int i = 1; i < argc; i++) {
         const char* arg = argv[i];
         if (COMPARE_ARG(arg, "-r") && indexR == ERROR_INT) // arg is "-r" && "-r" not found yet 
@@ -102,7 +111,19 @@ string parseArgs(int argc, char* argv[]) {
     }
     if (argc != ARG_LENGTH || indexR == ERROR_INT || traceFile.empty() || !optDetermined) // Specifications not all present 
         errorExit("Incorrect arguments; too little or too many", nullptr);
-    return mode;
+    return make_tuple(mode, traceFile);
+}
+
+/**
+ * @brief Truncating the input number to appropriate decimal place 
+ * @param num Input number to be truncated
+ * @param decimal Number of decimal places to remain
+ * @return string Return the number as a string
+ */
+string truncDecimal(double num, int decimal) {
+    string strNum = to_string(num);
+    size_t dot = strNum.find(".", 0, 1);
+    return strNum.substr(0, dot + decimal + 1);
 }
 
 /**
@@ -112,83 +133,202 @@ string parseArgs(int argc, char* argv[]) {
  * @return unsigned short VALID_PKT (1) if a packet was read and pinfo is setup for processing the packet & 
  *                        NO_PACKET (0) if we have hit the end of the file and no packet is available 
  */
-unsigned short nextPacket (int fd, struct pkt_info *pinfo) {
-    struct meta_info meta; // Stores meta information about packet
+unsigned short nextPacket (int fd, struct pkt_info *pinfo, struct meta_info *meta) {
     int bytesRead; // bytes read
-
-    // Set memories & initialize fields to 0
+    // Set memories & initialize fields to null
     memset(pinfo, 0x0, sizeof(struct pkt_info));
-    memset(&meta, 0x0, sizeof(struct meta_info));
+    memset(meta, 0x0, sizeof(struct meta_info));
 
     // read the meta information
-    bytesRead = read(fd, &meta, sizeof(meta)); // Read fd (file descriptor) into meta
+    bytesRead = read(fd, &meta, sizeof(struct meta_info)); // Read fd (file descriptor) into meta
     if (bytesRead == 0) // End of file reached
         return NO_PACKET;
-    if (bytesRead < sizeof(meta)) // Smaller number of bytes read than expected
+    if (bytesRead < sizeof(meta_info)) // Smaller number of bytes read than expected
         errorExit("cannot read meta information", nullptr);
-    pinfo->caplen = ntohs(meta.caplen); // Convert byte order
-    pinfo->now = meta.secs + (double)meta.usecs/1000000; // Timestamp based on meta.secs & meta.usecs
+    pinfo->caplen = ntohs(meta->caplen); // Trace file; only the length of the packet portion
+    pinfo->now = ntohl(meta->secs) + (double)((ntohl)(meta->usecs))/1000000; // Timestamp based on meta.secs & meta.usecs
 
     // Return if the packet is empty or erroneous based on length
-    if (pinfo->caplen == 0) // Packet's length equals 0
+    if (pinfo->caplen == 0) // Packet's length equals 0; nothing after meta information
         return VALID_PKT;
     if (pinfo->caplen > MAX_PKT_SIZE) // Packet is too big
-        errorExit("packet too big", nullptr);
+        errorExit("packet too big", nullptr); // FIX; maybe loop implementation?
 
     // read the packet contents
     bytesRead = read(fd, pinfo->pkt, pinfo->caplen); // into pinfo's pkt field
     if (bytesRead < 0) // Error occurred
         errorExit("error reading packet", nullptr);
-    if (bytesRead < pinfo->caplen) // Length smaller than expected; error
+    if (bytesRead < pinfo->caplen) // Length smaller than expected; not enough info present
         errorExit("unexpected end of file encountered", nullptr);
-    if (bytesRead < sizeof(struct ether_header)) // Not a valid ethernet header
+    
+    // Ethernet header
+    if (bytesRead < sizeof(struct ether_header)) // No valid ethernet header
         return VALID_PKT;
-    pinfo->ethh = (struct ether_header*)pinfo->pkt; // Store packet as ethernet header struct
-    pinfo->ethh->ether_type = ntohs(pinfo->ethh->ether_type); // Byte-order conversion for ethernet type
-    if (pinfo->ethh->ether_type != ETHERTYPE_IP) // Non-IP packets; nothing more to do
+    pinfo->ethh = (struct ether_header*)pinfo->pkt; // Point to ethernet header
+    pinfo->ethh->ether_type = ntohs(pinfo->ethh->ether_type); // Byte-order conversion
+    if (pinfo->ethh->ether_type != ETHERTYPE_IP) // Check for Non-IP packets; nothing more to do
         return VALID_PKT;
     if (pinfo->caplen == sizeof(struct ether_header)) // Nothing beyond the ethernet header to process
         return VALID_PKT;
 
-    // Setting IP header & TCP header
-    pinfo->iph = (struct iphdr*)(pinfo->pkt + sizeof(struct ether_header)); // Start of IP header
-    if (pinfo->iph->protocol == IPPROTO_TCP) { // Check if it is a TCP packet in IP header
-        // Setting to the beginning of the TCP header
-        pinfo->tcph = (struct tcphdr*)(pinfo->pkt + sizeof(struct ether_header) + sizeof(struct iphdr));
-        // Setting up values in tcph struct; FIX (Add more stuff)
-        unsigned short scr_port = ntohs(pinfo->tcph->source);
-        unsigned short dest_port = ntohs(pinfo->tcph->dest);
+    // IP header
+    pinfo->iph = (struct iphdr*)(pinfo->pkt + sizeof(struct ether_header)); // Point to the start of IP header
+    size_t upToIP = sizeof(struct ether_header) + pinfo->iph->tot_len; // Length up to the end of IP header
+    if (bytesRead < upToIP) // Check if the IP header is valid
+        return VALID_PKT;
+    // More byte-order conversions
+    pinfo->iph->tot_len = ntohs(pinfo->iph->tot_len); // Total length; byte-order converted
+    pinfo->iph->saddr = ntohl(pinfo->iph->saddr);
+    pinfo->iph->daddr = ntohl(pinfo->iph->daddr);
+    pinfo->iph->id = ntohs(pinfo->iph->id);
+    pinfo->iph->ttl = ntohs(pinfo->iph->ttl);
+    // Check if there's no headers after ip
+    if (sizeof(struct ether_header) + (pinfo->iph->tot_len) == pinfo->caplen) // There's no more after IP header
+        return VALID_PKT;
+
+    // TCP/UCP header
+    if (pinfo->iph->protocol == IPPROTO_TCP) { // TCP protocol
+        pinfo->tcph = (struct tcphdr*)(pinfo->pkt + upToIP); // Beginning of the TCP header
+        // Byte-order conversions
+        pinfo->tcph->source = ntohs(pinfo->tcph->source);
+        pinfo->tcph->dest = ntohs(pinfo->tcph->dest);
+        pinfo->tcph->ack_seq = ntohl(pinfo->tcph->ack_seq);
+        pinfo->tcph->window = ntohs(pinfo->tcph->window);
     }
     else if (pinfo->iph->protocol == IPPROTO_UDP) { // UDP protocol
-        // Setting to the beginning of the UDP header
-        pinfo->udph = (struct udphdr*)(pinfo->pkt + sizeof(struct ether_header) + sizeof(struct iphdr));
-        // Setting up values in udph struct; FIX (add more stuff)
-        unsigned short scr_port = ntohs(pinfo->udph->source);
-        unsigned short dest_port = ntohs(pinfo->udph->dest);        
+        pinfo->udph = (struct udphdr*)(pinfo->pkt + upToIP); // Beginning of the UDP header
+        // Byte-order conversions
+        pinfo->udph->source = ntohs(pinfo->udph->source);
+        pinfo->udph->dest = ntohs(pinfo->udph->dest);
     }
-    else 
-        errorExit("Non-UDP/TCP packet detected", nullptr);
+    
     return VALID_PKT;
 }
 
+/**
+ * @brief Provides a high-level summary of the trace file
+ * @param fd File description; contains all packets
+ */
+void summaryMode(int fd) {
+    struct pkt_info pinfo; // To contain packet information
+    struct meta_info meta; // To contain meta information
 
+    // Values to be returned
+    bool firstPacket = true; // Indicator for first packet
+    int first_time; // Time of the first packet in the trace file
+    int last_time; // Time of the last packet in the trace file
+    double trace_duration; // The duration of the trace file
+    int total_pkts; // Number of total packets
+    int ip_pkts; // Number of IP packets
 
+    // Iterating through all packets
+    while (nextPacket(fd, &pinfo, &meta) == VALID_PKT) {
+        if (firstPacket) {
+            first_time = pinfo.now;
+            firstPacket = false;
+        }
+        else // Update for all non-first packets
+            last_time = pinfo.now;
+        total_pkts = total_pkts + 1; // Increment by 1 for each iteration/packet
+        if (pinfo.iph != NULL)
+            ip_pkts = ip_pkts + 1; // Increment if the current packet is an IP packet
+    }
+    trace_duration = last_time - first_time; // Calculated by taking the difference between the first/last times
 
-// Provides a high-level summary of the trace file; print relevant info
-void summaryMode() {
-
+    // Print out the values
+    fprintf(stdout, "time: first: %s last: %s duration: %s\r\n", 
+            DOUBLE_PRINT(first_time, PADDING), DOUBLE_PRINT(last_time, PADDING), 
+            DOUBLE_PRINT(trace_duration, PADDING));
+    fprintf(stdout, "pkts: total: %s ip: %s\r\n", 
+            INT_PRINT(total_pkts), INT_PRINT(ip_pkts));
 }
 
-void lengthAnalysis() {
+// Print length information about each IP packet in the packet trace file
+// Ignore for non-IP packets or if ethernet header is not present
+void lengthAnalysis(int fd) {
+    struct pkt_info pinfo; // To contain packet information
+    struct meta_info meta; // To contain meta information
 
+    // Values to be returned
+    double ts; // timestamp of the packet in meta info
+    int caplen; // number of bytes captured from the original packet
+    string ip_len; // total length of IP packet in bytes
+    string iphl; // total length of IP header
+    string transport; // indicates which transport protocol
+    string trans_hl; // total number of bytes occupied by transport header
+    string payload_len; // number of app. layer payload bytes
+
+    // Iterating through all packets
+    while (nextPacket(fd, &pinfo, &meta) == VALID_PKT) {
+        ts = pinfo.now;
+        caplen = pinfo.caplen;
+        if (pinfo.iph != nullptr) {
+            ip_len = to_string(pinfo.iph->tot_len);
+            iphl = to_string((pinfo.iph->ihl) * BYTE);
+        }
+        else {
+            ip_len = "-";
+            iphl = "-";
+        }
+        if (pinfo.tcph != nullptr) {
+            transport =
+            trans_hl = 
+            payload_len = 
+        }
+        else if (pinfo.udph != nullptr) {
+            transport =
+            trans_hl = 
+            payload_len = 
+        }
+        else {
+            transport =
+            trans_hl = 
+            payload_len = 
+        }
+        
+        // Output for each IP packet
+        fprintf(stdout, "%s %s %s %s %s %s %s",
+                DOUBLE_PRINT(ts, PADDING), INT_PRINT(caplen), INT_PRINT(ip_len), 
+                iphl.c_str(), transport.c_str(), trans_hl.c_str(), payload_len.c_str());
+    }
 }
 
-void packetPrinting() {
+// Output a single line of info about each TCp packet
+// Non-TCP packets or packets w/o TCP header are ignored
+void packetPrinting(int fd) {
+    struct pkt_info pinfo; // To contain packet information
+    struct meta_info meta; // To contain meta information
 
+    // Values to return
+    double ts; // timestamp of the packet
+    double src_ip; // source IP address
+    double src_port; // TCP's source port number
+    double dst_ip; // destination IP address
+    double dst_port; // TCP's destination port number
+    double ip_id; // IP's ID field
+    double ip_ttl; // IP's TTL field
+    double window; // TCP's advertised window field
+    double ackno; // TCP's ack. number field in ACK packets
+
+    // Output for each TCP packet
+    fprintf(stdout, "%s %s %s %s %s %s %s %s",
+            ts, src_ip, src_port, dst_port, ip_id, ip_ttl, window, ackno);
 }
 
-void packetCounting() {
+// Keep track of the number of packets & total amt. of app. layer data from host to each peers using TCP
+// Non-TCP packets ignored
+void packetCounting(int fd) {
+    // src_ip: IP address that sends the packets; dotted-quad notation
+    double src_ip;
+    // dst_ip: IP address that receives the packets; dotted-quad notation
+    double dst_ip;
+    // total_pkts: decimal rep. of total # of TCP packets from src_ip to dst_ip
+    int total_pkts;
+    // traffic_volume: decimal rep. of total # app. layer over TCP across all packets
+    int traffic_volume;
 
+    // Output a line for each (src, dst) pair
+    fprintf(stdout, "%s %s %s %s\r\n", src_ip, dst_ip, total_pkts, traffic_volume);
 }
 
 /**
@@ -198,14 +338,22 @@ void packetCounting() {
  * @return int Return value of the main method
  */
 int main(int argc, char* argv[]) {
-    string mode = parseArgs(argc, argv); // When returned, all required inputs present (at least number-wise)      
-    // Determine which mode from argument parsed above  
+    tuple<string, string> info = parseArgs(argc, argv); // When returned, all required inputs present (at least number-wise)   
+    string mode = get<0>(info); // Save returned mode
+    string traceFile = get<1>(info); // Save returned name of trace file
+   
+    // Determine which mode from argument parsed above
+    int fd = open(traceFile.c_str(), O_RDONLY);
+    if (fd < -1)
+        errorExit("Error occurred while opening trace file %s", traceFile.c_str());
+    
+    // Call the appropriate methods according to the mode
     if (mode == "-s")
-        summaryMode();
+        summaryMode(fd);
     else if (mode == "-l")
-        lengthAnalysis();
+        lengthAnalysis(fd);
     else if (mode == "-p")
-        packetPrinting();
+        packetPrinting(fd);
     else if (mode == "-c")
-        packetCounting();
+        packetCounting(fd);
 }

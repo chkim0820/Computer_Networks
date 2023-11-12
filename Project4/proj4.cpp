@@ -20,16 +20,20 @@
 #include <netinet/tcp.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <arpa/inet.h> 
+
 
 using namespace std;
 
 /* Defining macros */
 #define ERROR 1
+#define ACK 1
 #define ERROR_INT -1
 #define ARG_LENGTH 4
 #define MAX_PKT_SIZE 1600
 #define VALID_PKT 1
 #define NO_PACKET 0
+#define NO_PADDING 0
 #define PADDING 6
 #define BYTE 4
 #define META_INFO_BYTES 12
@@ -126,6 +130,12 @@ string truncDecimal(double num, int decimal) {
     return strNum.substr(0, dot + decimal + 1);
 }
 
+string dottedQuadConversion(uint32_t ipAddress) {
+    struct in_addr addr;
+    addr.s_addr = ipAddress; // ASK; is using inet_ntoa okay
+    return inet_ntoa(addr);
+}
+
 /**
  * @brief Method taken from next.c; reads packets and populates a structure
  * @param fd an open file to read packets from
@@ -193,6 +203,7 @@ unsigned short nextPacket (int fd, struct pkt_info *pinfo, struct meta_info *met
         // Byte-order conversions
         pinfo->tcph->source = ntohs(pinfo->tcph->source);
         pinfo->tcph->dest = ntohs(pinfo->tcph->dest);
+        pinfo->tcph->ack = ntohl(pinfo->tcph->ack);
         pinfo->tcph->ack_seq = ntohl(pinfo->tcph->ack_seq);
         pinfo->tcph->window = ntohs(pinfo->tcph->window);
     }
@@ -316,21 +327,41 @@ void lengthAnalysis(int fd) {
 void packetPrinting(int fd) {
     struct pkt_info pinfo; // To contain packet information
     struct meta_info meta; // To contain meta information
-
     // Values to return
     double ts; // timestamp of the packet
-    double src_ip; // source IP address
+    string src_ip; // source IP address
     double src_port; // TCP's source port number
-    double dst_ip; // destination IP address
+    string dst_ip; // destination IP address
     double dst_port; // TCP's destination port number
     double ip_id; // IP's ID field
     double ip_ttl; // IP's TTL field
     double window; // TCP's advertised window field
-    double ackno; // TCP's ack. number field in ACK packets
+    string ackno; // TCP's ack. number field in ACK packets
 
-    // Output for each TCP packet
-    fprintf(stdout, "%s %s %s %s %s %s %s %s",
-            ts, src_ip, src_port, dst_port, ip_id, ip_ttl, window, ackno);
+    // Iterating through all packets
+    while (nextPacket(fd, &pinfo, &meta) == VALID_PKT) {
+        if (pinfo.tcph == nullptr) // Non-TCP packets or TCP packets without headers
+            return;
+        ts = pinfo.now; // Timestamp
+        src_ip = dottedQuadConversion(pinfo.iph->saddr); // In dotted-quad form
+        dst_ip = dottedQuadConversion(pinfo.iph->daddr); // In dotted-quad form
+        src_port = pinfo.tcph->source;
+        dst_port = pinfo.tcph->dest; 
+        ip_id = pinfo.iph->id;
+        ip_ttl = pinfo.iph->ttl;
+        window = pinfo.tcph->window;
+        if (pinfo.tcph->ack == ACK) // ACK bit set to 1
+            ackno = to_string(pinfo.tcph->ack_seq);
+        else
+            ackno = "-";
+
+        // Output for each TCP packet
+        fprintf(stdout, "%s %s %s %s %s %s %s %s %s",
+                DOUBLE_PRINT(ts, PADDING), src_ip.c_str(), DOUBLE_PRINT(src_port, NO_PADDING), 
+                dst_ip.c_str(), DOUBLE_PRINT(dst_port, NO_PADDING), 
+                DOUBLE_PRINT(ip_id,NO_PADDING), DOUBLE_PRINT(ip_ttl, NO_PADDING), 
+                DOUBLE_PRINT(window, NO_PADDING), ackno.c_str());
+    }
 }
 
 // Keep track of the number of packets & total amt. of app. layer data from host to each peers using TCP

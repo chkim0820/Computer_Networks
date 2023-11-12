@@ -180,6 +180,7 @@ unsigned short nextPacket (int fd, struct pkt_info *pinfo, struct meta_info *met
     pinfo->iph->tot_len = ntohs(pinfo->iph->tot_len); // Total length; byte-order converted
     pinfo->iph->saddr = ntohl(pinfo->iph->saddr);
     pinfo->iph->daddr = ntohl(pinfo->iph->daddr);
+    pinfo->iph->protocol = ntohs(pinfo->iph->protocol);
     pinfo->iph->id = ntohs(pinfo->iph->id);
     pinfo->iph->ttl = ntohs(pinfo->iph->ttl);
     // Check if there's no headers after ip
@@ -200,8 +201,8 @@ unsigned short nextPacket (int fd, struct pkt_info *pinfo, struct meta_info *met
         // Byte-order conversions
         pinfo->udph->source = ntohs(pinfo->udph->source);
         pinfo->udph->dest = ntohs(pinfo->udph->dest);
+        pinfo->udph->len = ntohs(pinfo->udph->len);
     }
-    
     return VALID_PKT;
 }
 
@@ -255,40 +256,57 @@ void lengthAnalysis(int fd) {
     string ip_len; // total length of IP packet in bytes
     string iphl; // total length of IP header
     string transport; // indicates which transport protocol
-    string trans_hl; // total number of bytes occupied by transport header
+    string trans_hl; // total number of bytes occupied by transport header; ASK
     string payload_len; // number of app. layer payload bytes
 
     // Iterating through all packets
     while (nextPacket(fd, &pinfo, &meta) == VALID_PKT) {
+        if (pinfo.ethh == nullptr || pinfo.ethh->ether_type != ETHERTYPE_IP) // No ethernet header or non-IP packet
+            return;
         ts = pinfo.now;
         caplen = pinfo.caplen;
-        if (pinfo.iph != nullptr) {
+        if (pinfo.iph != nullptr) { // If IP header exists
             ip_len = to_string(pinfo.iph->tot_len);
             iphl = to_string((pinfo.iph->ihl) * BYTE);
         }
         else {
             ip_len = "-";
             iphl = "-";
+            transport = "-";
+            trans_hl = "-";
+            payload_len = "-";
         }
-        if (pinfo.tcph != nullptr) {
-            transport =
-            trans_hl = 
-            payload_len = 
+        if (pinfo.iph->protocol == IPPROTO_TCP) { // If TCP indicated in IP header
+            transport = "T";
+            if (pinfo.tcph != nullptr) { // If TCP header exists
+                trans_hl = to_string(pinfo.tcph->doff * BYTE);
+                payload_len = stoi(ip_len) - ((stoi)(trans_hl) + (stoi)(iphl));
+            }
+            else {
+                trans_hl = "-";
+                payload_len = "-";
+            }
         }
-        else if (pinfo.udph != nullptr) {
-            transport =
-            trans_hl = 
-            payload_len = 
+        else if (pinfo.iph->protocol != IPPROTO_UDP) { // If UDP indicated in IP header
+            transport = "U";
+            if (pinfo.udph != nullptr) { // If UDP header exists
+                trans_hl = sizeof(struct udphdr);
+                payload_len = stoi(ip_len) - ((stoi)(trans_hl) + (stoi)(iphl));
+            }
+            else {
+                trans_hl = "-";
+                payload_len = "-";
+            }
         }
-        else {
-            transport =
-            trans_hl = 
-            payload_len = 
+        else { // Non-TCP/UDP protocol specified
+            transport = "?";
+            trans_hl = "?";
+            payload_len = "?";
         }
         
         // Output for each IP packet
         fprintf(stdout, "%s %s %s %s %s %s %s",
-                DOUBLE_PRINT(ts, PADDING), INT_PRINT(caplen), INT_PRINT(ip_len), 
+                DOUBLE_PRINT(ts, PADDING), INT_PRINT(caplen), ip_len.c_str(), 
                 iphl.c_str(), transport.c_str(), trans_hl.c_str(), payload_len.c_str());
     }
 }

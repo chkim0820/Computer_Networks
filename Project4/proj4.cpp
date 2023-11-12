@@ -5,6 +5,7 @@
 * @date 2023-10-25
 */
 
+#include <cstddef>
 #include <iterator>
 #include <stdio.h>
 #include <string>
@@ -23,12 +24,13 @@
 #include <arpa/inet.h> 
 #include <unordered_map>
 
-
 using namespace std;
 
 /* Defining macros */
+#define EMPTY 0
 #define ERROR 1
 #define ACK 1
+#define SHIFT 1
 #define ERROR_INT -1
 #define ARG_LENGTH 4
 #define MAX_PKT_SIZE 1600
@@ -69,12 +71,32 @@ struct pkt_info {
     struct udphdr *udph;        // ptr to UDP header, if present, otherwise NULL
 };
 
-// For tracking packets sent between pairs of source/dest.
-struct source_dest_info {
-    string src_ip; // Source IP address; dotted-quad form
-    string dest_ip; // Destination IP address; dotted-quad form
-    int total_pkts; // Total number of TCP packets across all packets
-    int traffic_volume; // Total number of application layer bytes sent
+// Containing source/destination IP address pairs
+struct source_dest_key {
+    string sourceIP; // Source IP address
+    string destIP; // Destination IP address
+    
+    // Overriding '==' operator to compare source/dest pairs
+    bool operator==(const source_dest_key &otherPair) const{
+        return (sourceIP == otherPair.sourceIP && destIP == otherPair.destIP);
+    }
+};
+
+// Stores the appropriate values for each source/dest. IP address pairs
+struct source_dest_value {
+    int traffic_volume = EMPTY; // Total number of application layer bytes; initialized to 0
+    int total_pkts = EMPTY; // Total number of packets; initialized to 0
+};
+
+// Defining hashing pairs of source/dest.
+template<> struct hash<source_dest_key> {
+    size_t operator()(const source_dest_key &pair) const {
+        using std::size_t;
+        using std::hash;
+        using std::string;
+        return ((hash<string>()(pair.sourceIP) ^ 
+                (hash<string>()(pair.destIP) << SHIFT)) >> SHIFT);
+    }
 };
 
 /* Methods */
@@ -137,6 +159,11 @@ string truncDecimal(double num, int decimal) {
     return strNum.substr(0, dot + decimal + 1);
 }
 
+/**
+ * @brief Converts the input IP address and convert to dotted-quad form
+ * @param ipAddress IP address to be converted
+ * @return string IP address in dotted-quad form
+ */
 string dottedQuadConversion(uint32_t ipAddress) {
     struct in_addr addr;
     addr.s_addr = ipAddress;
@@ -282,7 +309,7 @@ void lengthAnalysis(int fd) {
     // Iterating through all packets
     while (nextPacket(fd, &pinfo, &meta) == VALID_PKT) {
         if (pinfo.ethh == nullptr || pinfo.ethh->ether_type != ETHERTYPE_IP) // No ethernet header or non-IP packet
-            return;
+            continue;
         ts = pinfo.now;
         caplen = pinfo.caplen;
         if (pinfo.iph != nullptr) { // If IP header exists
@@ -352,7 +379,7 @@ void packetPrinting(int fd) {
     // Iterating through all packets
     while (nextPacket(fd, &pinfo, &meta) == VALID_PKT) {
         if (pinfo.tcph == nullptr) // Non-TCP packets or TCP packets without headers
-            return;
+            continue;
         ts = pinfo.now; // Timestamp
         src_ip = dottedQuadConversion(pinfo.iph->saddr); // In dotted-quad form
         dst_ip = dottedQuadConversion(pinfo.iph->daddr); // In dotted-quad form
@@ -375,12 +402,14 @@ void packetPrinting(int fd) {
     }
 }
 
-// Keep track of the number of packets & total amt. of app. layer data from host to each peers using TCP
-// Non-TCP packets ignored
+/**
+ * @brief Keep track of the number of packets & total amt. of app. layer data from host to each peers using TCP
+ * @param fd File descriptor
+ */
 void packetCounting(int fd) {
     struct pkt_info pinfo; // To contain packet information
     struct meta_info meta; // To contain meta information
-    unordered_map<pair<string, string>, source_dest_info> transactions;
+    unordered_map<source_dest_key, source_dest_value> transactions = {}; // Hash map for storing info about each pairs
 
     // Iterating through all packets
     while (nextPacket(fd, &pinfo, &meta) == VALID_PKT) {
@@ -389,16 +418,17 @@ void packetCounting(int fd) {
         string source = dottedQuadConversion(pinfo.iph->saddr); // IP address that sends the packets
         string dest = dottedQuadConversion(pinfo.iph->daddr); // IP address that receives the packets
         int trafficVolume = pinfo.iph->tot_len - ((pinfo.tcph->doff * BYTE) + ((pinfo.iph->ihl) * BYTE));
-        
+    
         //input the values into the hash table
-        struct source_dest_info info;
-        transaction[make_pair(source, dest)];
+        transactions[{source, dest}].traffic_volume += trafficVolume; // Append current traffic volume
+        transactions[{source, dest}].total_pkts += 1;        
     }
     // Iterating through the hash map to print out values
-    while (true) {
+    for (const auto &[key, value] : transactions) {
         // Output a line for each (src, dst) pair
         fprintf(stdout, "%s %s %s %s\r\n", 
-        src_ip.c_str(), dst_ip.c_str(), total_pkts, traffic_volume);
+                key.sourceIP.c_str(), key.destIP.c_str(), 
+                INT_PRINT(value.total_pkts), INT_PRINT(value.traffic_volume));
     }
 }
 

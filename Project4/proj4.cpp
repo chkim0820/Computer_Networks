@@ -5,8 +5,6 @@
 * @date 2023-10-25
 */
 
-// FIX: double check comments, memory usage, and duplicate codes
-
 #include <string>
 #include <unistd.h>
 #include <string.h>
@@ -120,7 +118,7 @@ void errorExit (const char *format, const char *arg) {
  * @brief Parses the arguments given in the terminal 
  * @param argc Number of arguments
  * @param argv Arguments
- * @return tuple<string, string> mode and tracefile extracted
+ * @return tuple<string, string> mode and tracefile extracted from arguments
  */
 tuple<string, string> parseArgs(int argc, char* argv[]) {
     int indexR = INITIAL; // Saves the index of the "-r" argument; initialized to -1
@@ -129,10 +127,10 @@ tuple<string, string> parseArgs(int argc, char* argv[]) {
     string traceFile = "";
     for (int i = 1; i < argc; i++) { // Only 3 arguments must exist; -r, trace_file, and mode specification
         const char* arg = argv[i];
-        if (COMPARE_ARG(arg, "-r") && indexR == INITIAL) // arg is "-r" && "-r" not found yet 
+        if (COMPARE_ARG(arg, "-r") && indexR == INITIAL) // arg is "-r" && "-r" not found before 
             indexR = i;
         else if ((COMPARE_ARG(arg, "-s") || COMPARE_ARG(arg, "-l")
-                 || COMPARE_ARG(arg, "-p") || COMPARE_ARG(arg, "-c"))) { // mode not yet called & curr. arg. is one of the modes      
+                 || COMPARE_ARG(arg, "-p") || COMPARE_ARG(arg, "-c"))) { // mode not yet called & called now     
             if (!optDetermined) {
                 mode = arg;
                 optDetermined = true;
@@ -140,7 +138,7 @@ tuple<string, string> parseArgs(int argc, char* argv[]) {
             else 
                 errorExit("More than one modes present", nullptr);
         }    
-        else if (indexR != INITIAL && i == indexR + SHIFT && !COMPARE_ARG(arg, "-r")) // "-r" was the previous argument; trace file
+        else if (indexR != INITIAL && i == indexR + SHIFT && !COMPARE_ARG(arg, "-r")) // "-r" was the previous argument
             traceFile = arg;
         else
             errorExit("Invalid, duplicate, or out-of-order argument %s", arg);
@@ -157,11 +155,11 @@ tuple<string, string> parseArgs(int argc, char* argv[]) {
  * @return string Return the number as a string
  */
 string truncDecimal(double num, int decimal) {
-    string strNum = to_string(num);
+    string strNum = to_string(num); // String representation of the input decimal number
     size_t dot = strNum.find(".", START, SINGLE); // Find the position of a dot
-    if (decimal == NO_PADDING)
-        return strNum.substr(START, dot + decimal);
-    return strNum.substr(START, dot + decimal + SHIFT);
+    if (decimal == NO_PADDING) // No padding required; assume not decimal
+        return strNum.substr(START, dot + decimal); 
+    return strNum.substr(START, dot + decimal + SHIFT); // 6 decimal places
 }
 
 /**
@@ -172,7 +170,7 @@ string truncDecimal(double num, int decimal) {
 string dottedQuadConversion(uint32_t ipAddress) {
     struct in_addr addr;
     addr.s_addr = ipAddress;
-    return inet_ntoa(addr);
+    return inet_ntoa(addr); // Method to convert to dotted-quad form 
 }
 
 /**
@@ -182,16 +180,16 @@ string dottedQuadConversion(uint32_t ipAddress) {
  * @param meta Contains meta information
  */
 void convertByteOrders(int part, struct pkt_info *pinfo, struct meta_info *meta) {
-    if (part == META) { // Meta
+    if (part == META) { // Meta information
         meta->secs = ntohl(meta->secs);
         meta->usecs = ntohl(meta->usecs);
         pinfo->caplen = ntohs(meta->caplen); // Trace file; only the length of the packet portion
         pinfo->now = meta->secs + (double)(meta->usecs)/MILLION; // Timestamp based on meta.secs & meta.usecs
     }
-    if (part == ETHER) {
+    if (part == ETHER) { // Ethernet
         pinfo->ethh->ether_type = ntohs(pinfo->ethh->ether_type); // Byte-order conversion
     }
-    if (part == IP) { // IP header
+    if (part == IP) { // IP
         pinfo->iph->tot_len = ntohs(pinfo->iph->tot_len); // Total length; byte-order converted
         // pinfo->iph->saddr = ntohl(pinfo->iph->saddr); // Converted with inet_ntoa()
         // pinfo->iph->daddr = ntohl(pinfo->iph->daddr); // Converted with inet_ntoa()
@@ -203,7 +201,7 @@ void convertByteOrders(int part, struct pkt_info *pinfo, struct meta_info *meta)
         pinfo->tcph->ack_seq = ntohl(pinfo->tcph->ack_seq);
         pinfo->tcph->window = ntohs(pinfo->tcph->window);
     }
-    else if (part == UDP) {
+    else if (part == UDP) { // UDP
         pinfo->udph->source = ntohs(pinfo->udph->source);
         pinfo->udph->dest = ntohs(pinfo->udph->dest);
         pinfo->udph->len = ntohs(pinfo->udph->len);
@@ -213,14 +211,15 @@ void convertByteOrders(int part, struct pkt_info *pinfo, struct meta_info *meta)
 /**
  * @brief Method taken from next.c; reads packets and populates a structure
  * @param fd an open file to read packets from
- * @param pinfo allocated memory to put packet info into for one packet
+ * @param pinfo packet information
+ * @param meta meta information
  * @return unsigned short VALID_PKT (1) if a packet was read and pinfo is setup for processing the packet & 
  *                        NO_PACKET (0) if we have hit the end of the file and no packet is available 
  */
 unsigned short nextPacket (int fd, struct pkt_info *pinfo, struct meta_info *meta) {
     int bytesRead; // bytes read
     // Set memories & initialize fields to null; sizeof() in bytes
-    memset(pinfo, 0x0, sizeof(struct pkt_info)); // 1648 bytes
+    memset(pinfo, 0x0, sizeof(struct pkt_info));
     memset(meta, 0x0, sizeof(struct meta_info)); // 12 bytes
 
     // read the meta information
@@ -234,7 +233,7 @@ unsigned short nextPacket (int fd, struct pkt_info *pinfo, struct meta_info *met
     // Return if the packet is empty or erroneous based on length
     if (pinfo->caplen == 0) // Packet's length equals 0; nothing after meta information
         return VALID_PKT;
-    if (pinfo->caplen > MAX_PKT_SIZE) // Packet is too big; ASK
+    if (pinfo->caplen > MAX_PKT_SIZE) // Packet is too big
         errorExit("packet too big", nullptr); 
 
     // read the packet contents
@@ -276,7 +275,6 @@ unsigned short nextPacket (int fd, struct pkt_info *pinfo, struct meta_info *met
         pinfo->udph = (struct udphdr*)(pinfo->pkt + upToIP); // Beginning of the UDP header
         convertByteOrders(UDP, pinfo, meta);
     }
-
     return VALID_PKT;
 }
 
@@ -296,11 +294,11 @@ void summaryMode(int fd) {
 
     // Iterating through all packets
     while (nextPacket(fd, &pinfo, &meta) == VALID_PKT) {
-        if (firstPacket) {
+        if (firstPacket) { // True only for the first iteration
             first_time = pinfo.now;
             firstPacket = false;
         }
-        last_time = pinfo.now;
+        last_time = pinfo.now; // Update for every iteration
         total_pkts += SHIFT; // Increment by 1 for each iteration/packet
         if (pinfo.ethh != nullptr && pinfo.ethh->ether_type == ETHERTYPE_IP)
             ip_pkts += SHIFT; // Increment if the current packet is an IP packet
@@ -345,7 +343,7 @@ void lengthAnalysis(int fd) {
                     trans_hl = to_string(pinfo.tcph->doff * BYTE);
                     payload_len = to_string(stoi(ip_len) - (stoi(trans_hl) + stoi(iphl)));
                 }
-                else {
+                else { // Indicated TCP but no valid TCP header exists
                     trans_hl = "-";
                     payload_len = "-";
                 }
@@ -356,7 +354,7 @@ void lengthAnalysis(int fd) {
                     trans_hl = to_string(sizeof(struct udphdr));
                     payload_len = to_string(stoi(ip_len) - (stoi(trans_hl) + stoi(iphl)));
                 }
-                else {
+                else { // Indicated UDP but no valid UDP header exists
                     trans_hl = "-";
                     payload_len = "-";
                 }
@@ -403,6 +401,7 @@ void packetPrinting(int fd) {
     while (nextPacket(fd, &pinfo, &meta) == VALID_PKT) {
         if (pinfo.tcph == nullptr) // Non-TCP packets or TCP packets without headers
             continue;
+        // Set appropriate values to each variable
         ts = pinfo.now; // Timestamp
         src_ip = dottedQuadConversion(pinfo.iph->saddr); // In dotted-quad form
         dst_ip = dottedQuadConversion(pinfo.iph->daddr); // In dotted-quad form
@@ -441,16 +440,16 @@ void packetCounting(int fd) {
             continue;
         string source = dottedQuadConversion(pinfo.iph->saddr); // IP address that sends the packets
         string dest = dottedQuadConversion(pinfo.iph->daddr); // IP address that receives the packets
-        int trafficVolume = pinfo.iph->tot_len - ((pinfo.tcph->doff * BYTE) + ((pinfo.iph->ihl) * BYTE));
+        int trafficVolume = pinfo.iph->tot_len - ((pinfo.tcph->doff * BYTE) + ((pinfo.iph->ihl) * BYTE)); // Only app. layer bytes
     
         //input the values into the hash table
         transactions[{source, dest}].traffic_volume += trafficVolume; // Append current traffic volume
-        transactions[{source, dest}].total_pkts += SHIFT;        
+        transactions[{source, dest}].total_pkts += SHIFT; // Increase total number of packets by 1
     }
     // Iterating through the hash map to print out values
     for (auto it = transactions.begin(); it != transactions.end(); ++it) {
-        const source_dest_key &key = it->first;
-        const source_dest_value &value = it->second;
+        const source_dest_key &key = it->first; // Source IP address
+        const source_dest_value &value = it->second; // Destination IP address
         // Output a line for each (src, dst) pair
         fprintf(stdout, "%s %s %s %s\n", 
                 key.sourceIP.c_str(), key.destIP.c_str(), 

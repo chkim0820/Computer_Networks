@@ -305,7 +305,7 @@ void summaryMode(int fd) {
         }
         last_time = pinfo.now;
         total_pkts += 1; // Increment by 1 for each iteration/packet
-        if (pinfo.ethh->ether_type == ETHERTYPE_IP)
+        if (pinfo.ethh != nullptr && pinfo.ethh->ether_type == ETHERTYPE_IP)
             ip_pkts += 1; // Increment if the current packet is an IP packet
     }
     trace_duration = last_time - first_time; // Calculated by taking the difference between the first/last times
@@ -342,6 +342,33 @@ void lengthAnalysis(int fd) {
         if (pinfo.iph != nullptr) { // If IP header exists
             ip_len = to_string(pinfo.iph->tot_len);
             iphl = to_string((pinfo.iph->ihl) * BYTE);
+            if (pinfo.iph->protocol == IPPROTO_TCP) { // If TCP indicated in IP header
+                transport = "T";
+                if (pinfo.tcph != nullptr) { // If TCP header exists
+                    trans_hl = to_string(pinfo.tcph->doff * BYTE);
+                    payload_len = to_string(stoi(ip_len) - (stoi(trans_hl) + stoi(iphl)));
+                }
+                else {
+                    trans_hl = "-";
+                    payload_len = "-";
+                }
+            }
+            else if (pinfo.iph->protocol == IPPROTO_UDP) { // If UDP indicated in IP header
+                transport = "U";
+                if (pinfo.udph != nullptr) { // If UDP header exists
+                    trans_hl = to_string(sizeof(struct udphdr));
+                    payload_len = to_string(stoi(ip_len) - (stoi(trans_hl) + stoi(iphl)));
+                }
+                else {
+                    trans_hl = "-";
+                    payload_len = "-";
+                }
+            }
+            else { // Non-TCP/UDP protocol specified
+                transport = "?";
+                trans_hl = "?";
+                payload_len = "?";
+            }
         }
         else { // IP header is not present
             ip_len = "-";
@@ -349,33 +376,6 @@ void lengthAnalysis(int fd) {
             transport = "-";
             trans_hl = "-";
             payload_len = "-";
-        }
-        if (pinfo.iph->protocol == IPPROTO_TCP) { // If TCP indicated in IP header
-            transport = "T";
-            if (pinfo.tcph != nullptr) { // If TCP header exists
-                trans_hl = to_string(pinfo.tcph->doff * BYTE);
-                payload_len = to_string(stoi(ip_len) - (stoi(trans_hl) + stoi(iphl)));
-            }
-            else {
-                trans_hl = "-";
-                payload_len = "-";
-            }
-        }
-        else if (pinfo.iph->protocol == IPPROTO_UDP) { // If UDP indicated in IP header
-            transport = "U";
-            if (pinfo.udph != nullptr) { // If UDP header exists
-                trans_hl = to_string(sizeof(struct udphdr));
-                payload_len = to_string(stoi(ip_len) - (stoi(trans_hl) + stoi(iphl)));
-            }
-            else {
-                trans_hl = "-";
-                payload_len = "-";
-            }
-        }
-        else { // Non-TCP/UDP protocol specified
-            transport = "?";
-            trans_hl = "?";
-            payload_len = "?";
         }
         
         // Output for each IP packet

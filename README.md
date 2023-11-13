@@ -13,3 +13,8 @@ tar -xf [name of tar folder]
 
 To run a test file, _bash [test_file]_
 To run a Makefile, _make_
+
+To use the debugger (dbg), 
+gdb [project_name]
+run [arguments]
+(https://www.bitdegree.org/learn/gdb-debugger)

@@ -1,0 +1,7 @@
+Name: Chaehyeon Kim
+Case ID: cxk445
+Filename: notes.txt
+Date created: 11/11/2023
+Description: notes.txt to be read during grading process of project 4
+
+- All decimal numbers are assumed to be padded to 6 decimal numbers (didn't see otherwise)

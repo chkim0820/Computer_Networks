@@ -154,6 +154,8 @@ tuple<string, string> parseArgs(int argc, char* argv[]) {
 string truncDecimal(double num, int decimal) {
     string strNum = to_string(num);
     size_t dot = strNum.find(".", 0, 1);
+    if (decimal == NO_PADDING)
+        return strNum.substr(0, dot + decimal);
     return strNum.substr(0, dot + decimal + 1);
 }
 
@@ -187,16 +189,16 @@ void convertByteOrders(int part, struct pkt_info *pinfo, struct meta_info *meta)
     if (part == IP) { // IP header
         pinfo->iph->tot_len = ntohs(pinfo->iph->tot_len); // Total length; byte-order converted
         // pinfo->iph->ihl = ntohl(pinfo->iph->ihl);
-        pinfo->iph->saddr = ntohl(pinfo->iph->saddr);
-        pinfo->iph->daddr = ntohl(pinfo->iph->daddr);
+        // pinfo->iph->saddr = ntohl(pinfo->iph->saddr);
+        // pinfo->iph->daddr = ntohl(pinfo->iph->daddr);
         // pinfo->iph->protocol = ntohs(pinfo->iph->protocol);
         pinfo->iph->id = ntohs(pinfo->iph->id);
-        pinfo->iph->ttl = ntohs(pinfo->iph->ttl);
+        // pinfo->iph->ttl = ntohs(pinfo->iph->ttl);
     }
     else if (part == TCP) { // TCP
         pinfo->tcph->source = ntohs(pinfo->tcph->source);
         pinfo->tcph->dest = ntohs(pinfo->tcph->dest);
-        pinfo->tcph->ack = ntohs(pinfo->tcph->ack);
+        // pinfo->tcph->ack = ntohs(pinfo->tcph->ack);
         pinfo->tcph->ack_seq = ntohl(pinfo->tcph->ack_seq);
         pinfo->tcph->window = ntohs(pinfo->tcph->window);
         // pinfo->tcph->doff = ntohs(pinfo->tcph->doff);
@@ -215,7 +217,7 @@ void convertByteOrders(int part, struct pkt_info *pinfo, struct meta_info *meta)
  * @return unsigned short VALID_PKT (1) if a packet was read and pinfo is setup for processing the packet & 
  *                        NO_PACKET (0) if we have hit the end of the file and no packet is available 
  */
-unsigned short nextPacket (int fd, struct pkt_info *pinfo, struct meta_info *meta) {// FIX; maybe loop implementation?
+unsigned short nextPacket (int fd, struct pkt_info *pinfo, struct meta_info *meta) {
     int bytesRead; // bytes read
     // Set memories & initialize fields to null; sizeof() in bytes
     memset(pinfo, 0x0, sizeof(struct pkt_info)); // 1648 bytes

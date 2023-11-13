@@ -18,3 +18,11 @@ To use the debugger (dbg),
 gdb [project_name]
 run [arguments]
 (https://www.bitdegree.org/learn/gdb-debugger)
+
+To open a file on linux terminal,
+vi [file_name]
+(https://www.redhat.com/sysadmin/introduction-vi-editor)
+
+To cancel previous n pushes,
+git reset HEAD^ 
+for how many commits ahead the local branch is

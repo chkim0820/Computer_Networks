@@ -5,6 +5,8 @@
 * @date 2023-10-25
 */
 
+// FIX: double check comments, memory usage, and duplicate codes
+
 #include <string>
 #include <unistd.h>
 #include <string.h>
@@ -174,7 +176,7 @@ string dottedQuadConversion(uint32_t ipAddress) {
 }
 
 /**
- * @brief Convert byte orders for fields to be used later 
+ * @brief Convert byte orders for fields to be used later (for fields longer than a byte)
  * @param part Specifies the part of the packet; meta-info, ethernet, IP, TCP/UDP
  * @param pinfo Contains information about the packet
  * @param meta Contains meta information
@@ -191,20 +193,15 @@ void convertByteOrders(int part, struct pkt_info *pinfo, struct meta_info *meta)
     }
     if (part == IP) { // IP header
         pinfo->iph->tot_len = ntohs(pinfo->iph->tot_len); // Total length; byte-order converted
-        // pinfo->iph->ihl = ntohl(pinfo->iph->ihl); // ASK; why do these work without converting byte-orders
-        // pinfo->iph->saddr = ntohl(pinfo->iph->saddr);
-        // pinfo->iph->daddr = ntohl(pinfo->iph->daddr);
-        // pinfo->iph->protocol = ntohs(pinfo->iph->protocol);
+        // pinfo->iph->saddr = ntohl(pinfo->iph->saddr); // Converted with inet_ntoa()
+        // pinfo->iph->daddr = ntohl(pinfo->iph->daddr); // Converted with inet_ntoa()
         pinfo->iph->id = ntohs(pinfo->iph->id);
-        // pinfo->iph->ttl = ntohs(pinfo->iph->ttl);
     }
     else if (part == TCP) { // TCP
         pinfo->tcph->source = ntohs(pinfo->tcph->source);
         pinfo->tcph->dest = ntohs(pinfo->tcph->dest);
-        // pinfo->tcph->ack = ntohs(pinfo->tcph->ack);
         pinfo->tcph->ack_seq = ntohl(pinfo->tcph->ack_seq);
         pinfo->tcph->window = ntohs(pinfo->tcph->window);
-        // pinfo->tcph->doff = ntohs(pinfo->tcph->doff);
     }
     else if (part == UDP) {
         pinfo->udph->source = ntohs(pinfo->udph->source);
@@ -237,7 +234,7 @@ unsigned short nextPacket (int fd, struct pkt_info *pinfo, struct meta_info *met
     // Return if the packet is empty or erroneous based on length
     if (pinfo->caplen == 0) // Packet's length equals 0; nothing after meta information
         return VALID_PKT;
-    if (pinfo->caplen > MAX_PKT_SIZE) // Packet is too big; FIX
+    if (pinfo->caplen > MAX_PKT_SIZE) // Packet is too big; ASK
         errorExit("packet too big", nullptr); 
 
     // read the packet contents
@@ -279,9 +276,6 @@ unsigned short nextPacket (int fd, struct pkt_info *pinfo, struct meta_info *met
         pinfo->udph = (struct udphdr*)(pinfo->pkt + upToIP); // Beginning of the UDP header
         convertByteOrders(UDP, pinfo, meta);
     }
-
-    // FIX; moving onto the next packet
-    // int currentPacket = bytesRead + sizeof(struct meta_info);
 
     return VALID_PKT;
 }

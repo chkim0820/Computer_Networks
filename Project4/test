@@ -6,7 +6,6 @@
 
 
 #!/bin/bash
-make
 
 # With local directories
 

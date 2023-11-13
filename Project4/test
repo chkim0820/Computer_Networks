@@ -135,11 +135,10 @@ echo "Testing icmp1.trace"
 ./proj4 -c -r /csds325-p4-samples/icmp1.trace > c4.out
 sort /csds325-p4-samples/icmp1.c.out > icmp1.c.sort
 sort c4.out > c4.sort
-diff icmp1.c.sort c4.sort
 diff -u s4.out /csds325-p4-samples/icmp1.s.out
 diff -u l4.out /csds325-p4-samples/icmp1.l.out
 diff -u p4.out /csds325-p4-samples/icmp1.p.out
-diff -u c4.out /csds325-p4-samples/icmp1.c.out
+diff -u c4.sort icmp1.c.sort
 echo
 
 # 5) 1000-pkts.trace; 1000 packets

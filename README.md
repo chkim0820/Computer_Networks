@@ -10,6 +10,8 @@ scp [* or name of file to be moved] cxk445@eecslab-12.case.edu:home/CSDS325/[pro
 
 Extract from a tar folder:
 tar -xf [name of tar folder]
+Compress into a tar folder:
+tar cvzf [tar_folder_output_name].tar.gz [included_files]
 
 To run a test file, _bash [test_file]_
 To run a Makefile, _make_

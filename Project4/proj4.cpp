@@ -309,7 +309,7 @@ void summaryMode(int fd) {
             ip_pkts += 1; // Increment if the current packet is an IP packet
     }
     trace_duration = last_time - first_time; // Calculated by taking the difference between the first/last times
-
+    
     // Print out the values
     fprintf(stdout, "time: first: %s last: %s duration: %s\n", 
             DOUBLE_PRINT(first_time, PADDING), DOUBLE_PRINT(last_time, PADDING), 
@@ -474,7 +474,7 @@ int main(int argc, char* argv[]) {
    
     // Determine which mode from argument parsed above
     int fd = open(traceFile.c_str(), O_RDONLY);
-    if (fd < -1)
+    if (fd < 0)
         errorExit("Error occurred while opening trace file %s", traceFile.c_str());
     
     // Call the appropriate methods according to the mode

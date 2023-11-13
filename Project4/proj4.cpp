@@ -5,7 +5,6 @@
 * @date 2023-10-25
 */
 
-#include <iostream>
 #include <string>
 #include <unistd.h>
 #include <string.h>
@@ -23,8 +22,13 @@ using namespace std;
 /* Defining macros */
 #define EMPTY 0x0
 #define ERROR 1
+#define START 0
+#define SINGLE 1
+#define MILLION 1000000
+#define MODE 0
+#define TRACE_FILE 1
 #define ACK 1
-#define SHIFT 1
+#define SHIFT 1 // shift by 1
 #define INITIAL -1
 #define ARG_LENGTH 4
 #define MAX_PKT_SIZE 1600
@@ -33,7 +37,6 @@ using namespace std;
 #define NO_PADDING 0
 #define PADDING 6
 #define BYTE 4
-#define META_INFO_BYTES 12
 #define META 1
 #define ETHER 2
 #define IP 3
@@ -88,11 +91,11 @@ struct source_dest_value {
 // Defining hash function for pairs of source/dest. IP addresses
 namespace std {
     template<> struct hash<source_dest_key> {
-        size_t operator()(const source_dest_key &pair) const {
+        size_t operator()(const source_dest_key &pair) const { // Hashing based on the source/dest. IP addresses
             using std::size_t;
             using std::hash;
             using std::string;
-            return ((hash<string>()(pair.sourceIP) ^ 
+            return ((hash<string>()(pair.sourceIP) ^ // Shift by 1 when hashing
                     (hash<string>()(pair.destIP) << SHIFT)) >> SHIFT);
     }
 };}
@@ -135,7 +138,7 @@ tuple<string, string> parseArgs(int argc, char* argv[]) {
             else 
                 errorExit("More than one modes present", nullptr);
         }    
-        else if (indexR != INITIAL && i == indexR + 1 && !COMPARE_ARG(arg, "-r")) // "-r" was the previous argument; trace file
+        else if (indexR != INITIAL && i == indexR + SHIFT && !COMPARE_ARG(arg, "-r")) // "-r" was the previous argument; trace file
             traceFile = arg;
         else
             errorExit("Invalid, duplicate, or out-of-order argument %s", arg);
@@ -153,10 +156,10 @@ tuple<string, string> parseArgs(int argc, char* argv[]) {
  */
 string truncDecimal(double num, int decimal) {
     string strNum = to_string(num);
-    size_t dot = strNum.find(".", 0, 1);
+    size_t dot = strNum.find(".", START, SINGLE); // Find the position of a dot
     if (decimal == NO_PADDING)
-        return strNum.substr(0, dot + decimal);
-    return strNum.substr(0, dot + decimal + 1);
+        return strNum.substr(START, dot + decimal);
+    return strNum.substr(START, dot + decimal + SHIFT);
 }
 
 /**
@@ -181,7 +184,7 @@ void convertByteOrders(int part, struct pkt_info *pinfo, struct meta_info *meta)
         meta->secs = ntohl(meta->secs);
         meta->usecs = ntohl(meta->usecs);
         pinfo->caplen = ntohs(meta->caplen); // Trace file; only the length of the packet portion
-        pinfo->now = meta->secs + (double)(meta->usecs)/1000000; // Timestamp based on meta.secs & meta.usecs
+        pinfo->now = meta->secs + (double)(meta->usecs)/MILLION; // Timestamp based on meta.secs & meta.usecs
     }
     if (part == ETHER) {
         pinfo->ethh->ether_type = ntohs(pinfo->ethh->ether_type); // Byte-order conversion
@@ -304,9 +307,9 @@ void summaryMode(int fd) {
             firstPacket = false;
         }
         last_time = pinfo.now;
-        total_pkts += 1; // Increment by 1 for each iteration/packet
+        total_pkts += SHIFT; // Increment by 1 for each iteration/packet
         if (pinfo.ethh != nullptr && pinfo.ethh->ether_type == ETHERTYPE_IP)
-            ip_pkts += 1; // Increment if the current packet is an IP packet
+            ip_pkts += SHIFT; // Increment if the current packet is an IP packet
     }
     trace_duration = last_time - first_time; // Calculated by taking the difference between the first/last times
     
@@ -448,7 +451,7 @@ void packetCounting(int fd) {
     
         //input the values into the hash table
         transactions[{source, dest}].traffic_volume += trafficVolume; // Append current traffic volume
-        transactions[{source, dest}].total_pkts += 1;        
+        transactions[{source, dest}].total_pkts += SHIFT;        
     }
     // Iterating through the hash map to print out values
     for (auto it = transactions.begin(); it != transactions.end(); ++it) {
@@ -469,8 +472,8 @@ void packetCounting(int fd) {
  */
 int main(int argc, char* argv[]) {
     tuple<string, string> info = parseArgs(argc, argv); // When returned, all required inputs present (at least number-wise)   
-    string mode = get<0>(info); // Save returned mode
-    string traceFile = get<1>(info); // Save returned name of trace file
+    string mode = get<MODE>(info); // Save returned mode
+    string traceFile = get<TRACE_FILE>(info); // Save returned name of trace file
    
     // Determine which mode from argument parsed above
     int fd = open(traceFile.c_str(), O_RDONLY);

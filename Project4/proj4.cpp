@@ -54,7 +54,7 @@ struct meta_info {
     unsigned int usecs; // microseconds; 10^-6 of a second
     unsigned int secs; // seconds
     unsigned short ignored;
-    unsigned short caplen; // Amount of data available in the packet portion (doesn't include meta-info)
+    unsigned short caplen; // Captured length; bytes of packet
 };
 
 // record of information about the current packet
@@ -176,28 +176,30 @@ string dottedQuadConversion(uint32_t ipAddress) {
  */
 void convertByteOrders(int part, struct pkt_info *pinfo, struct meta_info *meta) {
     if (part == META) { // Meta
+        meta->secs = ntohl(meta->secs);
+        meta->usecs = ntohl(meta->usecs);
         pinfo->caplen = ntohs(meta->caplen); // Trace file; only the length of the packet portion
-        pinfo->now = ntohl(meta->secs) + (double)((ntohl)(meta->usecs))/1000000; // Timestamp based on meta.secs & meta.usecs
+        pinfo->now = meta->secs + (double)(meta->usecs)/1000000; // Timestamp based on meta.secs & meta.usecs
     }
     if (part == ETHER) {
         pinfo->ethh->ether_type = ntohs(pinfo->ethh->ether_type); // Byte-order conversion
     }
     if (part == IP) { // IP header
         pinfo->iph->tot_len = ntohs(pinfo->iph->tot_len); // Total length; byte-order converted
-        pinfo->iph->ihl = ntohs(pinfo->iph->ihl);
+        // pinfo->iph->ihl = ntohl(pinfo->iph->ihl);
         pinfo->iph->saddr = ntohl(pinfo->iph->saddr);
         pinfo->iph->daddr = ntohl(pinfo->iph->daddr);
-        pinfo->iph->protocol = ntohs(pinfo->iph->protocol);
+        // pinfo->iph->protocol = ntohs(pinfo->iph->protocol);
         pinfo->iph->id = ntohs(pinfo->iph->id);
         pinfo->iph->ttl = ntohs(pinfo->iph->ttl);
     }
     else if (part == TCP) { // TCP
         pinfo->tcph->source = ntohs(pinfo->tcph->source);
         pinfo->tcph->dest = ntohs(pinfo->tcph->dest);
-        pinfo->tcph->ack = ntohl(pinfo->tcph->ack);
+        pinfo->tcph->ack = ntohs(pinfo->tcph->ack);
         pinfo->tcph->ack_seq = ntohl(pinfo->tcph->ack_seq);
         pinfo->tcph->window = ntohs(pinfo->tcph->window);
-        pinfo->tcph->doff = ntohs(pinfo->tcph->doff);
+        // pinfo->tcph->doff = ntohs(pinfo->tcph->doff);
     }
     else if (part == UDP) {
         pinfo->udph->source = ntohs(pinfo->udph->source);
@@ -215,9 +217,9 @@ void convertByteOrders(int part, struct pkt_info *pinfo, struct meta_info *meta)
  */
 unsigned short nextPacket (int fd, struct pkt_info *pinfo, struct meta_info *meta) {// FIX; maybe loop implementation?
     int bytesRead; // bytes read
-    // Set memories & initialize fields to null
-    memset(pinfo, 0x0, sizeof(struct pkt_info));
-    memset(meta, 0x0, sizeof(struct meta_info));
+    // Set memories & initialize fields to null; sizeof() in bytes
+    memset(pinfo, 0x0, sizeof(struct pkt_info)); // 1648 bytes
+    memset(meta, 0x0, sizeof(struct meta_info)); // 12 bytes
 
     // read the meta information
     bytesRead = read(fd, meta, sizeof(struct meta_info)); // Read fd (file descriptor) into meta
@@ -230,18 +232,18 @@ unsigned short nextPacket (int fd, struct pkt_info *pinfo, struct meta_info *met
     // Return if the packet is empty or erroneous based on length
     if (pinfo->caplen == 0) // Packet's length equals 0; nothing after meta information
         return VALID_PKT;
-    if (pinfo->caplen > MAX_PKT_SIZE) // Packet is too big
+    if (pinfo->caplen > MAX_PKT_SIZE) // Packet is too big; FIX
         errorExit("packet too big", nullptr); 
 
     // read the packet contents
     bytesRead = read(fd, pinfo->pkt, pinfo->caplen); // into pinfo's pkt field
     if (bytesRead < 0) // Error occurred
         errorExit("error reading packet", nullptr);
-    if (bytesRead < pinfo->caplen) // Length smaller than expected; not enough info present
+    if (bytesRead != pinfo->caplen) // FIX; was < Length smaller than expected; not enough info present
         errorExit("unexpected end of file encountered", nullptr);
     
     // Ethernet header
-    if (bytesRead < sizeof(struct ether_header)) // No valid ethernet header
+    if (bytesRead < sizeof(struct ether_header)) // No valid ethernet header; 14 bytes
         return VALID_PKT;
     pinfo->ethh = (struct ether_header*)pinfo->pkt; // Point to ethernet header
     convertByteOrders(ETHER, pinfo, meta);
@@ -251,24 +253,31 @@ unsigned short nextPacket (int fd, struct pkt_info *pinfo, struct meta_info *met
         return VALID_PKT;
 
     // IP header
-    pinfo->iph = (struct iphdr*)(pinfo->pkt + sizeof(struct ether_header)); // Point to the start of IP header
-    size_t upToIP = sizeof(struct ether_header) + pinfo->iph->tot_len; // Length up to the end of IP header
-    if (bytesRead < upToIP) // Check if the IP header is valid
+    if (bytesRead < sizeof(struct ether_header) + sizeof(struct iphdr)) // Not enough bytes to have IP header; <34 bytes
         return VALID_PKT;
+    pinfo->iph = (struct iphdr*)(pinfo->pkt + sizeof(struct ether_header)); // Point to the start of IP header (after ethh)
     convertByteOrders(IP, pinfo, meta); // Byte-order conversions for applicable fields
-    // Check if there's no headers after ip
-    if (sizeof(struct ether_header) + (pinfo->iph->tot_len) == pinfo->caplen) // There's no more after IP header
+    size_t upToIP = sizeof(struct ether_header) + ((pinfo->iph->ihl) * BYTE); // Length up to the end of IP header
+    if (upToIP == pinfo->caplen) // There's no more after IP header
         return VALID_PKT;
 
     // TCP/UCP header
     if (pinfo->iph->protocol == IPPROTO_TCP) { // TCP protocol
+        if (bytesRead < upToIP + sizeof(struct tcphdr)) // Not enough byte for TCP header
+            return VALID_PKT;
         pinfo->tcph = (struct tcphdr*)(pinfo->pkt + upToIP); // Beginning of the TCP header
         convertByteOrders(TCP, pinfo, meta);
     }
     else if (pinfo->iph->protocol == IPPROTO_UDP) { // UDP protocol
+        if (bytesRead < upToIP + sizeof(struct udphdr)) // Not enough byte for UDP header
+            return VALID_PKT;
         pinfo->udph = (struct udphdr*)(pinfo->pkt + upToIP); // Beginning of the UDP header
         convertByteOrders(UDP, pinfo, meta);
     }
+
+    // FIX; moving onto the next packet
+    int currentPacket = bytesRead + sizeof(struct meta_info);
+
     return VALID_PKT;
 }
 
@@ -343,18 +352,18 @@ void lengthAnalysis(int fd) {
             transport = "T";
             if (pinfo.tcph != nullptr) { // If TCP header exists
                 trans_hl = to_string(pinfo.tcph->doff * BYTE);
-                payload_len = stoi(ip_len) - ((stoi)(trans_hl) + (stoi)(iphl));
+                payload_len = to_string(stoi(ip_len) - (stoi(trans_hl) + stoi(iphl)));
             }
             else {
                 trans_hl = "-";
                 payload_len = "-";
             }
         }
-        else if (pinfo.iph->protocol != IPPROTO_UDP) { // If UDP indicated in IP header
+        else if (pinfo.iph->protocol == IPPROTO_UDP) { // If UDP indicated in IP header
             transport = "U";
             if (pinfo.udph != nullptr) { // If UDP header exists
-                trans_hl = sizeof(struct udphdr);
-                payload_len = stoi(ip_len) - ((stoi)(trans_hl) + (stoi)(iphl));
+                trans_hl = to_string(sizeof(struct udphdr));
+                payload_len = to_string(stoi(ip_len) - (stoi(trans_hl) + stoi(iphl)));
             }
             else {
                 trans_hl = "-";

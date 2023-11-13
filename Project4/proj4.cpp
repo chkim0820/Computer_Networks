@@ -5,6 +5,7 @@
 * @date 2023-10-25
 */
 
+#include <iostream>
 #include <string>
 #include <unistd.h>
 #include <string.h>
@@ -106,7 +107,7 @@ namespace std {
 void errorExit (const char *format, const char *arg) {
     // Print the error message & exit
     fprintf(stderr, format, arg);
-    fprintf (stderr, "\r\n");
+    fprintf (stderr, "\n");
     exit(ERROR);
 }
 
@@ -282,8 +283,8 @@ void summaryMode(int fd) {
     double first_time; // Time of the first packet in the trace file
     double last_time; // Time of the last packet in the trace file
     double trace_duration; // The duration of the trace file
-    int total_pkts; // Number of total packets
-    int ip_pkts; // Number of IP packets
+    int total_pkts = EMPTY; // Number of total packets
+    int ip_pkts = EMPTY; // Number of IP packets
 
     // Iterating through all packets
     while (nextPacket(fd, &pinfo, &meta) == VALID_PKT) {
@@ -291,8 +292,7 @@ void summaryMode(int fd) {
             first_time = pinfo.now;
             firstPacket = false;
         }
-        else // Update for all non-first packets
-            last_time = pinfo.now;
+        last_time = pinfo.now;
         total_pkts += 1; // Increment by 1 for each iteration/packet
         if (pinfo.ethh->ether_type == ETHERTYPE_IP)
             ip_pkts += 1; // Increment if the current packet is an IP packet
@@ -300,10 +300,10 @@ void summaryMode(int fd) {
     trace_duration = last_time - first_time; // Calculated by taking the difference between the first/last times
 
     // Print out the values
-    fprintf(stdout, "time: first: %s last: %s duration: %s\r\n", 
+    fprintf(stdout, "time: first: %s last: %s duration: %s\n", 
             DOUBLE_PRINT(first_time, PADDING), DOUBLE_PRINT(last_time, PADDING), 
             DOUBLE_PRINT(trace_duration, PADDING));
-    fprintf(stdout, "pkts: total: %s ip: %s\r\n", 
+    fprintf(stdout, "pkts: total: %s ip: %s\n", 
             INT_PRINT(total_pkts), INT_PRINT(ip_pkts));
 }
 
@@ -368,7 +368,7 @@ void lengthAnalysis(int fd) {
         }
         
         // Output for each IP packet
-        fprintf(stdout, "%s %s %s %s %s %s %s\r\n",
+        fprintf(stdout, "%s %s %s %s %s %s %s\n",
                 DOUBLE_PRINT(ts, PADDING), INT_PRINT(caplen), ip_len.c_str(), 
                 iphl.c_str(), transport.c_str(), trans_hl.c_str(), payload_len.c_str());
     }
@@ -409,7 +409,7 @@ void packetPrinting(int fd) {
             ackno = "-";
 
         // Output for each TCP packet
-        fprintf(stdout, "%s %s %s %s %s %s %s %s %s\r\n",
+        fprintf(stdout, "%s %s %s %s %s %s %s %s %s\n",
                 DOUBLE_PRINT(ts, PADDING), 
                 src_ip.c_str(), DOUBLE_PRINT(src_port, NO_PADDING), 
                 dst_ip.c_str(), DOUBLE_PRINT(dst_port, NO_PADDING), 
@@ -444,7 +444,7 @@ void packetCounting(int fd) {
         const source_dest_key &key = it->first;
         const source_dest_value &value = it->second;
         // Output a line for each (src, dst) pair
-        fprintf(stdout, "%s %s %s %s\r\n", 
+        fprintf(stdout, "%s %s %s %s\n", 
                 key.sourceIP.c_str(), key.destIP.c_str(), 
                 INT_PRINT(value.total_pkts), INT_PRINT(value.traffic_volume));
     }

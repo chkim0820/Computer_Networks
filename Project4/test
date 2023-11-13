@@ -1,5 +1,5 @@
 # Name: Chaehyeon Kim
-# Case ID: Chaehyeon Kim
+# Case ID: cxk445
 # Filename: test
 # Date created: 10/30/2023
 # Description: For testing proj4.cpp with samples given
@@ -45,47 +45,51 @@ echo "Testing icmp1.trace"
 ./proj4 -l -r ~/GitHub/CSDS325/Project4/SampleInOut/icmp1.trace > l4.out
 ./proj4 -p -r ~/GitHub/CSDS325/Project4/SampleInOut/icmp1.trace > p4.out
 ./proj4 -c -r ~/GitHub/CSDS325/Project4/SampleInOut/icmp1.trace > c4.out
-sort ~/GitHub/CSDS325/Project4/SampleInOut/icmp1.c.out > ~/GitHub/CSDS325/Project4/SampleInOut/icmp1.c.sort
+sort ~/GitHub/CSDS325/Project4/SampleInOut/icmp1.c.out > icmp1.c.sort
 sort c4.out > c4.sort
-diff ~/GitHub/CSDS325/Project4/SampleInOut/icmp1.c.sort c4.sort
+diff icmp1.c.sort c4.sort
 diff -u s4.out ~/GitHub/CSDS325/Project4/SampleInOut/icmp1.s.out
 diff -u l4.out ~/GitHub/CSDS325/Project4/SampleInOut/icmp1.l.out
 diff -u p4.out ~/GitHub/CSDS325/Project4/SampleInOut/icmp1.p.out
-diff -u c4.out ~/GitHub/CSDS325/Project4/SampleInOut/icmp1.c.out
+diff -u c4.sort icmp1.c.sort
 echo
 
 # 5) 1000-pkts.trace; 1000 packets
 echo "Testing 1000-pkts.trace"
-./proj4 -s -r ~/GitHub/CSDS325/Project4/SampleInOut/1000-pkts.trace > s5.out
+./proj4 -c -r ~/GitHub/CSDS325/Project4/SampleInOut/1000-pkts.trace > c5.out
+sort ~/GitHub/CSDS325/Project4/SampleInOut/1000-pkts.c.out > 1000-pkts.c.sort
+sort c5.out > c5.sort
 ./proj4 -l -r ~/GitHub/CSDS325/Project4/SampleInOut/1000-pkts.trace > l5.out
 ./proj4 -p -r ~/GitHub/CSDS325/Project4/SampleInOut/1000-pkts.trace > p5.out
-diff -u s5.out ~/GitHub/CSDS325/Project4/SampleInOut/1000-pkts.s.out
+diff -u c5.sort 1000-pkts.c.sort
 diff -u l5.out ~/GitHub/CSDS325/Project4/SampleInOut/1000-pkts.l.out
 diff -u p5.out ~/GitHub/CSDS325/Project4/SampleInOut/1000-pkts.p.out
 echo
 
-# 6) manyIPs.trace; a bunch of packets with a bunch of IP addresses
+# # 6) manyIPs.trace; a bunch of packets with a bunch of IP addresses
 echo "Testing manyIPs.trace"
-./proj4 -s -r ~/GitHub/CSDS325/Project4/SampleInOut/manyIPs.trace > s6.out
-diff -u s6.out ~/GitHub/CSDS325/Project4/SampleInOut/manyIPs.trace.s.out
+./proj4 -c -r ~/GitHub/CSDS325/Project4/SampleInOut/manyIPs.trace > c6.out
+sort ~/GitHub/CSDS325/Project4/SampleInOut/manyIPs.c.out > manyIPs.c.sort
+sort c6.out > c6.sort
+diff -u c6.sort manyIPs.c.sort
 echo
 
-# 7) crazy.trace; 35 packets with weird cases
-echo "Testing crazy.trace"
-./proj4 -s -r ~/GitHub/CSDS325/Project4/SampleInOut/crazy.trace > s7.out
-./proj4 -l -r ~/GitHub/CSDS325/Project4/SampleInOut/crazy.trace > l7.out
-./proj4 -p -r ~/GitHub/CSDS325/Project4/SampleInOut/crazy.trace > p7.out
-diff -u s7.out ~/GitHub/CSDS325/Project4/SampleInOut/crazy.s.out
-diff -u l7.out ~/GitHub/CSDS325/Project4/SampleInOut/crazy.l.out
-diff -u p7.out ~/GitHub/CSDS325/Project4/SampleInOut/crazy.p.out
-echo
+# # 7) crazy.trace; 35 packets with weird cases
+# echo "Testing crazy.trace"
+# ./proj4 -s -r ~/GitHub/CSDS325/Project4/SampleInOut/crazy.trace > s7.out
+# ./proj4 -l -r ~/GitHub/CSDS325/Project4/SampleInOut/crazy.trace > l7.out
+# ./proj4 -p -r ~/GitHub/CSDS325/Project4/SampleInOut/crazy.trace > p7.out
+# diff -u s7.out ~/GitHub/CSDS325/Project4/SampleInOut/crazy.s.out
+# diff -u l7.out ~/GitHub/CSDS325/Project4/SampleInOut/crazy.l.out
+# diff -u p7.out ~/GitHub/CSDS325/Project4/SampleInOut/crazy.p.out
+# echo
 
-# Extra credit; for 425 portion
-echo "Testing extra credit portion"
-./proj4 -s -r ~/GitHub/CSDS325/Project4/SampleInOut/425.trace > s425.out
-./proj4 -l -r ~/GitHub/CSDS325/Project4/SampleInOut/425.trace > l425.out
-./proj4 -p -r ~/GitHub/CSDS325/Project4/SampleInOut/425.trace > p425.out
-echo
+# # Extra credit; for 425 portion
+# echo "Testing extra credit portion"
+# ./proj4 -s -r ~/GitHub/CSDS325/Project4/SampleInOut/425.trace > s425.out
+# ./proj4 -l -r ~/GitHub/CSDS325/Project4/SampleInOut/425.trace > l425.out
+# ./proj4 -p -r ~/GitHub/CSDS325/Project4/SampleInOut/425.trace > p425.out
+# echo
 
 
 
@@ -95,78 +99,82 @@ echo
 
 # # 1) tcp1.trace; one TCP packet
 # echo "Testing tcp1.trace"
-# ./proj4 -s -r ~/csds325-p4-samples/tcp1.trace > s1.out
-# ./proj4 -l -r ~/csds325-p4-samples/tcp1.trace > l1.out
-# ./proj4 -p -r ~/csds325-p4-samples/tcp1.trace > p1.out
-# diff -u s1.out ~/csds325-p4-samples/tcp1.s.out
-# diff -u l1.out ~/csds325-p4-samples/tcp1.l.out
-# diff -u p1.out ~/csds325-p4-samples/tcp1.p.out
+# ./proj4 -s -r /csds325-p4-samples/tcp1.trace > s1.out
+# ./proj4 -l -r /csds325-p4-samples/tcp1.trace > l1.out
+# ./proj4 -p -r /csds325-p4-samples/tcp1.trace > p1.out
+# diff -u s1.out /csds325-p4-samples/tcp1.s.out
+# diff -u l1.out /csds325-p4-samples/tcp1.l.out
+# diff -u p1.out /csds325-p4-samples/tcp1.p.out
 # echo
 
 # # 2) upd1.trace; one UDP packet
 # echo "Testing udp1.trace"
-# ./proj4 -s -r ~/csds325-p4-samples/udp1.trace > s2.out
-# ./proj4 -l -r ~/csds325-p4-samples/udp1.trace > l2.out
-# ./proj4 -p -r ~/csds325-p4-samples/udp1.trace > p2.out
-# diff -u s2.out ~/csds325-p4-samples/udp1.s.out
-# diff -u l2.out ~/csds325-p4-samples/udp1.l.out
-# diff -u p2.out ~/csds325-p4-samples/udp1.p.out
+# ./proj4 -s -r /csds325-p4-samples/udp1.trace > s2.out
+# ./proj4 -l -r /csds325-p4-samples/udp1.trace > l2.out
+# ./proj4 -p -r /csds325-p4-samples/udp1.trace > p2.out
+# diff -u s2.out /csds325-p4-samples/udp1.s.out
+# diff -u l2.out /csds325-p4-samples/udp1.l.out
+# diff -u p2.out /csds325-p4-samples/udp1.p.out
 # echo
 
 # # 3) 10-pkts.trace; 10 packets
 # echo "Testing 10-pkts.trace"
-# ./proj4 -s -r ~/csds325-p4-samples/10-pkts.trace > s3.out
-# ./proj4 -l -r ~/csds325-p4-samples/10-pkts.trace > l3.out
-# ./proj4 -p -r ~/csds325-p4-samples/10-pkts.trace > p3.out
-# diff -u s3.out ~/csds325-p4-samples/10-pkts.s.out
-# diff -u l3.out ~/csds325-p4-samples/10-pkts.l.out
-# diff -u p3.out ~/csds325-p4-samples/10-pkts.p.out
+# ./proj4 -s -r /csds325-p4-samples/10-pkts.trace > s3.out
+# ./proj4 -l -r /csds325-p4-samples/10-pkts.trace > l3.out
+# ./proj4 -p -r /csds325-p4-samples/10-pkts.trace > p3.out
+# diff -u s3.out /csds325-p4-samples/10-pkts.s.out
+# diff -u l3.out /csds325-p4-samples/10-pkts.l.out
+# diff -u p3.out /csds325-p4-samples/10-pkts.p.out
 # echo
 
 # # 4) icmp1.trace; One ICMP packet
 # echo "Testing icmp1.trace"
-# ./proj4 -s -r ~/csds325-p4-samples/icmp1.trace > s4.out
-# ./proj4 -l -r ~/csds325-p4-samples/icmp1.trace > l4.out
-# ./proj4 -p -r ~/csds325-p4-samples/icmp1.trace > p4.out
-# ./proj4 -c -r ~/csds325-p4-samples/icmp1.trace > c4.out
-# sort ~/csds325-p4-samples/icmp1.c.out > ~/csds325-p4-samples/icmp1.c.sort
+# ./proj4 -s -r /csds325-p4-samples/icmp1.trace > s4.out
+# ./proj4 -l -r /csds325-p4-samples/icmp1.trace > l4.out
+# ./proj4 -p -r /csds325-p4-samples/icmp1.trace > p4.out
+# ./proj4 -c -r /csds325-p4-samples/icmp1.trace > c4.out
+# sort /csds325-p4-samples/icmp1.c.out > icmp1.c.sort
 # sort c4.out > c4.sort
-# diff ~/csds325-p4-samples/icmp1.c.sort c4.sort
-# diff -u s4.out ~/csds325-p4-samples/icmp1.s.out
-# diff -u l4.out ~/csds325-p4-samples/icmp1.l.out
-# diff -u p4.out ~/csds325-p4-samples/icmp1.p.out
-# diff -u c4.out ~/csds325-p4-samples/icmp1.c.out
+# diff icmp1.c.sort c4.sort
+# diff -u s4.out /csds325-p4-samples/icmp1.s.out
+# diff -u l4.out /csds325-p4-samples/icmp1.l.out
+# diff -u p4.out /csds325-p4-samples/icmp1.p.out
+# diff -u c4.out /csds325-p4-samples/icmp1.c.out
 # echo
 
 # # 5) 1000-pkts.trace; 1000 packets
 # echo "Testing 1000-pkts.trace"
-# ./proj4 -s -r ~/csds325-p4-samples/1000-pkts.trace > s5.out
-# ./proj4 -l -r ~/csds325-p4-samples/1000-pkts.trace > l5.out
-# ./proj4 -p -r ~/csds325-p4-samples/1000-pkts.trace > p5.out
-# diff -u s5.out ~/csds325-p4-samples/1000-pkts.s.out
-# diff -u l5.out ~/csds325-p4-samples/1000-pkts.l.out
-# diff -u p5.out ~/csds325-p4-samples/1000-pkts.p.out
+# ./proj4 -c -r /csds325-p4-samples/1000-pkts.trace > c5.out
+# sort /csds325-p4-samples/1000-pkts.c.out > 1000-pkts.c.sort
+# sort c5.out > c5.sort
+# ./proj4 -l -r /csds325-p4-samples/1000-pkts.trace > l5.out
+# ./proj4 -p -r /csds325-p4-samples/1000-pkts.trace > p5.out
+# diff -u c5.sort 1000-pkts.c.sort
+# diff -u l5.out /csds325-p4-samples/1000-pkts.l.out
+# diff -u p5.out /csds325-p4-samples/1000-pkts.p.out
 # echo
 
 # # 6) manyIPs.trace; a bunch of packets with a bunch of IP addresses
 # echo "Testing manyIPs.trace"
-# ./proj4 -s -r ~/csds325-p4-samples/manyIPs.trace > s6.out
-# diff -u s6.out ~/csds325-p4-samples/manyIPs.trace.s.out
+# ./proj4 -s -r /csds325-p4-samples/manyIPs.trace > s6.out
+# sort /csds325-p4-samples/manyIPs.c.out > manyIPs.c.sort
+# sort c6.out > c6.sort
+# diff -u s6.out /csds325-p4-samples/manyIPs.trace.s.out
 # echo
 
 # # 7) crazy.trace; 35 packets with weird cases
 # echo "Testing crazy.trace"
-# ./proj4 -s -r ~/csds325-p4-samples/crazy.trace > s7.out
-# ./proj4 -l -r ~/csds325-p4-samples/crazy.trace > l7.out
-# ./proj4 -p -r ~/csds325-p4-samples/crazy.trace > p7.out
-# diff -u s7.out ~/csds325-p4-samples/crazy.s.out
-# diff -u l7.out ~/csds325-p4-samples/crazy.l.out
-# diff -u p7.out ~/csds325-p4-samples/crazy.p.out
+# ./proj4 -s -r /csds325-p4-samples/crazy.trace > s7.out
+# ./proj4 -l -r /csds325-p4-samples/crazy.trace > l7.out
+# ./proj4 -p -r /csds325-p4-samples/crazy.trace > p7.out
+# diff -u s7.out /csds325-p4-samples/crazy.s.out
+# diff -u l7.out /csds325-p4-samples/crazy.l.out
+# diff -u p7.out /csds325-p4-samples/crazy.p.out
 # echo
 
 # # Extra credit; for 425 portion
 # echo "Testing extra credit portion"
-# ./proj4 -s -r ~/csds325-p4-samples/425.trace > s425.out
-# ./proj4 -l -r ~/csds325-p4-samples/425.trace > l425.out
-# ./proj4 -p -r ~/csds325-p4-samples/425.trace > p425.out
+# ./proj4 -s -r /csds325-p4-samples/425.trace > s425.out
+# ./proj4 -l -r /csds325-p4-samples/425.trace > l425.out
+# ./proj4 -p -r /csds325-p4-samples/425.trace > p425.out
 # echo

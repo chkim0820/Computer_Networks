@@ -188,7 +188,7 @@ void convertByteOrders(int part, struct pkt_info *pinfo, struct meta_info *meta)
     }
     if (part == IP) { // IP header
         pinfo->iph->tot_len = ntohs(pinfo->iph->tot_len); // Total length; byte-order converted
-        // pinfo->iph->ihl = ntohl(pinfo->iph->ihl);
+        // pinfo->iph->ihl = ntohl(pinfo->iph->ihl); // ASK; why do these work without converting byte-orders
         // pinfo->iph->saddr = ntohl(pinfo->iph->saddr);
         // pinfo->iph->daddr = ntohl(pinfo->iph->daddr);
         // pinfo->iph->protocol = ntohs(pinfo->iph->protocol);
@@ -241,7 +241,7 @@ unsigned short nextPacket (int fd, struct pkt_info *pinfo, struct meta_info *met
     bytesRead = read(fd, pinfo->pkt, pinfo->caplen); // into pinfo's pkt field
     if (bytesRead < 0) // Error occurred
         errorExit("error reading packet", nullptr);
-    if (bytesRead != pinfo->caplen) // FIX; was < Length smaller than expected; not enough info present
+    if (bytesRead != pinfo->caplen) // Length smaller than expected; not enough info present
         errorExit("unexpected end of file encountered", nullptr);
     
     // Ethernet header
@@ -278,7 +278,7 @@ unsigned short nextPacket (int fd, struct pkt_info *pinfo, struct meta_info *met
     }
 
     // FIX; moving onto the next packet
-    int currentPacket = bytesRead + sizeof(struct meta_info);
+    // int currentPacket = bytesRead + sizeof(struct meta_info);
 
     return VALID_PKT;
 }
@@ -330,7 +330,7 @@ void lengthAnalysis(int fd) {
     string ip_len; // total length of IP packet in bytes
     string iphl; // total length of IP header
     string transport; // indicates which transport protocol
-    string trans_hl; // total number of bytes occupied by transport header; ASK
+    string trans_hl; // total number of bytes occupied by transport header
     string payload_len; // number of app. layer payload bytes
 
     // Iterating through all packets

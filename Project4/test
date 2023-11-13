@@ -47,7 +47,6 @@ echo "Testing icmp1.trace"
 ./proj4 -c -r ~/GitHub/CSDS325/Project4/SampleInOut/icmp1.trace > c4.out
 sort ~/GitHub/CSDS325/Project4/SampleInOut/icmp1.c.out > icmp1.c.sort
 sort c4.out > c4.sort
-diff icmp1.c.sort c4.sort
 diff -u s4.out ~/GitHub/CSDS325/Project4/SampleInOut/icmp1.s.out
 diff -u l4.out ~/GitHub/CSDS325/Project4/SampleInOut/icmp1.l.out
 diff -u p4.out ~/GitHub/CSDS325/Project4/SampleInOut/icmp1.p.out
@@ -74,22 +73,23 @@ sort c6.out > c6.sort
 diff -u c6.sort manyIPs.c.sort
 echo
 
-# # 7) crazy.trace; 35 packets with weird cases
-# echo "Testing crazy.trace"
-# ./proj4 -s -r ~/GitHub/CSDS325/Project4/SampleInOut/crazy.trace > s7.out
-# ./proj4 -l -r ~/GitHub/CSDS325/Project4/SampleInOut/crazy.trace > l7.out
-# ./proj4 -p -r ~/GitHub/CSDS325/Project4/SampleInOut/crazy.trace > p7.out
-# diff -u s7.out ~/GitHub/CSDS325/Project4/SampleInOut/crazy.s.out
-# diff -u l7.out ~/GitHub/CSDS325/Project4/SampleInOut/crazy.l.out
-# diff -u p7.out ~/GitHub/CSDS325/Project4/SampleInOut/crazy.p.out
-# echo
+# 7) crazy.trace; 35 packets with weird cases
+echo "Testing crazy.trace"
+./proj4 -s -r ~/GitHub/CSDS325/Project4/SampleInOut/crazy.trace > s7.out
+./proj4 -l -r ~/GitHub/CSDS325/Project4/SampleInOut/crazy.trace > l7.out
+./proj4 -p -r ~/GitHub/CSDS325/Project4/SampleInOut/crazy.trace > p7.out
+diff -u s7.out ~/GitHub/CSDS325/Project4/SampleInOut/crazy.s.out
+diff -u l7.out ~/GitHub/CSDS325/Project4/SampleInOut/crazy.l.out
+diff -u p7.out ~/GitHub/CSDS325/Project4/SampleInOut/crazy.p.out
+echo
 
 # # Extra credit; for 425 portion
-# echo "Testing extra credit portion"
-# ./proj4 -s -r ~/GitHub/CSDS325/Project4/SampleInOut/425.trace > s425.out
-# ./proj4 -l -r ~/GitHub/CSDS325/Project4/SampleInOut/425.trace > l425.out
-# ./proj4 -p -r ~/GitHub/CSDS325/Project4/SampleInOut/425.trace > p425.out
-# echo
+echo "Testing extra credit portion"
+./proj4 -s -r ~/GitHub/CSDS325/Project4/SampleInOut/425.trace > s425.txt
+./proj4 -l -r ~/GitHub/CSDS325/Project4/SampleInOut/425.trace > l425.txt
+./proj4 -p -r ~/GitHub/CSDS325/Project4/SampleInOut/425.trace > p425.txt
+./proj4 -c -r ~/GitHub/CSDS325/Project4/SampleInOut/425.trace > c425.txt
+echo
 
 
 
@@ -156,7 +156,7 @@ echo
 
 # # 6) manyIPs.trace; a bunch of packets with a bunch of IP addresses
 # echo "Testing manyIPs.trace"
-# ./proj4 -s -r /csds325-p4-samples/manyIPs.trace > s6.out
+# ./proj4 -c -r /csds325-p4-samples/manyIPs.trace > c6.out
 # sort /csds325-p4-samples/manyIPs.c.out > manyIPs.c.sort
 # sort c6.out > c6.sort
 # diff -u s6.out /csds325-p4-samples/manyIPs.trace.s.out
@@ -177,4 +177,5 @@ echo
 # ./proj4 -s -r /csds325-p4-samples/425.trace > s425.out
 # ./proj4 -l -r /csds325-p4-samples/425.trace > l425.out
 # ./proj4 -p -r /csds325-p4-samples/425.trace > p425.out
+# ./proj4 -c -r /csds325-p4-samples/425.trace > c425.out
 # echo

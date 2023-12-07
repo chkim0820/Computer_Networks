@@ -8,11 +8,10 @@ import os
 # A list of websites the network traffics lead to
 websiteList = ["Amazon", "Canvas", "Case", "Google", "Instagram", "Youtube"]
 
+# A function to open the specified file containing data
 def openFile(fileType, destName="", network=""):
-    folderDir = os.path.dirname(__file__) # Directory to the current script
-    fileName = fileType + destName + network + ".txt"
-    print(fileName)
-    exit()
+    folderDir = os.path.dirname(__file__) + "/" + network # Directory to the current script
+    fileName = fileType + destName + ("CW" if network=="CaseWireless" else "") + ".txt"
     absFileDir = os.path.join(folderDir, fileName) # Absolute path of the file
     file = open(absFileDir, "r") # Contains the output
     return file
@@ -20,7 +19,7 @@ def openFile(fileType, destName="", network=""):
 # Process the ping data files for all 6 sites, each for Spectrum and CaseWireless
 def processPingData(network):
     for website in websiteList:
-        openFile("ping", website)
+        openFile("ping", website, network)
 
 def processIPerfData():
     print("iperf")

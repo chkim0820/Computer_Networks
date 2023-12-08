@@ -124,14 +124,13 @@ def processNetstatData(network, dataframe):
 
 # Calculating minimum, maximum, average, and standard deviation of measurement data
 def calculateStats(data, numCols):
-    print(data)
     stats = [] # For saving values to be returned
     for col in range(numCols):
         values = [] # To store all entries for the column/website
         totalSum = 0 # Total sum of all entries
         numRows = 0
         for row in range(len(data)):
-            value = data.iloc[row][col]
+            value = data.iloc[row][col] if (numCols==6) else data.iloc[row]
             if (value != None):
                 values.append(value)
                 totalSum += value
@@ -144,30 +143,45 @@ def calculateStats(data, numCols):
     return stats
         
 # For plotting plots across all ping data
-def plotPlots(network, data, measurement, unit):
+def plotPlots(network, data, measurement, unit, numCols=6, individual=False):
     # Setting up the labels
     plt.title(f"{measurement} of {network}")
     plt.xlabel(f"ith {measurement} Request")
     plt.ylabel(f"{measurement} in {unit}")
     # Plotting for each website by iterating through data
-    for website in range(len(websiteList)): # For each website
+    for website in range(numCols): # For each website
         x = []
         y = []
         for i in range(len(data)): # For all rows of data
-            x.append(i)            
-            y.append(data[i][website]) # measurement data
-        plt.plot(x, y, label=f"{websiteList[website]}", color=colors[website])
+            x.append(i)       
+            if (numCols == 6): # Different values for each website
+                y.append(data.iloc[i][website]) # measurement data
+            elif (numCols == 1): # Values over all websites
+                y.append(data[i]) # Contains float value; append the value
+        siteName = websiteList[website]
+        if (individual==True): # Show individual plots for each website
+            plt.clf() # Clear the figure for other websites
+            plt.plot(x, y, color=colors[website])
+            # plt.savefig(f"{network}_{siteName}_{measurement}_Plot")
+            plt.show()
+        else: # Add to the plot if not showing
+            plt.plot(x, y, label=f"{siteName}", color=colors[website])
     plt.legend()
+    # plt.savefig(f"{network}_{measurement}_Plot")
     plt.show()
 
 # Creating a table with the input data
-def plotTable(network, data, measurement, unit, dataParsed=False):
+def plotTable(network, data, measurement, unit, numCols=6, dataParsed=False):
     plt.title(f"{measurement} of {network} in {unit}")
     valueTypes = ["Average", "Minimum", "Maximum", "Standard Deviation"]
     if (dataParsed == False):
-        data = calculateStats(data, len(data.iloc[0])) # Input number of columns (websites vs. overall)
-    plt.table(cellText=data, colLabels=valueTypes, rowLabels=websiteList, loc='center')
+        data = calculateStats(data, numCols) # Input number of columns (websites vs. overall)
+    if (numCols==6):
+        plt.table(cellText=data, colLabels=valueTypes, rowLabels=websiteList, loc='center')
+    elif (numCols==1):
+        plt.table(cellText=[valueTypes, data[0]], loc='center')
     plt.axis('off')
+    # plt.savefig(f"{network}_{measurement}_Table")
     plt.show()
 
 # Plotting plots and graphs for RTT
@@ -178,7 +192,7 @@ def plotRTT(network, dataframe, rttInfo):
         avg = row[1]
         row[1] = row[0]
         row[0] = avg
-    plotTable(network, rttInfo, "Round Trip Time", "ms", True)
+    plotTable(network, rttInfo, "Round Trip Time", "ms", dataParsed=True)
 
 # Creating a table for packets lost
 def plotPacketLoss(network, dataframe):
@@ -196,28 +210,32 @@ def plotPacketLoss(network, dataframe):
     plt.table(cellText=data, rowLabels=valueTypes, colLabels=websiteList, loc='center')
     plt.title(f"Packet Loss of {network}")
     plt.axis('off')
+    # plt.savefig(f"{network}_PacketLoss_Table")
     plt.show()
 
 # Plotting plots and graphs for jitter
 def plotJitter(network, dataframe):
     data = dataframe["Jitter"].iloc[1:len(dataframe)] # Exclude the first row
-    # plotPlots(network, data, "Jitter", "ms")
+    plotPlots(network, data, "Jitter", "ms")
     plotTable(network, data, "Jitter", "ms")
 
 # Plotting plots and graphs for number of hops
 def plotHops(network, dataframe):
-    plotPlots(network, dataframe, "Number of Hops")
-    plotTable(network, dataframe, "Number of Hops")
+    data = dataframe["Number of Hops"]
+    plotPlots(network, data, "Number of Hops", "Total")
+    plotTable(network, data, "Number of Hops", "Total")
 
 # Plotting plots and graphs for throughput
 def plotThroughput(network, dataframe):
-    plotPlots(network, dataframe, "Throughput")
-    plotTable(network, dataframe, "Throughput")
+    data = dataframe["Throughput"]
+    plotPlots(network, data, "Throughput", "GBytes", numCols=1)
+    plotTable(network, data, "Throughput", "GBytes", numCols=1)
 
 # Plotting plots and graphs for bandwidth
 def plotBandwidth(network, dataframe):
-    plotPlots(network, dataframe, "Bandwidth")
-    plotTable(network, dataframe, "Bandwidth")
+    data = dataframe["Bandwidth"]
+    plotPlots(network, data, "Bandwidth", "Gbits/sec", numCols=1)
+    plotTable(network, data, "Bandwidth", "Gbits/sec", numCols=1)
 
 # Plotting plots and graphs for retransmission rate
 def plotRetransmission(network, dataframe):
@@ -226,6 +244,7 @@ def plotRetransmission(network, dataframe):
     plt.table(cellText=[valueTypes, data], loc='center')
     plt.title(f"Retransmission Rate of {network}")
     plt.axis('off')
+    # plt.savefig(f"{network}_Retransmission_Table")
     plt.show()
 
 # The main function
@@ -246,11 +265,11 @@ if __name__ == '__main__':
         processNetstatData(network, df)
 
         # Creating plots, tables, etc. for data representation
-        # plotRTT(network, df, rttInfo)
-        # plotPacketLoss(network, df)
+        plotRTT(network, df, rttInfo)
+        plotPacketLoss(network, df)
         plotJitter(network, df)
-        # plotHops(network, df)
-        # plotThroughput(network, df)
-        # plotBandwidth(network, df)
-        # plotRetransmission(network, df)
+        plotHops(network, df)
+        plotThroughput(network, df)
+        plotBandwidth(network, df)
+        plotRetransmission(network, df)
     

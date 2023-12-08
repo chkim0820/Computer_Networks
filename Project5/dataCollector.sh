@@ -36,12 +36,12 @@ echo
 echo "Tracerouting the websites"
 
 for i in {1..1000}; do  # Change '10' to the desired number of iterations
-    traceroute google.com | tail -n -1 >> trGoogle.txt
-    traceroute case.edu | tail -n -1 >> trCase.txt
-    traceroute canvas.case.edu | tail -n -1 >> trCanvas.txt
-    traceroute instagram.com | tail -n -1 >> trInstagram.txt
-    traceroute amazon.com | tail -n -1 >> trAmazon.txt
-    traceroute youtube.com | tail -n -1 >> trYoutube.txt
+    traceroute google.com >> trGoogle.txt
+    traceroute case.edu >> trCase.txt
+    traceroute canvas.case.edu >> trCanvas.txt
+    traceroute instagram.com >> trInstagram.txt
+    traceroute amazon.com >> trAmazon.txt
+    traceroute youtube.com >> trYoutube.txt
 done
 
 echo "Tracerouting complete"

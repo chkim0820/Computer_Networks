@@ -84,13 +84,13 @@ def processTraceRouteData(network, dataframe):
         while (traceN < 1000):
             line = lines[lineIt]
             if (line.find("traceroute to") != -1): # If new traceroute command started
-                if (lineIt != 0):
+                if (lineIt != 0): # If not the first line
                     dataframe.iloc[traceN, 3].append(maxHop)
                     traceN += 1
-                maxHop = 0
             else: # Still traversing through the same traceroute command results
-                if (line.find("* * *") == -1):
-                    maxHop = int(line[0: 2])
+                numTime = int(line[0: 2]) # Number at the front of the line
+                if (line.find("* * *") == -1 or (numTime == 30 and line.find("* * *") != -1)): # Valid step or timeout
+                    maxHop = numTime
             lineIt += 1
 
 # Process netstat data for both networks
@@ -120,10 +120,13 @@ if __name__ == '__main__':
     CWData = pd.DataFrame(index=np.arange(1000), columns=columns) # Same as above but for CaseWireless data
     setEmptyLists([spectrumData, CWData])
 
-    # Iterate through the data and add to the appropriate dataframes
+    # Iterating through the data and adding to the appropriate dataframes
     for network in ["Spectrum", "CaseWireless"]:
         df = spectrumData if (network == "Spectrum") else CWData # Selecting the correct dataframe
         processPingData(network, df)
         processIPerfData(network, df)
         processTraceRouteData(network, df)
         processNetstatData(network, df)
+
+    # Creating plots, tables, etc. for data representation
+    

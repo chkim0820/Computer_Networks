@@ -10,6 +10,8 @@ import matplotlib.pyplot as plt
 
 # A list of websites the network traffics lead to
 websiteList = ["Amazon", "Canvas", "Case", "Google", "Instagram", "Youtube"]
+# Color map for plotting 6 different websites
+colors = ['tab:blue', 'tab:orange', 'tab:green', 'tab:pink', 'tab:purple', 'tab:olive']
 
 # A function to open the specified file containing data
 def openFile(fileType, destName="", network=""):
@@ -89,7 +91,7 @@ def processTraceRouteData(network, dataframe):
         maxHop = 0 # Max number of hops for each traceroute command
         traceN = 0 # The nth iteration of separate traceroute commands
         # Traverse the data until 1000 entries are filled
-        while (traceN < 900): # FIX to 1000
+        while (traceN < 1000):
             line = lines[lineIt]
             if (line.find("traceroute to") != -1): # If new traceroute command started
                 if (lineIt != 0): # If not the first line
@@ -120,29 +122,43 @@ def processNetstatData(network, dataframe):
     retransmissionRate = totalResend / totalSent # Calculating retransmission rate
     dataframe.iloc[0, 6] = [retransmissionRate, totalResend, totalSent]
 
-# Creating visual representations for RTT data
-def plotRTT(network, dataframe, rttInfo):
+# Calculating minimum, maximum, average, and standard deviation of measurement data
+def calculateStats():
+    print("")
+
+# For plotting plots across all ping data
+def plotPlots(network, dataframe, measurement):
     # Setting up the labels
-    plt.title(f"Round Trip Time of {network}")
-    plt.xlabel("ith Ping Request")
-    plt.ylabel("RTT in ms")
+    plt.title(f"{measurement} of {network}")
+    plt.xlabel("ith Ping Request") # FIX
+    plt.ylabel(f"{measurement} in ms")
     # Plotting for each website by iterating through data
-    colors = ['tab:blue', 'tab:orange', 'tab:green', 'tab:pink', 'tab:purple', 'tab:olive'] # Color map
     for website in range(len(websiteList)): # For each website
         x = []
         y = []
         for i in range(1000): # For all rows of data
             x.append(i)
-            y.append(dataframe.iloc[i, 0][website]) # RTT value
+            y.append(dataframe.iloc[i, dataframe.get_loc[f"{measurement}"]][website]) # measurement data
         plt.plot(x, y, label=f"{websiteList[website]}", color=colors[website])
     plt.legend()
     plt.show()
-    # Creating a table containing statistical values of RTT values
+
+# Creating a table with the input data
+def plotTable(network, dataframe, measurement, data=None):
+    plt.title(f"{measurement} of {network}")
     valueTypes = ["Minimum", "Average", "Maximum", "Standard Deviation"]
-    plt.table(cellText=rttInfo, colLabels=valueTypes, rowLabels=websiteList, loc='center')
+    if (data != None):
+        data = calculateStats(dataframe[f"{measurement}"]) # FIX
+    plt.table(cellText=data, colLabels=valueTypes, rowLabels=websiteList, loc='center')
     plt.axis('off')
     plt.show()
 
+# Plotting plots and graphs for RTT
+def plotRTT(network, dataframe, rttInfo):
+    plotPlots(network, dataframe, "Round Trip Time", rttInfo)
+    plotTable(network, dataframe, "Round Trip Time", rttInfo)
+
+# Creating a table for packets lost
 def plotPacketLoss(network, dataframe):
     # Creating the list to create the table with
     packetsSent = [1000] * len(websiteList)
@@ -160,23 +176,34 @@ def plotPacketLoss(network, dataframe):
     plt.axis('off')
     plt.show()
 
+# Plotting plots and graphs for jitter
 def plotJitter(network, dataframe):
-    print()
+    plotPlots(network, dataframe, "Jitter")
+    plotTable(network, dataframe, "Jitter")
 
+# Plotting plots and graphs for number of hops
 def plotHops(network, dataframe):
-    print()
+    plotPlots(network, dataframe, "Number of Hops")
+    plotTable(network, dataframe, "Number of Hops")
 
+# Plotting plots and graphs for throughput
 def plotThroughput(network, dataframe):
-    print()
+    plotPlots(network, dataframe, "Throughput")
+    plotTable(network, dataframe, "Throughput")
 
+# Plotting plots and graphs for bandwidth
 def plotBandwidth(network, dataframe):
-    print()
+    plotPlots(network, dataframe, "Bandwidth")
+    plotTable(network, dataframe, "Bandwidth")
 
+# Plotting plots and graphs for retransmission rate
 def plotRetransmission(network, dataframe):
-    print()
-
-
-
+    valueTypes = ["Number Retransmitted", "Total Packets", "Retransmission Rate"]
+    data = dataframe.iloc[0, 6]
+    plt.table(cellText=[valueTypes, data], loc='center')
+    plt.title(f"Retransmission Rate of {network}")
+    plt.axis('off')
+    plt.show()
 
 # The main function
 if __name__ == '__main__':
@@ -196,11 +223,11 @@ if __name__ == '__main__':
         processNetstatData(network, df)
 
         # Creating plots, tables, etc. for data representation
-        # plotRTT(network, df, rttInfo)
+        plotRTT(network, df, rttInfo)
         plotPacketLoss(network, df)
         plotJitter(network, df)
         plotHops(network, df)
         plotThroughput(network, df)
         plotBandwidth(network, df)
-        plotRetransmission(network, df)
+        # plotRetransmission(network, df)
     

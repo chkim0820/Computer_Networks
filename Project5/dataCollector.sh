@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Name: Chaehyeon Kim (cxk445)
+# Filename: dataColelctor.sh
+# Date created: 12/03/2023
+# Description: A script for collecting network data
+
 echo "Running dataCollector.sh for collecting network data"
 echo
 

@@ -41,7 +41,7 @@ def processPingData(network, dataframe):
             line = lines[i] # Current line
             # RTT
             rttIndex = line.find("time=") + 5 # Index of where RTT value starts
-            rttEnd = line.find(" ms") # Index of where RTT value ends
+            rttEnd = line.find("ms") # Index of where RTT value ends
             rtt = float(line[rttIndex: rttEnd])
             dataframe.iloc[i-1, 0].append(rtt) # Add RTT value to dataframe
             # Jitter
@@ -54,14 +54,29 @@ def processPingData(network, dataframe):
             dataframe.iloc[999-i, 2].append(None)
         # Add the website's packet loss rate
         summaryLine = lines[totalLines - 2]
-        recIndex = summaryLine.find("transmitted") + len("transmitted, ")
-        recEnd = summaryLine.find(" received")
+        recIndex = summaryLine.find("transmitted,") + len("transmitted,")
+        recEnd = summaryLine.find("received")
         dataframe.iloc[0, 1].append(summaryLine[recIndex: recEnd])
 
 
 # Process the iperf data for each network 
 def processIPerfData(network, dataframe):
-    file = openFile("iperf", network=network)
+    file = openFile("iperf", network=network) # File containing iperf data
+    lines = file.readlines() # Converting all lines into list
+    # Iterate through all lines after basic information
+    for i in range(6, len(lines)-1):
+        line = lines[i]
+        # Throughput
+        thIndex = line.find("sec") + len("sec")
+        thEnd = line.find("GBytes") 
+        throughput = float(line[thIndex: thEnd])
+        dataframe.iloc[i-6, 4] = throughput # Save for the nth iteration
+        # Bandwidth
+        bwIndex = line.find("GBytes") + len("GBytes")
+        bwEnd = line.find("Gbits/sec") 
+        bandwidth = float(line[bwIndex: bwEnd])
+        dataframe.iloc[i-6, 5] = bandwidth # Save for the nth iteration
+        
 
 
 def processTraceRouteData(network, dataframe):

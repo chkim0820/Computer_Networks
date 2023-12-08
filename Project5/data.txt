@@ -4,4 +4,8 @@ Filename: data.txt
 Date created: 12/08/2023
 Description: Included is a link to the Google Drive folder containing all the data collected
 
+Navigate to the link below to access the data collected using the included bash script:
 https://drive.google.com/drive/folders/1wY546FmbDXHbYu2er26eol3LVOr5iZPk?usp=drive_link
+
+Anyone with the link should be able to access the folder. 
+If you still have trouble accessing the folder, please let me know at cxk445@case.edu.

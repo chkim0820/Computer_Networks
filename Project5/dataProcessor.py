@@ -41,8 +41,6 @@ measurements = ["Round Trip Time", "Packet Loss", "Jitter", "Number of Hops", "T
 # Color map for plotting 6 different websites
 colors = ['tab:blue', 'tab:orange', 'tab:green', 'tab:pink', 'tab:purple', 'tab:olive']
 
-
-
 # A function to open the specified file containing data
 def openFile(fileType, destName="", network=""):
     folderDir = os.path.dirname(__file__) + "/" + network # Directory to the current script
@@ -315,5 +313,3 @@ if __name__ == '__main__':
         plotThroughput(network, df)
         plotBandwidth(network, df)
         plotRetransmission(network, df)
-    
-    

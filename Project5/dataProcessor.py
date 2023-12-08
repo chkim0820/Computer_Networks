@@ -16,7 +16,8 @@ def openFile(fileType, destName="", network=""):
     fileName = fileType + destName + ("CW" if network=="CaseWireless" else "") + ".txt"
     absFileDir = os.path.join(folderDir, fileName) # Absolute path of the file
     file = open(absFileDir, "r") # Contains the output
-    return file
+    lines = file.readlines()
+    return lines
 
 # Set each entry of the specified columns to empty lists
 def setEmptyLists(dataframes):
@@ -30,8 +31,7 @@ def setEmptyLists(dataframes):
 def processPingData(network, dataframe):
     # Go through files for all websites
     for website in websiteList:
-        file = openFile("ping", website, network) # Open the appropriate file
-        lines = file.readlines() # Read all lines into lists
+        lines = openFile("ping", website, network) # Open the appropriate file
         totalLines = len(lines)
         prevRTT = -1
         # Iterating through each lines except beginning & summary
@@ -58,8 +58,7 @@ def processPingData(network, dataframe):
 
 # Process the iperf data for each network 
 def processIPerfData(network, dataframe):
-    file = openFile("iperf", network=network) # File containing iperf data
-    lines = file.readlines() # Converting all lines into list
+    lines = openFile("iperf", network=network) # File containing iperf data
     # Iterate through all lines after basic information
     for i in range(6, len(lines)-1):
         line = lines[i]
@@ -74,19 +73,32 @@ def processIPerfData(network, dataframe):
         bandwidth = float(line[bwIndex: bwEnd])
         dataframe.iloc[i-6, 5] = bandwidth # Save for the nth iteration
         
-
 # Process the traceroute data for each website
 def processTraceRouteData(network, dataframe):
     for website in websiteList:
-        file = openFile("tr", website, network)
-    
+        lines = openFile("tr", website, network) # traceroute file
+        lineIt = 0 # Total number of lines iterated
+        maxHop = 0 # Max number of hops for each traceroute command
+        traceN = 0 # The nth iteration of separate traceroute commands
+        # Traverse the data until 1000 entries are filled
+        while (traceN < 1000):
+            line = lines[lineIt]
+            if (line.find("traceroute to") != -1): # If new traceroute command started
+                if (lineIt != 0):
+                    dataframe.iloc[traceN, 3].append(maxHop)
+                    traceN += 1
+                maxHop = 0
+            else: # Still traversing through the same traceroute command results
+                if (line.find("* * *") == -1):
+                    maxHop = int(line[0: 2])
+            lineIt += 1
 
 # Process netstat data for both networks
 def processNetstatData(network, dataframe):
-    file = openFile("netstat", network=network)
-    lines = file.readlines()
-    totalSent = -1
-    totalResend = -1
+    lines = openFile("netstat", network=network) # Opening the netstat file
+    totalSent = -1 # Total number of TCP packets sent
+    totalResend = -1 # Total number of retransmitted TCP packets
+    # Start at an arbitrary line to save time
     for i in range(20, len(lines)):
         line = lines[i]
         # See if the current line contains desired values
@@ -96,9 +108,9 @@ def processNetstatData(network, dataframe):
             totalSent = int(line[0: totalSentInd])
         elif (totalResendInd > 0): # Contains total # retransmission
             totalResend = int(line[0: totalResendInd])
-    retransmissionRate = totalResend / totalSent
+            break # No longer need to traverse the lines
+    retransmissionRate = totalResend / totalSent # Calculating retransmission rate
     dataframe.iloc[0, 6] = [retransmissionRate, totalResend, totalSent]
-
 
 # The main function
 if __name__ == '__main__':
@@ -115,4 +127,3 @@ if __name__ == '__main__':
         processIPerfData(network, df)
         processTraceRouteData(network, df)
         processNetstatData(network, df)
-

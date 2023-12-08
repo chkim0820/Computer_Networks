@@ -6,6 +6,7 @@
 import os
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt 
 
 # A list of websites the network traffics lead to
 websiteList = ["Amazon", "Canvas", "Case", "Google", "Instagram", "Youtube"]
@@ -29,6 +30,7 @@ def setEmptyLists(dataframes):
 
 # Process the ping data files for all 6 sites, each for Spectrum and CaseWireless
 def processPingData(network, dataframe):
+    rttInfo = [] # To include provided information about RTTs
     # Go through files for all websites
     for website in websiteList:
         lines = openFile("ping", website, network) # Open the appropriate file
@@ -55,6 +57,12 @@ def processPingData(network, dataframe):
         recIndex = summaryLine.find("transmitted,") + len("transmitted,")
         recEnd = summaryLine.find("received")
         dataframe.iloc[0, 1].append(summaryLine[recIndex: recEnd])
+        # Save the additional RTT info provided at the end
+        rttLine = lines[totalLines - 1]
+        rttInd = rttLine.find("= ") + len("= ")
+        rttEnd = rttLine.find(" ms")
+        rttInfo.append(rttLine[rttInd: rttEnd].split("/"))
+    return rttInfo
 
 # Process the iperf data for each network 
 def processIPerfData(network, dataframe):
@@ -81,7 +89,7 @@ def processTraceRouteData(network, dataframe):
         maxHop = 0 # Max number of hops for each traceroute command
         traceN = 0 # The nth iteration of separate traceroute commands
         # Traverse the data until 1000 entries are filled
-        while (traceN < 1000):
+        while (traceN < 900): # FIX to 1000
             line = lines[lineIt]
             if (line.find("traceroute to") != -1): # If new traceroute command started
                 if (lineIt != 0): # If not the first line
@@ -112,6 +120,50 @@ def processNetstatData(network, dataframe):
     retransmissionRate = totalResend / totalSent # Calculating retransmission rate
     dataframe.iloc[0, 6] = [retransmissionRate, totalResend, totalSent]
 
+# Creating visual representations for RTT data
+def plotRTT(network, dataframe, rttInfo):
+    # Setting up the labels
+    plt.title(f"Round Trip Time of {network}")
+    plt.xlabel("ith Ping Request")
+    plt.ylabel("RTT in ms")
+    # Plotting for each website by iterating through data
+    colors = ['tab:blue', 'tab:orange', 'tab:green', 'tab:pink', 'tab:purple', 'tab:olive'] # Color map
+    for website in range(len(websiteList)): # For each website
+        x = []
+        y = []
+        for i in range(1000): # For all rows of data
+            x.append(i)
+            y.append(dataframe.iloc[i, 0][website]) # RTT value
+        plt.plot(x, y, label=f"{websiteList[website]}", color=colors[website])
+    plt.legend()
+    plt.show()
+    # Creating a table containing statistical values of RTT values
+    valueTypes = ["Minimum", "Average", "Maximum", "Standard Deviation"]
+    plt.table(cellText=rttInfo, colLabels=valueTypes, rowLabels=websiteList, loc='center')
+    plt.axis('off')
+    plt.show()
+
+def plotPacketLoss(network, dataframe):
+    print()
+
+def plotJitter(network, dataframe):
+    print()
+
+def plotHops(network, dataframe):
+    print()
+
+def plotThroughput(network, dataframe):
+    print()
+
+def plotBandwidth(network, dataframe):
+    print()
+
+def plotRetransmission(network, dataframe):
+    print()
+
+
+
+
 # The main function
 if __name__ == '__main__':
     # Initializing the dataframes for both Spectrum and CaseWireless
@@ -123,10 +175,17 @@ if __name__ == '__main__':
     # Iterating through the data and adding to the appropriate dataframes
     for network in ["Spectrum", "CaseWireless"]:
         df = spectrumData if (network == "Spectrum") else CWData # Selecting the correct dataframe
-        processPingData(network, df)
+        # Process the data files
+        rttInfo = processPingData(network, df)
         processIPerfData(network, df)
         processTraceRouteData(network, df)
         processNetstatData(network, df)
-
-    # Creating plots, tables, etc. for data representation
+        # Creating plots, tables, etc. for data representation
+        plotRTT(network, df, rttInfo)
+        plotPacketLoss(network, df)
+        plotJitter(network, df)
+        plotHops(network, df)
+        plotThroughput(network, df)
+        plotBandwidth(network, df)
+        plotRetransmission(network, df)
     

@@ -144,7 +144,21 @@ def plotRTT(network, dataframe, rttInfo):
     plt.show()
 
 def plotPacketLoss(network, dataframe):
-    print()
+    # Creating the list to create the table with
+    packetsSent = [1000] * len(websiteList)
+    packetsLost = dataframe.iloc[0, 1]
+    for i in range(len(packetsLost)): # Converting values from string to int
+        packetsLost[i] = int(packetsLost[i])
+    percentage = []
+    for i in range(len(websiteList)): # Calculating the percentage with the packets sent/lost
+        percentage.append(packetsLost[i] / packetsSent[i])
+    data = [packetsLost, packetsSent, percentage]
+    # Creating a table containing information about packet loss
+    valueTypes = ["Packets Lost", "Packets Sent", "Percentage of Packet Loss"]
+    plt.table(cellText=data, rowLabels=valueTypes, colLabels=websiteList, loc='center')
+    plt.title(f"Packet Loss of {network}")
+    plt.axis('off')
+    plt.show()
 
 def plotJitter(network, dataframe):
     print()
@@ -180,8 +194,9 @@ if __name__ == '__main__':
         processIPerfData(network, df)
         processTraceRouteData(network, df)
         processNetstatData(network, df)
+
         # Creating plots, tables, etc. for data representation
-        plotRTT(network, df, rttInfo)
+        # plotRTT(network, df, rttInfo)
         plotPacketLoss(network, df)
         plotJitter(network, df)
         plotHops(network, df)

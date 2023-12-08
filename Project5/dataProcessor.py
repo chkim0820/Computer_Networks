@@ -144,6 +144,7 @@ def calculateStats(data, numCols):
         
 # For plotting plots across all ping data
 def plotPlots(network, data, measurement, unit, numCols=6, individual=False):
+    plt.clf() # Clearing the plot
     # Setting up the labels
     plt.title(f"{measurement} of {network}")
     plt.xlabel(f"ith {measurement} Request")
@@ -167,11 +168,12 @@ def plotPlots(network, data, measurement, unit, numCols=6, individual=False):
         else: # Add to the plot if not showing
             plt.plot(x, y, label=f"{siteName}", color=colors[website])
     plt.legend()
-    # plt.savefig(f"{network}_{measurement}_Plot")
-    plt.show()
+    plt.savefig(f"{network}_{measurement}_Plot", bbox_inches="tight")
+    # plt.show()
 
 # Creating a table with the input data
 def plotTable(network, data, measurement, unit, numCols=6, dataParsed=False):
+    plt.clf() # Clearing the plot
     plt.title(f"{measurement} of {network} in {unit}")
     valueTypes = ["Average", "Minimum", "Maximum", "Standard Deviation"]
     if (dataParsed == False):
@@ -181,8 +183,8 @@ def plotTable(network, data, measurement, unit, numCols=6, dataParsed=False):
     elif (numCols==1):
         plt.table(cellText=[valueTypes, data[0]], loc='center')
     plt.axis('off')
-    # plt.savefig(f"{network}_{measurement}_Table")
-    plt.show()
+    plt.savefig(f"{network}_{measurement}_Table", bbox_inches="tight")
+    # plt.show()
 
 # Plotting plots and graphs for RTT
 def plotRTT(network, dataframe, rttInfo):
@@ -196,6 +198,7 @@ def plotRTT(network, dataframe, rttInfo):
 
 # Creating a table for packets lost
 def plotPacketLoss(network, dataframe):
+    plt.clf() # Clearing the plot
     # Creating the list to create the table with
     packetsSent = [1000] * len(websiteList)
     packetsLost = dataframe.iloc[0, 1]
@@ -210,8 +213,8 @@ def plotPacketLoss(network, dataframe):
     plt.table(cellText=data, rowLabels=valueTypes, colLabels=websiteList, loc='center')
     plt.title(f"Packet Loss of {network}")
     plt.axis('off')
-    # plt.savefig(f"{network}_PacketLoss_Table")
-    plt.show()
+    plt.savefig(f"{network}_PacketLoss_Table", bbox_inches="tight")
+    # plt.show()
 
 # Plotting plots and graphs for jitter
 def plotJitter(network, dataframe):
@@ -239,13 +242,14 @@ def plotBandwidth(network, dataframe):
 
 # Plotting plots and graphs for retransmission rate
 def plotRetransmission(network, dataframe):
+    plt.clf() # Clearing the plot
     valueTypes = ["Number Retransmitted", "Total Packets", "Retransmission Rate"]
     data = dataframe.iloc[0, 6]
     plt.table(cellText=[valueTypes, data], loc='center')
     plt.title(f"Retransmission Rate of {network}")
     plt.axis('off')
-    # plt.savefig(f"{network}_Retransmission_Table")
-    plt.show()
+    plt.savefig(f"{network}_Retransmission_Table", bbox_inches="tight")
+    # plt.show()
 
 # The main function
 if __name__ == '__main__':

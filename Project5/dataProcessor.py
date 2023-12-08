@@ -26,9 +26,7 @@ def setEmptyLists(dataframes):
         df["Jitter"] = np.empty((len(spectrumData), 0)).tolist()
         df["Number of Hops"] = np.empty((len(spectrumData), 0)).tolist()
 
-
 # Process the ping data files for all 6 sites, each for Spectrum and CaseWireless
-# Lists created for each measurement types to contain all site information
 def processPingData(network, dataframe):
     # Go through files for all websites
     for website in websiteList:
@@ -58,7 +56,6 @@ def processPingData(network, dataframe):
         recEnd = summaryLine.find("received")
         dataframe.iloc[0, 1].append(summaryLine[recIndex: recEnd])
 
-
 # Process the iperf data for each network 
 def processIPerfData(network, dataframe):
     file = openFile("iperf", network=network) # File containing iperf data
@@ -78,16 +75,32 @@ def processIPerfData(network, dataframe):
         dataframe.iloc[i-6, 5] = bandwidth # Save for the nth iteration
         
 
-
+# Process the traceroute data for each website
 def processTraceRouteData(network, dataframe):
     for website in websiteList:
         file = openFile("tr", website, network)
+    
 
+# Process netstat data for both networks
 def processNetstatData(network, dataframe):
     file = openFile("netstat", network=network)
+    lines = file.readlines()
+    totalSent = -1
+    totalResend = -1
+    for i in range(20, len(lines)):
+        line = lines[i]
+        # See if the current line contains desired values
+        totalSentInd = line.find("segments sent out")
+        totalResendInd = line.find("segments retransmitted")
+        if (totalSentInd > 0): # Contains total # sent packets
+            totalSent = int(line[0: totalSentInd])
+        elif (totalResendInd > 0): # Contains total # retransmission
+            totalResend = int(line[0: totalResendInd])
+    retransmissionRate = totalResend / totalSent
+    dataframe.iloc[0, 6] = [retransmissionRate, totalResend, totalSent]
 
 
-
+# The main function
 if __name__ == '__main__':
     # Initializing the dataframes for both Spectrum and CaseWireless
     columns = ["RTT", "Packet Loss", "Jitter", "Number of Hops", "Throughput", "Bandwidth", "Retransmission"] # Types of measurements

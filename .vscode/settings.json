@@ -13,6 +13,7 @@
         "pkts",
         "socketsd",
         "tcph",
+        "traceroute",
         "udph"
     ]
 }

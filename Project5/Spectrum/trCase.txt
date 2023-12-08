@@ -9547,257 +9547,2731 @@ traceroute to case.edu (129.22.12.21), 30 hops max, 60 byte packets
 28  * * *
 29  * * *
 30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
-30  * * *
+traceroute to case.edu (129.22.108.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.504 ms  2.920 ms  3.228 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  4.808 ms  4.804 ms  5.712 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  5.710 ms  5.705 ms  5.702 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  4.486 ms  4.734 ms  4.727 ms
+ 5  lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  4.762 ms lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  3.891 ms lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  4.754 ms
+ 6  lag-415.vinnva0510w-bcr00.netops.charter.com (66.109.6.12)  11.780 ms  11.197 ms lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  11.465 ms
+ 7  lag-21.asbnva1611w-bcr00.netops.charter.com (66.109.3.24)  13.055 ms * *
+ 8  lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  11.994 ms lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  27.960 ms  27.930 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  12.223 ms  13.405 ms  13.402 ms
+10  199.218.20.129 (199.218.20.129)  23.377 ms  23.660 ms  23.926 ms
+11  schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  24.265 ms clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  28.252 ms  27.515 ms
+12  clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  24.649 ms  25.306 ms  25.701 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.527 ms  28.661 ms  28.379 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  29.326 ms  29.420 ms  29.148 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.120 ms  28.119 ms  28.354 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  28.901 ms  30.365 ms  29.428 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.108.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.374 ms  2.753 ms  3.069 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  5.319 ms  5.950 ms  5.939 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  5.956 ms  5.948 ms  6.138 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  4.452 ms  4.617 ms  4.945 ms
+ 5  lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  4.966 ms lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  4.958 ms  4.951 ms
+ 6  lag-27.vinnva0510w-bcr00.netops.charter.com (66.109.6.66)  11.781 ms lag-415.vinnva0510w-bcr00.netops.charter.com (66.109.6.12)  11.075 ms lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  10.989 ms
+ 7  lag-31.asbnva1611w-bcr00.netops.charter.com (107.14.18.82)  11.272 ms lag-21.asbnva1611w-bcr00.netops.charter.com (66.109.3.24)  21.751 ms lag-31.asbnva1611w-bcr00.netops.charter.com (107.14.18.82)  20.097 ms
+ 8  lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  11.525 ms  11.883 ms  12.198 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  12.165 ms  11.695 ms  11.312 ms
+10  199.218.20.129 (199.218.20.129)  23.538 ms  24.475 ms  23.877 ms
+11  clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  27.638 ms schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  23.557 ms  23.484 ms
+12  clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  24.931 ms clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  24.247 ms clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.951 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.779 ms  28.490 ms  29.086 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  29.243 ms  29.129 ms  28.419 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.177 ms  27.867 ms  28.024 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.378 ms  29.703 ms  30.017 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.108.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.348 ms  2.629 ms  2.888 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  2.873 ms  3.260 ms  3.243 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  5.270 ms  5.255 ms  5.240 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  3.953 ms  5.207 ms  5.193 ms
+ 5  lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  3.521 ms * *
+ 6  lag-415.vinnva0510w-bcr00.netops.charter.com (66.109.6.12)  11.525 ms  11.198 ms  11.074 ms
+ 7  * * lag-21.asbnva1611w-bcr00.netops.charter.com (66.109.3.24)  12.381 ms
+ 8  lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  12.044 ms lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  12.345 ms lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  24.429 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  10.677 ms  11.237 ms  11.587 ms
+10  199.218.20.129 (199.218.20.129)  23.630 ms  23.876 ms  23.407 ms
+11  clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  27.837 ms schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  23.736 ms clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  28.161 ms
+12  clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.368 ms clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  24.704 ms  25.335 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.973 ms  28.111 ms  28.363 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  28.392 ms  28.367 ms  28.712 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.216 ms  27.856 ms  28.112 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.187 ms  29.090 ms  28.780 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.12.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.583 ms  2.887 ms  2.873 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  6.081 ms  6.069 ms  6.057 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  6.154 ms  6.140 ms  6.128 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  3.986 ms  4.317 ms  5.091 ms
+ 5  lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  5.031 ms lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  5.019 ms  5.008 ms
+ 6  lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  11.719 ms lag-415.vinnva0510w-bcr00.netops.charter.com (66.109.6.12)  13.716 ms lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  13.314 ms
+ 7  * * lag-11.asbnva1611w-bcr00.netops.charter.com (66.109.6.30)  14.139 ms
+ 8  lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  12.233 ms lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  23.239 ms lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  12.198 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  12.445 ms  11.645 ms  11.632 ms
+10  199.218.20.129 (199.218.20.129)  24.025 ms  23.617 ms  24.230 ms
+11  clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  27.732 ms schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  23.516 ms  24.312 ms
+12  clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  24.675 ms clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.881 ms  25.256 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.771 ms  28.356 ms  29.093 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  29.266 ms  28.613 ms  28.343 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.656 ms  28.330 ms  28.098 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.088 ms  29.566 ms  29.270 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.12.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.430 ms  2.856 ms  3.022 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  3.699 ms  3.694 ms  3.690 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  5.269 ms  5.265 ms  5.260 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  4.215 ms  4.873 ms  4.535 ms
+ 5  lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  4.968 ms lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  4.964 ms  4.959 ms
+ 6  lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  11.685 ms lag-27.vinnva0510w-bcr00.netops.charter.com (66.109.6.66)  10.535 ms  11.018 ms
+ 7  * * *
+ 8  lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  12.105 ms lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  11.940 ms lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  12.614 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  15.571 ms  15.025 ms  16.091 ms
+10  199.218.20.129 (199.218.20.129)  24.270 ms  23.768 ms  23.983 ms
+11  clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  27.734 ms  27.435 ms schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  23.472 ms
+12  clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.236 ms  24.884 ms clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  24.975 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.102 ms  28.341 ms  27.926 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  28.901 ms  29.108 ms  29.249 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.847 ms  28.394 ms  28.636 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.167 ms  29.279 ms  29.076 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.12.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  14.594 ms  14.574 ms  17.449 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  17.445 ms  17.440 ms  17.434 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  18.116 ms  18.111 ms  18.106 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  18.101 ms  18.096 ms  18.092 ms
+ 5  lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  17.312 ms lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  18.094 ms lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  17.304 ms
+ 6  lag-415.vinnva0510w-bcr00.netops.charter.com (66.109.6.12)  25.418 ms lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  22.760 ms  22.743 ms
+ 7  lag-31.asbnva1611w-bcr00.netops.charter.com (107.14.18.82)  54.374 ms lag-21.asbnva1611w-bcr00.netops.charter.com (66.109.3.24)  21.615 ms *
+ 8  lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  21.537 ms lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  21.602 ms lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  21.580 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  20.195 ms  20.179 ms  20.171 ms
+10  199.218.20.129 (199.218.20.129)  28.678 ms  29.066 ms  29.401 ms
+11  clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  33.511 ms schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  25.814 ms  23.900 ms
+12  clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.332 ms  25.483 ms clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  24.849 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.645 ms  29.521 ms  28.913 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  30.063 ms  30.310 ms  29.249 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.192 ms  28.218 ms  28.128 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.972 ms  29.222 ms  29.208 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.12.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  8.328 ms  3.765 ms  8.304 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  6.404 ms  7.498 ms  7.494 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  8.286 ms  8.281 ms  8.277 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  8.273 ms  8.269 ms  8.265 ms
+ 5  lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  8.281 ms lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  8.278 ms lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  8.272 ms
+ 6  lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  13.798 ms lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  11.761 ms lag-27.vinnva0510w-bcr00.netops.charter.com (66.109.6.66)  11.519 ms
+ 7  * lag-11.asbnva1611w-bcr00.netops.charter.com (66.109.6.30)  13.709 ms *
+ 8  lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  13.337 ms  12.181 ms lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  13.260 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  13.259 ms  13.255 ms  13.252 ms
+10  199.218.20.129 (199.218.20.129)  24.440 ms  24.651 ms  25.068 ms
+11  schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  25.067 ms  23.641 ms clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  29.827 ms
+12  clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  26.933 ms  26.301 ms  26.031 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  31.516 ms  31.135 ms  31.863 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  32.208 ms  32.768 ms  29.063 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.330 ms  28.991 ms  29.350 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.201 ms  29.195 ms  28.953 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.12.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.820 ms  2.864 ms  3.337 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  9.880 ms  10.186 ms  10.367 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  4.992 ms  4.962 ms  5.208 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  3.831 ms  4.479 ms  4.107 ms
+ 5  lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  4.843 ms lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  4.812 ms  4.592 ms
+ 6  lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  12.302 ms lag-27.vinnva0510w-bcr00.netops.charter.com (66.109.6.66)  11.693 ms lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  11.690 ms
+ 7  * lag-11.asbnva1611w-bcr00.netops.charter.com (66.109.6.30)  32.056 ms *
+ 8  lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  16.894 ms lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  11.873 ms  11.459 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  11.842 ms  11.828 ms  12.058 ms
+10  199.218.20.129 (199.218.20.129)  24.843 ms  25.825 ms  24.909 ms
+11  schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  25.477 ms  24.559 ms clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  29.290 ms
+12  clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  24.976 ms  25.001 ms clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.387 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  29.730 ms  29.085 ms  29.694 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  28.896 ms  28.756 ms  29.021 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.969 ms  28.140 ms  28.691 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.881 ms  29.481 ms  29.814 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.108.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  3.193 ms *  4.031 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  4.611 ms  4.604 ms  4.596 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  5.477 ms  5.844 ms  5.838 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  5.221 ms  5.214 ms  5.208 ms
+ 5  lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  5.253 ms lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  5.247 ms  5.240 ms
+ 6  lag-27.vinnva0510w-bcr00.netops.charter.com (66.109.6.66)  12.353 ms  13.483 ms lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  13.008 ms
+ 7  lag-31.asbnva1611w-bcr00.netops.charter.com (107.14.18.82)  16.374 ms lag-21.asbnva1611w-bcr00.netops.charter.com (66.109.3.24)  16.366 ms *
+ 8  lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  13.940 ms  13.927 ms lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  12.782 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  15.128 ms  15.654 ms  15.650 ms
+10  199.218.20.129 (199.218.20.129)  24.750 ms  24.678 ms  24.946 ms
+11  schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  24.113 ms  23.742 ms clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  27.784 ms
+12  clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  24.694 ms  25.019 ms clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.187 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.374 ms  28.635 ms  28.524 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  29.386 ms  28.969 ms  30.066 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.403 ms  28.402 ms  28.488 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.170 ms  29.273 ms  29.167 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.108.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  15.104 ms  16.285 ms  16.280 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  19.790 ms  20.705 ms  20.700 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  18.585 ms  18.580 ms  18.575 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  18.270 ms *  18.262 ms
+ 5  lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  18.230 ms  18.217 ms *
+ 6  lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  25.507 ms lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  24.511 ms lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  25.104 ms
+ 7  lag-11.asbnva1611w-bcr00.netops.charter.com (66.109.6.30)  25.104 ms lag-31.asbnva1611w-bcr00.netops.charter.com (107.14.18.82)  27.522 ms lag-11.asbnva1611w-bcr00.netops.charter.com (66.109.6.30)  27.531 ms
+ 8  lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  25.266 ms  24.899 ms lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  29.225 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  27.261 ms  27.237 ms  25.643 ms
+10  199.218.20.129 (199.218.20.129)  37.683 ms  37.659 ms  37.138 ms
+11  schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  37.996 ms  37.401 ms clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  41.920 ms
+12  clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  36.900 ms  37.472 ms  37.677 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  41.044 ms  41.768 ms  41.755 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  43.837 ms  43.122 ms  42.307 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  41.884 ms  40.466 ms  41.150 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  42.921 ms  43.043 ms  43.032 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.12.21), 30 hops max, 60 byte packets
+ 1  * rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.533 ms  2.989 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  6.711 ms  7.316 ms  7.298 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  6.322 ms  6.304 ms  6.288 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  4.035 ms  4.365 ms  4.349 ms
+ 5  lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  3.829 ms  4.862 ms  4.845 ms
+ 6  lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  11.577 ms  10.485 ms lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  10.485 ms
+ 7  * lag-11.asbnva1611w-bcr00.netops.charter.com (66.109.6.30)  11.600 ms *
+ 8  lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  15.571 ms lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  17.381 ms  11.829 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  10.839 ms  11.061 ms  11.366 ms
+10  199.218.20.129 (199.218.20.129)  23.630 ms  23.222 ms  23.577 ms
+11  clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  27.890 ms schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  23.389 ms  23.767 ms
+12  clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.027 ms clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  24.592 ms clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.816 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  29.051 ms  28.841 ms  28.779 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  28.720 ms  28.457 ms  29.083 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.415 ms  28.332 ms  28.390 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.393 ms  28.907 ms  29.289 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.12.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.583 ms  3.073 ms  2.406 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  3.037 ms  3.296 ms  3.280 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  5.418 ms  5.402 ms  5.385 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  4.221 ms  4.420 ms  5.329 ms
+ 5  lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  5.270 ms lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  3.819 ms lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  5.236 ms
+ 6  lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  11.829 ms  11.468 ms lag-415.vinnva0510w-bcr00.netops.charter.com (66.109.6.12)  11.863 ms
+ 7  * * lag-31.asbnva1611w-bcr00.netops.charter.com (107.14.18.82)  28.880 ms
+ 8  lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  11.472 ms  11.774 ms lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  12.389 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  11.969 ms  10.882 ms  11.518 ms
+10  199.218.20.129 (199.218.20.129)  23.996 ms  24.338 ms  24.918 ms
+11  clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  28.084 ms schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  23.259 ms clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  27.646 ms
+12  clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  25.423 ms  25.625 ms clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.696 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.437 ms  28.521 ms  28.530 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  28.693 ms  29.963 ms  29.942 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  29.194 ms  28.002 ms  28.344 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.349 ms  29.926 ms  29.833 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.108.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  5.333 ms  6.234 ms  6.221 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  41.728 ms  41.715 ms  41.701 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  11.598 ms  11.586 ms  11.575 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  11.563 ms  11.551 ms  11.539 ms
+ 5  lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  6.074 ms  6.062 ms lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  6.049 ms
+ 6  lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  11.486 ms lag-27.vinnva0510w-bcr00.netops.charter.com (66.109.6.66)  10.540 ms lag-415.vinnva0510w-bcr00.netops.charter.com (66.109.6.12)  10.754 ms
+ 7  lag-11.asbnva1611w-bcr00.netops.charter.com (66.109.6.30)  12.799 ms * lag-31.asbnva1611w-bcr00.netops.charter.com (107.14.18.82)  14.042 ms
+ 8  lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  11.338 ms lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  13.669 ms lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  11.813 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  11.783 ms  11.768 ms  11.751 ms
+10  199.218.20.129 (199.218.20.129)  24.712 ms  24.697 ms  23.515 ms
+11  schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  23.934 ms clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  27.484 ms  27.925 ms
+12  clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  24.387 ms clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.061 ms clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  25.256 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.472 ms  28.748 ms  29.728 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  28.967 ms  28.899 ms  29.059 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  29.023 ms  28.985 ms  28.967 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  30.083 ms  29.702 ms  29.399 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.108.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.535 ms  3.733 ms  3.729 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  2.820 ms  3.133 ms  3.448 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  5.901 ms  5.897 ms  5.891 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  4.456 ms  5.576 ms  5.572 ms
+ 5  lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  111.365 ms  111.398 ms  111.398 ms
+ 6  lag-27.vinnva0510w-bcr00.netops.charter.com (66.109.6.66)  11.791 ms lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  11.444 ms lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  11.768 ms
+ 7  lag-11.asbnva1611w-bcr00.netops.charter.com (66.109.6.30)  12.366 ms lag-31.asbnva1611w-bcr00.netops.charter.com (107.14.18.82)  33.340 ms lag-11.asbnva1611w-bcr00.netops.charter.com (66.109.6.30)  11.864 ms
+ 8  lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  12.042 ms  12.248 ms  20.950 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  11.426 ms  11.887 ms  11.664 ms
+10  199.218.20.129 (199.218.20.129)  24.303 ms  23.682 ms  23.554 ms
+11  clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  27.467 ms  27.741 ms schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  24.301 ms
+12  clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.597 ms clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  25.672 ms  25.802 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.270 ms  28.362 ms  28.129 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  28.718 ms  28.462 ms  28.338 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.136 ms  27.788 ms  29.153 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  30.096 ms  30.156 ms  30.123 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.108.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.879 ms * *
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  3.071 ms  3.538 ms  3.862 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  18.257 ms  18.244 ms  18.229 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  4.834 ms  4.822 ms  5.246 ms
+ 5  lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  4.291 ms lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  4.753 ms lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  4.739 ms
+ 6  lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  12.505 ms lag-415.vinnva0510w-bcr00.netops.charter.com (66.109.6.12)  11.997 ms  11.881 ms
+ 7  lag-31.asbnva1611w-bcr00.netops.charter.com (107.14.18.82)  12.133 ms lag-21.asbnva1611w-bcr00.netops.charter.com (66.109.3.24)  11.834 ms *
+ 8  lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  11.674 ms lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  22.971 ms  12.138 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  12.113 ms  12.821 ms  11.095 ms
+10  199.218.20.129 (199.218.20.129)  23.634 ms  23.931 ms  24.610 ms
+11  schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  23.795 ms  24.096 ms  24.482 ms
+12  clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  25.103 ms  25.195 ms  25.391 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.556 ms  29.267 ms  28.857 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  29.586 ms  28.543 ms  29.196 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.311 ms  29.440 ms  29.920 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  30.927 ms  30.976 ms  30.712 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.12.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.543 ms  2.821 ms  3.240 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  3.670 ms  3.653 ms  3.638 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  16.308 ms  16.293 ms  16.277 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  3.985 ms  16.244 ms  16.230 ms
+ 5  lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  4.909 ms lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  4.896 ms lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  4.880 ms
+ 6  lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  12.397 ms  12.577 ms lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  12.128 ms
+ 7  lag-31.asbnva1611w-bcr00.netops.charter.com (107.14.18.82)  13.675 ms * *
+ 8  lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  20.935 ms lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  12.979 ms lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  11.123 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  11.312 ms  11.578 ms  10.804 ms
+10  199.218.20.129 (199.218.20.129)  24.403 ms  24.371 ms  24.356 ms
+11  clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  28.160 ms schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  24.371 ms clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  28.260 ms
+12  clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  25.866 ms  26.193 ms clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.516 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.734 ms  28.992 ms  29.281 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  28.644 ms  28.611 ms  29.592 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.369 ms  29.030 ms  28.722 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.371 ms  29.378 ms  29.452 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.12.21), 30 hops max, 60 byte packets
+ 1  * rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.577 ms  2.954 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  3.330 ms  4.199 ms  4.178 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  5.406 ms  5.763 ms  5.739 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  5.333 ms  5.310 ms  5.285 ms
+ 5  lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  111.104 ms  111.042 ms lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  111.064 ms
+ 6  lag-415.vinnva0510w-bcr00.netops.charter.com (66.109.6.12)  11.624 ms lag-27.vinnva0510w-bcr00.netops.charter.com (66.109.6.66)  14.650 ms  14.257 ms
+ 7  * lag-31.asbnva1611w-bcr00.netops.charter.com (107.14.18.82)  26.661 ms lag-11.asbnva1611w-bcr00.netops.charter.com (66.109.6.30)  14.876 ms
+ 8  lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  18.261 ms lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  18.467 ms lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  12.254 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  12.813 ms  12.762 ms  12.740 ms
+10  199.218.20.129 (199.218.20.129)  24.499 ms  24.435 ms  25.167 ms
+11  clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  28.734 ms schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  24.556 ms  23.941 ms
+12  clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.846 ms  26.206 ms clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  24.781 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.942 ms  28.521 ms  28.673 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  28.797 ms  29.111 ms  28.935 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  29.234 ms  29.857 ms  28.629 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.666 ms  29.484 ms  29.164 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.12.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.881 ms  3.039 ms  3.432 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  3.428 ms  3.424 ms  3.738 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  5.380 ms  5.376 ms  5.372 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  4.633 ms  5.363 ms  5.359 ms
+ 5  lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  4.382 ms lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  5.329 ms  5.326 ms
+ 6  lag-27.vinnva0510w-bcr00.netops.charter.com (66.109.6.66)  11.882 ms lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  10.578 ms  11.290 ms
+ 7  lag-31.asbnva1611w-bcr00.netops.charter.com (107.14.18.82)  12.530 ms * lag-11.asbnva1611w-bcr00.netops.charter.com (66.109.6.30)  13.157 ms
+ 8  lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  12.187 ms lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  12.192 ms  15.005 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  11.124 ms  11.336 ms  11.698 ms
+10  199.218.20.129 (199.218.20.129)  23.688 ms  23.944 ms  24.337 ms
+11  clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  28.760 ms schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  23.762 ms clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  27.776 ms
+12  clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  24.245 ms clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.493 ms clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  24.312 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.107 ms  28.346 ms  28.581 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  28.705 ms  28.849 ms  28.563 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.409 ms  28.575 ms  28.466 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.264 ms  29.265 ms  29.059 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.108.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.911 ms  3.166 ms  3.478 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  3.463 ms  3.448 ms  3.434 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  5.638 ms  5.624 ms  5.607 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  4.358 ms  4.716 ms  5.562 ms
+ 5  lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  5.545 ms lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  5.530 ms  5.516 ms
+ 6  lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  11.676 ms  12.083 ms lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  11.930 ms
+ 7  * lag-11.asbnva1611w-bcr00.netops.charter.com (66.109.6.30)  15.011 ms lag-21.asbnva1611w-bcr00.netops.charter.com (66.109.3.24)  14.996 ms
+ 8  lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  13.774 ms lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  14.030 ms lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  14.006 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  12.111 ms  12.316 ms  12.873 ms
+10  199.218.20.129 (199.218.20.129)  25.567 ms  25.553 ms  25.538 ms
+11  clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  29.505 ms schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  23.767 ms  26.652 ms
+12  clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  26.316 ms  25.761 ms  25.817 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  29.405 ms  29.182 ms  29.477 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  30.119 ms  30.309 ms  31.011 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  29.225 ms  29.156 ms  29.128 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.549 ms  30.881 ms  30.335 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.108.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  3.441 ms  3.726 ms  4.461 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  4.451 ms  4.440 ms  4.429 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  4.976 ms  4.965 ms  5.222 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  4.941 ms  4.931 ms  5.183 ms
+ 5  lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  5.168 ms lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  4.547 ms lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  5.147 ms
+ 6  lag-27.vinnva0510w-bcr00.netops.charter.com (66.109.6.66)  12.545 ms lag-415.vinnva0510w-bcr00.netops.charter.com (66.109.6.12)  11.502 ms lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  11.818 ms
+ 7  lag-21.asbnva1611w-bcr00.netops.charter.com (66.109.3.24)  11.607 ms * *
+ 8  lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  17.855 ms  15.201 ms lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  43.864 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  15.512 ms  15.739 ms  16.361 ms
+10  199.218.20.129 (199.218.20.129)  27.752 ms  28.077 ms  28.327 ms
+11  schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  28.262 ms clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  29.044 ms schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  23.456 ms
+12  clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.743 ms clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  24.360 ms  24.945 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.668 ms  28.926 ms  28.995 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  28.386 ms  29.611 ms  29.383 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.781 ms  28.321 ms  29.302 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  28.870 ms  29.112 ms  28.995 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.108.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.576 ms  2.937 ms  3.263 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  4.082 ms  4.069 ms  4.057 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  6.573 ms  6.558 ms  6.545 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  4.072 ms  4.710 ms  5.034 ms
+ 5  lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  3.993 ms lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  4.674 ms  4.998 ms
+ 6  lag-415.vinnva0510w-bcr00.netops.charter.com (66.109.6.12)  11.550 ms lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  10.828 ms lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  11.191 ms
+ 7  lag-11.asbnva1611w-bcr00.netops.charter.com (66.109.6.30)  12.030 ms * *
+ 8  lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  12.584 ms lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  11.441 ms  11.984 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  30.047 ms  29.632 ms  30.094 ms
+10  199.218.20.129 (199.218.20.129)  24.259 ms  24.087 ms  24.348 ms
+11  schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  23.740 ms clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  28.353 ms  29.649 ms
+12  clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.089 ms clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  24.654 ms clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  24.919 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.665 ms  28.502 ms  29.450 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  29.943 ms  29.637 ms  29.458 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.429 ms  28.393 ms  28.483 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.437 ms  29.621 ms  29.940 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.108.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.480 ms  2.867 ms  3.462 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  3.456 ms  4.333 ms  4.326 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  4.783 ms  4.777 ms  4.770 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  4.763 ms  4.757 ms  4.751 ms
+ 5  lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  4.747 ms  4.740 ms  4.733 ms
+ 6  lag-27.vinnva0510w-bcr00.netops.charter.com (66.109.6.66)  11.572 ms lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  10.393 ms  11.075 ms
+ 7  lag-21.asbnva1611w-bcr00.netops.charter.com (66.109.3.24)  31.835 ms  32.089 ms lag-11.asbnva1611w-bcr00.netops.charter.com (66.109.6.30)  13.181 ms
+ 8  lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  12.512 ms lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  35.045 ms lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  11.320 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  12.352 ms  12.345 ms  12.338 ms
+10  199.218.20.129 (199.218.20.129)  24.359 ms  24.696 ms  25.332 ms
+11  schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  25.326 ms clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  27.816 ms  28.350 ms
+12  clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  24.549 ms  24.622 ms  25.230 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.726 ms  29.342 ms  29.061 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  29.675 ms  28.658 ms  31.008 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  30.664 ms  30.084 ms  28.071 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.114 ms  28.988 ms  29.448 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.12.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.614 ms  2.905 ms  3.237 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  3.222 ms  3.207 ms  3.580 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  4.799 ms  4.784 ms  5.464 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  3.995 ms  5.434 ms  5.416 ms
+ 5  lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  4.403 ms  4.677 ms  5.365 ms
+ 6  lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  12.112 ms lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  11.506 ms lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  10.929 ms
+ 7  lag-31.asbnva1611w-bcr00.netops.charter.com (107.14.18.82)  16.107 ms * *
+ 8  lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  11.220 ms lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  20.354 ms lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  11.531 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  11.530 ms  11.132 ms  11.502 ms
+10  199.218.20.129 (199.218.20.129)  23.480 ms  23.669 ms  24.023 ms
+11  schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  24.437 ms clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  28.456 ms  27.742 ms
+12  clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  24.509 ms  24.820 ms clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.105 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.490 ms  30.140 ms  28.812 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  29.695 ms  29.717 ms  31.569 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  29.436 ms  29.550 ms  30.552 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  30.781 ms  31.204 ms  31.301 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.108.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.427 ms  2.758 ms  3.025 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  3.347 ms  3.330 ms  3.316 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  5.588 ms  5.905 ms  5.891 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  3.719 ms  3.864 ms  4.797 ms
+ 5  lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  4.726 ms lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  4.710 ms lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  4.694 ms
+ 6  lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  11.931 ms  11.943 ms lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  10.898 ms
+ 7  lag-31.asbnva1611w-bcr00.netops.charter.com (107.14.18.82)  24.006 ms lag-21.asbnva1611w-bcr00.netops.charter.com (66.109.3.24)  23.727 ms lag-11.asbnva1611w-bcr00.netops.charter.com (66.109.6.30)  11.869 ms
+ 8  lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  12.104 ms lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  11.511 ms lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  12.302 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  53.265 ms  52.979 ms  53.583 ms
+10  199.218.20.129 (199.218.20.129)  25.721 ms  24.656 ms  23.470 ms
+11  clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  27.646 ms schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  23.422 ms  24.858 ms
+12  clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  25.400 ms  25.624 ms  25.806 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.742 ms  28.856 ms  28.043 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  29.539 ms  29.205 ms  29.738 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.213 ms  28.069 ms  28.368 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.371 ms  29.001 ms  29.234 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.108.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.956 ms  3.277 ms  3.547 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  3.906 ms  3.894 ms  3.882 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  6.280 ms  6.269 ms  6.256 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  5.312 ms  5.299 ms  5.866 ms
+ 5  lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  5.194 ms lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  5.180 ms  4.192 ms
+ 6  lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  11.797 ms lag-27.vinnva0510w-bcr00.netops.charter.com (66.109.6.66)  11.040 ms lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  11.307 ms
+ 7  * * lag-11.asbnva1611w-bcr00.netops.charter.com (66.109.6.30)  21.845 ms
+ 8  lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  12.277 ms lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  13.903 ms *
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  13.172 ms  13.156 ms  13.141 ms
+10  199.218.20.129 (199.218.20.129)  23.995 ms  23.763 ms  24.001 ms
+11  clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  28.555 ms schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  24.022 ms clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  28.845 ms
+12  clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.949 ms clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  25.590 ms clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.511 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.693 ms  28.930 ms  29.167 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  28.679 ms  29.131 ms  28.456 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.525 ms  28.336 ms  28.546 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.359 ms  29.665 ms  29.269 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.108.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  4.837 ms  3.910 ms  5.427 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  4.489 ms  4.735 ms  5.385 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  5.938 ms  6.243 ms  6.220 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  3.879 ms  4.616 ms  5.827 ms
+ 5  lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  5.797 ms  6.132 ms  6.117 ms
+ 6  lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  12.508 ms lag-27.vinnva0510w-bcr00.netops.charter.com (66.109.6.66)  10.916 ms lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  11.043 ms
+ 7  * * lag-21.asbnva1611w-bcr00.netops.charter.com (66.109.3.24)  11.367 ms
+ 8  lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  11.120 ms lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  11.221 ms lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  12.108 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  11.532 ms  12.070 ms  12.057 ms
+10  199.218.20.129 (199.218.20.129)  24.617 ms  24.604 ms  24.681 ms
+11  clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  30.311 ms  28.187 ms schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  25.125 ms
+12  clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  24.884 ms clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.630 ms clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  24.936 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.188 ms  28.405 ms  28.231 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  29.209 ms  28.883 ms  29.069 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.446 ms  28.561 ms  28.836 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  30.304 ms  29.880 ms  29.832 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.108.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.845 ms  2.792 ms  3.135 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  5.108 ms  5.091 ms  5.074 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  4.964 ms  4.948 ms  4.932 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  3.634 ms  3.942 ms  4.615 ms
+ 5  lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  4.279 ms lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  4.264 ms lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  4.831 ms
+ 6  lag-415.vinnva0510w-bcr00.netops.charter.com (66.109.6.12)  11.676 ms lag-27.vinnva0510w-bcr00.netops.charter.com (66.109.6.66)  12.103 ms lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  12.027 ms
+ 7  * * *
+ 8  lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  11.972 ms  12.310 ms lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  11.608 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  11.799 ms  11.787 ms  11.775 ms
+10  199.218.20.129 (199.218.20.129)  24.549 ms  24.145 ms  24.112 ms
+11  clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  28.843 ms  28.231 ms schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  23.995 ms
+12  clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.271 ms  25.459 ms clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  31.586 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.877 ms  28.862 ms  29.289 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  29.563 ms  29.412 ms  29.625 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  29.222 ms  28.835 ms  28.165 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  30.222 ms  29.287 ms  29.514 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.12.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  6.463 ms  10.013 ms  10.265 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  2.863 ms  3.177 ms  3.472 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  5.832 ms  5.813 ms  5.797 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  4.738 ms  3.731 ms  5.747 ms
+ 5  lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  4.018 ms  4.661 ms  4.645 ms
+ 6  lag-27.vinnva0510w-bcr00.netops.charter.com (66.109.6.66)  11.731 ms lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  11.965 ms lag-27.vinnva0510w-bcr00.netops.charter.com (66.109.6.66)  11.316 ms
+ 7  lag-21.asbnva1611w-bcr00.netops.charter.com (66.109.3.24)  13.288 ms  14.777 ms  28.416 ms
+ 8  lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  11.347 ms  12.532 ms lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  12.903 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  25.500 ms  26.125 ms  26.109 ms
+10  199.218.20.129 (199.218.20.129)  23.775 ms  23.818 ms  23.449 ms
+11  schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  23.758 ms  23.816 ms  23.389 ms
+12  clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.005 ms clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  24.991 ms  25.390 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.620 ms  28.481 ms  28.190 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  28.732 ms  28.846 ms  28.879 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.544 ms  28.809 ms  30.736 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  30.396 ms  30.983 ms  30.646 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.12.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  3.465 ms  3.806 ms  4.284 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  4.268 ms  4.252 ms  4.658 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  7.314 ms  7.301 ms  7.286 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  5.288 ms  5.650 ms  6.437 ms
+ 5  lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  6.430 ms lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  6.414 ms lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  6.399 ms
+ 6  lag-27.vinnva0510w-bcr00.netops.charter.com (66.109.6.66)  12.619 ms  11.840 ms lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  11.230 ms
+ 7  * lag-11.asbnva1611w-bcr00.netops.charter.com (66.109.6.30)  14.240 ms lag-31.asbnva1611w-bcr00.netops.charter.com (107.14.18.82)  14.571 ms
+ 8  lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  12.674 ms  14.145 ms lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  14.151 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  12.676 ms  12.336 ms  13.161 ms
+10  199.218.20.129 (199.218.20.129)  24.667 ms  23.616 ms  23.974 ms
+11  schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  24.859 ms clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  27.781 ms schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  23.506 ms
+12  clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  24.935 ms  26.029 ms clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  26.479 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  29.107 ms  28.761 ms  29.040 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  30.061 ms  30.045 ms  29.779 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  27.908 ms  28.048 ms  27.968 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  28.833 ms  28.953 ms  28.708 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.12.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.721 ms  2.655 ms  3.149 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  3.126 ms  3.104 ms  3.448 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  4.574 ms  4.553 ms  4.531 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  5.160 ms  5.139 ms  5.118 ms
+ 5  lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  4.483 ms lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  3.879 ms  4.184 ms
+ 6  lag-415.vinnva0510w-bcr00.netops.charter.com (66.109.6.12)  12.481 ms  10.970 ms  10.885 ms
+ 7  * * *
+ 8  lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  10.775 ms lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  12.011 ms  11.446 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  11.329 ms  11.300 ms  11.730 ms
+10  199.218.20.129 (199.218.20.129)  24.695 ms  24.682 ms  24.670 ms
+11  schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  24.643 ms clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  28.651 ms  27.738 ms
+12  clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.555 ms  25.420 ms clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  25.465 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.129 ms  28.558 ms  28.248 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  29.222 ms  29.247 ms  29.194 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.511 ms  28.726 ms  28.011 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.672 ms  29.307 ms  29.434 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.108.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  7.871 ms  3.060 ms  8.437 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  3.667 ms  3.649 ms  3.571 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  5.683 ms  5.667 ms  5.651 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  4.518 ms  4.501 ms  5.438 ms
+ 5  lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  3.763 ms lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  4.518 ms  5.280 ms
+ 6  lag-415.vinnva0510w-bcr00.netops.charter.com (66.109.6.12)  11.304 ms lag-27.vinnva0510w-bcr00.netops.charter.com (66.109.6.66)  11.399 ms lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  10.999 ms
+ 7  lag-31.asbnva1611w-bcr00.netops.charter.com (107.14.18.82)  13.019 ms  12.652 ms lag-11.asbnva1611w-bcr00.netops.charter.com (66.109.6.30)  11.393 ms
+ 8  lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  13.071 ms * *
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  12.908 ms  14.458 ms  13.269 ms
+10  199.218.20.129 (199.218.20.129)  26.179 ms  25.686 ms  24.136 ms
+11  schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  23.528 ms  23.652 ms clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  27.901 ms
+12  clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.002 ms clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  24.406 ms  24.697 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.244 ms  29.615 ms  29.765 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  30.174 ms  28.797 ms  31.552 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  29.956 ms  29.478 ms  29.054 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.767 ms  29.311 ms  29.248 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.108.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.379 ms  4.890 ms  2.639 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  2.953 ms  3.443 ms  3.735 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  5.814 ms  6.181 ms  6.164 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  5.374 ms  3.992 ms  5.344 ms
+ 5  lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  5.331 ms lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  5.314 ms  5.298 ms
+ 6  lag-415.vinnva0510w-bcr00.netops.charter.com (66.109.6.12)  11.491 ms lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  10.632 ms  10.879 ms
+ 7  lag-11.asbnva1611w-bcr00.netops.charter.com (66.109.6.30)  12.431 ms * lag-21.asbnva1611w-bcr00.netops.charter.com (66.109.3.24)  18.509 ms
+ 8  lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  12.249 ms lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  10.958 ms lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  10.510 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  11.688 ms  11.674 ms  11.661 ms
+10  199.218.20.129 (199.218.20.129)  24.906 ms  25.052 ms  33.393 ms
+11  schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  24.372 ms clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  27.618 ms  27.457 ms
+12  clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  27.729 ms  25.975 ms clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  24.953 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.252 ms  29.145 ms  28.266 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  29.058 ms  28.796 ms  28.680 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.379 ms  28.627 ms  28.199 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.138 ms  30.323 ms  29.869 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.108.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.338 ms  2.654 ms  2.957 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  3.666 ms  3.654 ms  3.644 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  4.802 ms  4.793 ms  5.420 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  4.172 ms  4.367 ms  4.755 ms
+ 5  * lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  4.719 ms  5.124 ms
+ 6  lag-415.vinnva0510w-bcr00.netops.charter.com (66.109.6.12)  11.489 ms  11.065 ms lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  10.688 ms
+ 7  * lag-31.asbnva1611w-bcr00.netops.charter.com (107.14.18.82)  13.695 ms *
+ 8  lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  18.843 ms lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  16.203 ms  16.292 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  11.513 ms  11.695 ms  11.981 ms
+10  199.218.20.129 (199.218.20.129)  24.471 ms  24.398 ms  23.701 ms
+11  schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  23.621 ms  23.675 ms  23.622 ms
+12  clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  24.882 ms  25.007 ms  25.406 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.339 ms  28.719 ms  28.320 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  28.837 ms  28.902 ms  28.882 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.167 ms  28.404 ms  28.105 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.361 ms  29.452 ms  29.133 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.12.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  3.078 ms  3.031 ms  3.014 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  3.478 ms  3.666 ms  3.939 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  20.676 ms  21.010 ms  21.293 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  4.328 ms  4.311 ms  4.590 ms
+ 5  lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  4.610 ms  4.959 ms  4.946 ms
+ 6  lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  11.475 ms lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  10.673 ms lag-27.vinnva0510w-bcr00.netops.charter.com (66.109.6.66)  10.950 ms
+ 7  * * *
+ 8  lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  11.255 ms lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  11.564 ms  11.848 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  11.861 ms  11.846 ms  12.156 ms
+10  199.218.20.129 (199.218.20.129)  24.127 ms  23.596 ms  23.406 ms
+11  clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  28.117 ms  28.928 ms schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  24.021 ms
+12  clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.315 ms clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  24.964 ms clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.580 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.263 ms  28.293 ms  28.789 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  29.083 ms  28.675 ms  28.576 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.430 ms  28.362 ms  28.548 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.438 ms  29.719 ms  29.400 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.12.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  5.167 ms  3.789 ms  4.073 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  5.100 ms  5.087 ms  5.074 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  5.092 ms  5.078 ms  5.382 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  5.051 ms  5.038 ms  5.025 ms
+ 5  lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  5.045 ms  5.033 ms  5.020 ms
+ 6  lag-27.vinnva0510w-bcr00.netops.charter.com (66.109.6.66)  11.727 ms lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  10.470 ms  10.506 ms
+ 7  * lag-11.asbnva1611w-bcr00.netops.charter.com (66.109.6.30)  12.866 ms *
+ 8  lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  12.190 ms lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  12.152 ms lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  12.139 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  11.496 ms  11.480 ms  11.787 ms
+10  199.218.20.129 (199.218.20.129)  23.884 ms  24.167 ms  24.481 ms
+11  schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  24.066 ms clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  27.285 ms schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  23.523 ms
+12  clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.211 ms  25.322 ms  25.608 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.189 ms  28.159 ms  28.771 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  30.171 ms  29.671 ms  28.783 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.312 ms  28.648 ms  28.419 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.496 ms  29.256 ms  29.295 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.12.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.451 ms  2.707 ms  3.078 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  3.369 ms  3.313 ms  3.297 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  5.441 ms  5.977 ms  5.964 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  4.215 ms  4.433 ms  5.371 ms
+ 5  lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  5.115 ms lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  5.102 ms  5.089 ms
+ 6  lag-415.vinnva0510w-bcr00.netops.charter.com (66.109.6.12)  11.619 ms  10.445 ms lag-27.vinnva0510w-bcr00.netops.charter.com (66.109.6.66)  11.722 ms
+ 7  * * *
+ 8  lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  12.159 ms  13.410 ms lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  12.098 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  11.870 ms  12.601 ms  12.586 ms
+10  199.218.20.129 (199.218.20.129)  24.035 ms  23.737 ms  23.471 ms
+11  clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  27.464 ms schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  23.790 ms clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  27.852 ms
+12  clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.239 ms clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  24.753 ms clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.950 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.675 ms  28.963 ms  28.193 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  29.484 ms  29.109 ms  29.136 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  29.070 ms  27.833 ms  28.649 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.454 ms  29.518 ms  29.295 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.108.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  7.235 ms * *
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  2.789 ms  3.111 ms  3.402 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  5.314 ms  5.301 ms  6.767 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  4.165 ms  4.340 ms  5.246 ms
+ 5  lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  5.312 ms lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  5.299 ms lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  5.283 ms
+ 6  lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  11.341 ms lag-27.vinnva0510w-bcr00.netops.charter.com (66.109.6.66)  11.644 ms lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  12.424 ms
+ 7  lag-21.asbnva1611w-bcr00.netops.charter.com (66.109.3.24)  13.870 ms * *
+ 8  lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  11.202 ms lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  15.807 ms lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  11.439 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  14.917 ms  14.540 ms  15.633 ms
+10  199.218.20.129 (199.218.20.129)  23.736 ms  23.428 ms  23.423 ms
+11  schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  24.695 ms clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  27.661 ms schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  24.037 ms
+12  clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  25.461 ms  24.970 ms clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.577 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  29.554 ms  28.767 ms  28.849 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  28.855 ms  29.196 ms  29.142 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.431 ms  29.130 ms  28.161 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.584 ms  30.055 ms  30.003 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.12.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.340 ms  2.636 ms  2.962 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  4.092 ms  4.413 ms  4.400 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  10.716 ms  11.116 ms  11.435 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  4.905 ms  3.733 ms  4.317 ms
+ 5  lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  4.394 ms lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  4.960 ms  4.368 ms
+ 6  lag-27.vinnva0510w-bcr00.netops.charter.com (66.109.6.66)  11.711 ms lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  11.177 ms  11.439 ms
+ 7  * lag-21.asbnva1611w-bcr00.netops.charter.com (66.109.3.24)  14.050 ms lag-11.asbnva1611w-bcr00.netops.charter.com (66.109.6.30)  19.364 ms
+ 8  lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  14.909 ms lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  10.743 ms lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  26.621 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  11.827 ms  11.166 ms  11.956 ms
+10  199.218.20.129 (199.218.20.129)  24.712 ms  23.808 ms  23.760 ms
+11  schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  24.074 ms  24.061 ms clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  28.988 ms
+12  clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  25.998 ms  25.846 ms clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.656 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.130 ms  28.712 ms  28.487 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  28.755 ms  28.590 ms  28.749 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.925 ms  28.907 ms  28.480 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.381 ms  29.328 ms  30.480 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.12.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.836 ms  3.220 ms  3.424 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  3.410 ms  3.395 ms  3.897 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  11.579 ms  11.927 ms  12.215 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  4.051 ms  4.434 ms  4.423 ms
+ 5  lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  4.356 ms lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  4.345 ms  5.136 ms
+ 6  lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  12.128 ms lag-415.vinnva0510w-bcr00.netops.charter.com (66.109.6.12)  11.291 ms lag-27.vinnva0510w-bcr00.netops.charter.com (66.109.6.66)  11.017 ms
+ 7  lag-11.asbnva1611w-bcr00.netops.charter.com (66.109.6.30)  13.545 ms lag-31.asbnva1611w-bcr00.netops.charter.com (107.14.18.82)  12.551 ms  13.101 ms
+ 8  lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  12.105 ms lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  11.633 ms lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  12.441 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  13.004 ms  12.993 ms  12.983 ms
+10  199.218.20.129 (199.218.20.129)  23.963 ms  23.805 ms  24.272 ms
+11  clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  28.016 ms schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  24.214 ms clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  27.858 ms
+12  clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.292 ms clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  25.020 ms clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.203 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  29.073 ms  29.351 ms  29.087 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  29.414 ms  29.714 ms  29.701 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  31.814 ms  29.152 ms  27.937 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.854 ms  29.586 ms  30.104 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.108.21), 30 hops max, 60 byte packets
+ 1  * rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.901 ms *
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  3.180 ms  4.341 ms  4.323 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  6.257 ms  6.512 ms  6.901 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  4.858 ms  4.600 ms  4.826 ms
+ 5  lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  4.734 ms lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  4.714 ms  4.550 ms
+ 6  lag-27.vinnva0510w-bcr00.netops.charter.com (66.109.6.66)  11.729 ms  11.154 ms lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  11.108 ms
+ 7  lag-11.asbnva1611w-bcr00.netops.charter.com (66.109.6.30)  12.849 ms * *
+ 8  lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  11.998 ms  11.949 ms lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  11.986 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  11.974 ms  11.954 ms  13.555 ms
+10  199.218.20.129 (199.218.20.129)  23.817 ms  23.686 ms  23.496 ms
+11  schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  23.796 ms clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  27.534 ms schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  23.683 ms
+12  clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.545 ms clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  24.818 ms  25.107 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.400 ms  28.663 ms  28.939 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  29.352 ms  28.624 ms  29.112 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.324 ms  28.619 ms  28.008 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.241 ms  29.178 ms  29.345 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.108.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.563 ms  2.761 ms  3.130 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  3.116 ms  3.103 ms  3.090 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  5.792 ms  6.432 ms  6.419 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  4.479 ms  5.104 ms  5.722 ms
+ 5  lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  4.973 ms lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  4.085 ms lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  4.946 ms
+ 6  lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  12.138 ms lag-27.vinnva0510w-bcr00.netops.charter.com (66.109.6.66)  10.964 ms lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  10.722 ms
+ 7  lag-21.asbnva1611w-bcr00.netops.charter.com (66.109.3.24)  11.806 ms lag-11.asbnva1611w-bcr00.netops.charter.com (66.109.6.30)  13.797 ms  13.780 ms
+ 8  lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  11.910 ms  13.334 ms lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  12.156 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  11.817 ms  12.826 ms  12.812 ms
+10  199.218.20.129 (199.218.20.129)  23.534 ms  23.713 ms  23.690 ms
+11  clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  30.907 ms schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  24.576 ms  24.127 ms
+12  clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  26.705 ms  25.492 ms clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.441 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  29.179 ms  29.169 ms  28.235 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  28.940 ms  29.235 ms  28.931 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.527 ms  28.158 ms  28.550 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.726 ms  30.030 ms  30.445 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.108.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.552 ms  2.784 ms *
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  3.062 ms  3.375 ms  3.356 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  7.861 ms  8.125 ms  8.812 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  3.729 ms  3.982 ms  5.047 ms
+ 5  lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  5.028 ms  5.010 ms  5.226 ms
+ 6  lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  11.490 ms lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  10.768 ms lag-415.vinnva0510w-bcr00.netops.charter.com (66.109.6.12)  11.044 ms
+ 7  lag-21.asbnva1611w-bcr00.netops.charter.com (66.109.3.24)  18.115 ms lag-11.asbnva1611w-bcr00.netops.charter.com (66.109.6.30)  11.659 ms lag-21.asbnva1611w-bcr00.netops.charter.com (66.109.3.24)  13.040 ms
+ 8  lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  11.357 ms lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  13.099 ms  12.193 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  27.597 ms  28.004 ms  28.139 ms
+10  199.218.20.129 (199.218.20.129)  23.565 ms  23.761 ms  24.657 ms
+11  clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  28.730 ms schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  24.511 ms  24.382 ms
+12  clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.841 ms  25.773 ms clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  26.111 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  29.306 ms  28.992 ms  28.873 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  29.413 ms  28.852 ms  28.974 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.998 ms  28.093 ms  28.232 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.241 ms  29.678 ms  29.637 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.12.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.175 ms  2.491 ms  2.861 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  2.853 ms  2.845 ms  3.218 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  5.250 ms  6.180 ms  6.172 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  5.227 ms  5.219 ms  5.211 ms
+ 5  lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  3.955 ms  5.181 ms lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  4.535 ms
+ 6  lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  11.345 ms lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  11.169 ms lag-415.vinnva0510w-bcr00.netops.charter.com (66.109.6.12)  11.326 ms
+ 7  * lag-31.asbnva1611w-bcr00.netops.charter.com (107.14.18.82)  13.653 ms  12.736 ms
+ 8  lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  13.884 ms lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  23.000 ms lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  13.376 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  14.130 ms  14.678 ms  15.301 ms
+10  199.218.20.129 (199.218.20.129)  24.928 ms  25.902 ms  24.450 ms
+11  clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  28.604 ms  27.253 ms  27.374 ms
+12  clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  24.772 ms clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  24.669 ms  25.182 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.413 ms  27.872 ms  28.401 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  28.269 ms  28.150 ms  28.192 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.307 ms  28.048 ms  27.965 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  30.571 ms  29.158 ms  29.219 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.108.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  4.898 ms  4.848 ms  4.834 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  4.821 ms  4.808 ms  4.795 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  4.886 ms  6.735 ms  6.723 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  4.846 ms  4.833 ms  4.821 ms
+ 5  lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  4.798 ms lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  4.785 ms lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  4.770 ms
+ 6  lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  13.063 ms lag-415.vinnva0510w-bcr00.netops.charter.com (66.109.6.12)  12.962 ms *
+ 7  * lag-21.asbnva1611w-bcr00.netops.charter.com (66.109.3.24)  15.085 ms  13.263 ms
+ 8  lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  12.874 ms lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  12.863 ms lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  12.849 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  12.887 ms  12.872 ms  12.860 ms
+10  199.218.20.129 (199.218.20.129)  24.187 ms  24.559 ms  23.734 ms
+11  schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  23.986 ms  23.444 ms clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  28.131 ms
+12  clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  26.151 ms  26.751 ms clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.723 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.921 ms  30.158 ms  29.526 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  30.703 ms  29.631 ms  28.511 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.510 ms  28.395 ms  28.586 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.255 ms  29.298 ms  29.335 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.108.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.614 ms  2.812 ms  3.056 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  13.019 ms  13.388 ms  13.762 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  6.337 ms  6.317 ms  6.301 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  5.162 ms  6.270 ms  6.256 ms
+ 5  lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  6.187 ms  6.172 ms lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  5.392 ms
+ 6  lag-27.vinnva0510w-bcr00.netops.charter.com (66.109.6.66)  11.548 ms lag-415.vinnva0510w-bcr00.netops.charter.com (66.109.6.12)  13.618 ms lag-27.vinnva0510w-bcr00.netops.charter.com (66.109.6.66)  13.304 ms
+ 7  * * lag-31.asbnva1611w-bcr00.netops.charter.com (107.14.18.82)  14.433 ms
+ 8  lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  12.367 ms lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  11.048 ms lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  13.304 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  12.026 ms  11.473 ms  12.000 ms
+10  199.218.20.129 (199.218.20.129)  24.025 ms  23.852 ms  23.829 ms
+11  schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  23.796 ms  23.536 ms  24.170 ms
+12  clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.362 ms  25.649 ms clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  26.064 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  29.145 ms  29.131 ms  28.873 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  28.384 ms  28.827 ms  28.585 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  27.987 ms  28.831 ms  28.778 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.220 ms  30.041 ms  30.189 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.108.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  14.335 ms  5.579 ms  14.503 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  5.560 ms  5.552 ms  5.543 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  7.581 ms  7.573 ms  7.565 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  6.907 ms  7.547 ms  7.539 ms
+ 5  lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  6.623 ms  5.761 ms  6.593 ms
+ 6  lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  13.150 ms  10.954 ms lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  10.608 ms
+ 7  * * *
+ 8  lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  11.202 ms lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  14.946 ms lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  11.198 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  11.385 ms  11.639 ms  12.595 ms
+10  199.218.20.129 (199.218.20.129)  23.616 ms  23.856 ms  23.631 ms
+11  schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  23.226 ms  23.740 ms clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  27.762 ms
+12  clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  24.757 ms clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.133 ms  24.986 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.182 ms  28.235 ms  28.139 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  28.477 ms  28.673 ms  28.943 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  27.983 ms  27.880 ms  27.711 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  28.774 ms  28.939 ms  29.151 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.108.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  3.901 ms  3.851 ms  3.831 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  3.811 ms  3.892 ms  3.871 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  5.133 ms  5.115 ms  5.167 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  4.720 ms  5.057 ms  5.040 ms
+ 5  lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  4.241 ms lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  4.963 ms lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  4.946 ms
+ 6  lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  12.011 ms  10.860 ms lag-415.vinnva0510w-bcr00.netops.charter.com (66.109.6.12)  11.099 ms
+ 7  * lag-11.asbnva1611w-bcr00.netops.charter.com (66.109.6.30)  13.650 ms *
+ 8  lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  11.376 ms lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  13.120 ms lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  12.259 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  10.924 ms  11.324 ms  11.864 ms
+10  199.218.20.129 (199.218.20.129)  24.488 ms  24.475 ms  24.463 ms
+11  schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  24.430 ms  23.585 ms  23.904 ms
+12  clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.292 ms  25.239 ms clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  24.673 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.999 ms  28.792 ms  28.926 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  29.075 ms  28.570 ms  29.461 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  29.386 ms  28.606 ms  28.900 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.503 ms  30.004 ms  29.431 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.108.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.561 ms  2.807 ms  3.157 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  4.425 ms  4.422 ms  4.416 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  5.111 ms  5.106 ms  5.101 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  5.097 ms  5.093 ms  5.089 ms
+ 5  lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  4.678 ms lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  5.028 ms  5.023 ms
+ 6  lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  11.951 ms lag-415.vinnva0510w-bcr00.netops.charter.com (66.109.6.12)  10.723 ms lag-27.vinnva0510w-bcr00.netops.charter.com (66.109.6.66)  11.059 ms
+ 7  lag-11.asbnva1611w-bcr00.netops.charter.com (66.109.6.30)  12.358 ms  13.603 ms lag-21.asbnva1611w-bcr00.netops.charter.com (66.109.3.24)  11.512 ms
+ 8  lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  12.812 ms lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  14.493 ms lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  31.956 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  11.631 ms  11.504 ms  11.496 ms
+10  199.218.20.129 (199.218.20.129)  23.696 ms  23.410 ms  24.441 ms
+11  clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  27.563 ms  27.981 ms schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  23.346 ms
+12  clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  24.714 ms  24.355 ms clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.025 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.780 ms  28.620 ms  28.929 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  29.075 ms  28.297 ms  28.205 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  36.288 ms  36.381 ms  35.884 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  28.874 ms  30.061 ms  29.212 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.108.21), 30 hops max, 60 byte packets
+ 1  * rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.600 ms *
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  2.825 ms  3.575 ms  3.560 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  5.702 ms  5.685 ms  5.671 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  7.424 ms  4.042 ms  7.724 ms
+ 5  lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  4.819 ms lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  5.309 ms  5.296 ms
+ 6  lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  11.657 ms  10.614 ms  10.996 ms
+ 7  * * lag-31.asbnva1611w-bcr00.netops.charter.com (107.14.18.82)  11.001 ms
+ 8  lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  15.156 ms lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  15.858 ms lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  14.870 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  10.826 ms  11.175 ms  11.660 ms
+10  199.218.20.129 (199.218.20.129)  23.500 ms  23.498 ms  24.356 ms
+11  clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  28.410 ms  28.437 ms  29.038 ms
+12  clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  38.576 ms  38.088 ms clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  24.907 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.731 ms  28.531 ms  28.541 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  28.713 ms  28.901 ms  28.802 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.125 ms  28.115 ms  28.018 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.247 ms  29.746 ms  30.006 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.108.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.340 ms * *
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  8.578 ms  8.809 ms  9.104 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  4.931 ms  4.917 ms  4.901 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  3.949 ms  4.868 ms  4.852 ms
+ 5  lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  4.503 ms  4.760 ms  4.744 ms
+ 6  lag-27.vinnva0510w-bcr00.netops.charter.com (66.109.6.66)  11.542 ms lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  10.779 ms lag-415.vinnva0510w-bcr00.netops.charter.com (66.109.6.12)  11.306 ms
+ 7  lag-11.asbnva1611w-bcr00.netops.charter.com (66.109.6.30)  15.472 ms * lag-31.asbnva1611w-bcr00.netops.charter.com (107.14.18.82)  13.060 ms
+ 8  lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  11.903 ms lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  12.297 ms lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  23.782 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  23.793 ms  23.776 ms  20.160 ms
+10  199.218.20.129 (199.218.20.129)  24.256 ms  24.251 ms  23.819 ms
+11  schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  24.061 ms  24.478 ms  23.954 ms
+12  clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  25.070 ms clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.208 ms  25.165 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  29.652 ms  28.720 ms  29.633 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  30.458 ms  30.431 ms  30.406 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.746 ms  28.571 ms  28.299 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.182 ms  29.271 ms  29.407 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.108.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  3.513 ms  3.740 ms  3.104 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  4.723 ms  5.037 ms  5.018 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  5.818 ms  6.640 ms  7.119 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  4.217 ms  5.082 ms  4.964 ms
+ 5  lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  5.156 ms  5.138 ms  5.119 ms
+ 6  lag-415.vinnva0510w-bcr00.netops.charter.com (66.109.6.12)  12.351 ms  11.189 ms  10.627 ms
+ 7  lag-31.asbnva1611w-bcr00.netops.charter.com (107.14.18.82)  17.130 ms * lag-11.asbnva1611w-bcr00.netops.charter.com (66.109.6.30)  13.349 ms
+ 8  lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  12.789 ms lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  13.315 ms lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  12.992 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  13.261 ms  13.245 ms  13.230 ms
+10  199.218.20.129 (199.218.20.129)  24.883 ms  24.584 ms  23.810 ms
+11  schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  23.743 ms clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  28.375 ms  30.002 ms
+12  clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  27.397 ms clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.142 ms  25.162 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.913 ms  28.872 ms  28.856 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  29.064 ms  29.385 ms  29.549 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.468 ms  28.520 ms  28.818 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.178 ms  29.331 ms  29.588 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.108.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  1.786 ms  3.437 ms  3.420 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  5.083 ms  5.067 ms  5.053 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  5.390 ms  5.609 ms  6.203 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  5.342 ms  5.328 ms  5.313 ms
+ 5  lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  4.943 ms *  5.217 ms
+ 6  lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  11.892 ms  11.697 ms  13.103 ms
+ 7  * lag-11.asbnva1611w-bcr00.netops.charter.com (66.109.6.30)  14.421 ms lag-21.asbnva1611w-bcr00.netops.charter.com (66.109.3.24)  12.901 ms
+ 8  lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  11.061 ms lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  11.439 ms lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  14.213 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  11.518 ms  10.878 ms  11.792 ms
+10  199.218.20.129 (199.218.20.129)  23.376 ms  23.722 ms  23.803 ms
+11  clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  27.768 ms schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  24.056 ms clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  28.323 ms
+12  clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.106 ms clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  24.610 ms clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.803 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  29.167 ms  29.308 ms  29.688 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  30.496 ms  29.451 ms  29.463 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.782 ms  28.570 ms  28.088 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.415 ms  29.233 ms  29.238 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.108.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.351 ms * *
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  3.702 ms  4.269 ms  4.893 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  5.692 ms  5.680 ms  5.665 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  4.869 ms  5.641 ms  4.847 ms
+ 5  lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  5.638 ms  5.627 ms  5.615 ms
+ 6  lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  12.011 ms  11.238 ms  11.332 ms
+ 7  lag-11.asbnva1611w-bcr00.netops.charter.com (66.109.6.30)  11.044 ms lag-31.asbnva1611w-bcr00.netops.charter.com (107.14.18.82)  13.275 ms lag-11.asbnva1611w-bcr00.netops.charter.com (66.109.6.30)  13.233 ms
+ 8  lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  11.418 ms lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  11.262 ms lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  11.392 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  11.581 ms  12.255 ms  12.241 ms
+10  199.218.20.129 (199.218.20.129)  23.857 ms  23.972 ms  23.867 ms
+11  schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  24.101 ms  25.633 ms  24.811 ms
+12  clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  24.674 ms  24.842 ms clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  26.779 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.752 ms  28.520 ms  28.943 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  29.252 ms  28.804 ms  29.431 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.734 ms  28.464 ms  28.806 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  30.145 ms  30.774 ms  30.538 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.108.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.664 ms  3.041 ms  4.350 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  5.078 ms  5.072 ms  5.066 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  5.057 ms  5.053 ms  5.050 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  4.685 ms  4.681 ms  5.038 ms
+ 5  lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  4.670 ms  5.025 ms  5.021 ms
+ 6  lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  11.846 ms lag-27.vinnva0510w-bcr00.netops.charter.com (66.109.6.66)  12.435 ms lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  12.754 ms
+ 7  * * *
+ 8  lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  11.548 ms  21.943 ms lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  13.768 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  11.140 ms  11.377 ms  11.370 ms
+10  199.218.20.129 (199.218.20.129)  23.779 ms  24.490 ms  24.154 ms
+11  clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  27.775 ms schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  23.413 ms clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  28.498 ms
+12  clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  26.137 ms  25.981 ms  25.498 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.406 ms  28.922 ms  27.942 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  28.730 ms  29.146 ms  29.346 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.156 ms  27.857 ms  27.666 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.437 ms  29.422 ms  29.796 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.12.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  13.804 ms  14.146 ms  14.290 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  2.645 ms  2.983 ms  3.365 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  6.078 ms  6.667 ms  6.660 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  4.817 ms  5.380 ms  5.373 ms
+ 5  lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  4.476 ms lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  5.346 ms  5.339 ms
+ 6  lag-415.vinnva0510w-bcr00.netops.charter.com (66.109.6.12)  12.478 ms lag-27.vinnva0510w-bcr00.netops.charter.com (66.109.6.66)  11.899 ms  11.727 ms
+ 7  * * lag-11.asbnva1611w-bcr00.netops.charter.com (66.109.6.30)  12.358 ms
+ 8  lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  11.233 ms  21.459 ms lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  13.289 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  11.920 ms  11.921 ms  12.499 ms
+10  199.218.20.129 (199.218.20.129)  24.024 ms  23.435 ms  23.475 ms
+11  clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  27.823 ms schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  23.708 ms clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  29.395 ms
+12  clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  25.340 ms  25.622 ms clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  26.232 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.785 ms  28.826 ms  28.510 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  28.577 ms  28.606 ms  28.855 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.434 ms  28.443 ms  28.121 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  30.455 ms  30.009 ms  30.000 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.108.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  6.478 ms  6.661 ms  5.841 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  7.260 ms  7.253 ms  7.247 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  9.648 ms  9.642 ms  9.634 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  7.270 ms  7.264 ms  7.830 ms
+ 5  lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  7.279 ms  7.843 ms  7.837 ms
+ 6  lag-415.vinnva0510w-bcr00.netops.charter.com (66.109.6.12)  14.699 ms lag-27.vinnva0510w-bcr00.netops.charter.com (66.109.6.66)  11.904 ms lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  11.853 ms
+ 7  * * *
+ 8  lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  16.162 ms  13.806 ms lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  13.400 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  17.662 ms  17.555 ms  17.932 ms
+10  199.218.20.129 (199.218.20.129)  25.555 ms  24.175 ms  24.506 ms
+11  clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  29.047 ms  28.265 ms schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  25.241 ms
+12  clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.868 ms  25.156 ms  25.203 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.207 ms  28.420 ms  28.433 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  28.498 ms  28.401 ms  28.591 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  29.217 ms  28.841 ms  28.127 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.414 ms  29.312 ms  29.294 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.12.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.249 ms  3.612 ms  3.857 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  4.469 ms  4.830 ms  4.803 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  6.970 ms  6.945 ms  7.190 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  6.484 ms  6.460 ms  6.436 ms
+ 5  lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  5.116 ms lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  5.302 ms lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  6.189 ms
+ 6  lag-27.vinnva0510w-bcr00.netops.charter.com (66.109.6.66)  12.458 ms lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  10.792 ms lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  11.165 ms
+ 7  lag-31.asbnva1611w-bcr00.netops.charter.com (107.14.18.82)  13.934 ms * lag-11.asbnva1611w-bcr00.netops.charter.com (66.109.6.30)  38.211 ms
+ 8  lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  10.973 ms lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  17.182 ms lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  22.280 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  11.582 ms  11.402 ms  11.927 ms
+10  199.218.20.129 (199.218.20.129)  23.832 ms  23.177 ms  23.437 ms
+11  schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  23.771 ms  23.335 ms  23.575 ms
+12  clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.016 ms  27.419 ms clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  25.078 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.754 ms  28.966 ms  29.254 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  28.658 ms  28.254 ms  29.454 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.690 ms  28.183 ms  27.879 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.146 ms  29.281 ms  29.003 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.108.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.317 ms  2.731 ms  2.954 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  3.633 ms  3.614 ms  3.595 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  5.121 ms  5.103 ms  6.114 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  3.918 ms  4.809 ms  4.790 ms
+ 5  lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  4.158 ms  4.699 ms  4.960 ms
+ 6  lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  11.541 ms  10.712 ms lag-415.vinnva0510w-bcr00.netops.charter.com (66.109.6.12)  11.936 ms
+ 7  lag-31.asbnva1611w-bcr00.netops.charter.com (107.14.18.82)  13.329 ms  13.312 ms *
+ 8  lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  12.123 ms  12.407 ms lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  12.782 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  12.348 ms  12.301 ms  12.285 ms
+10  199.218.20.129 (199.218.20.129)  24.047 ms  24.345 ms  24.699 ms
+11  schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  23.877 ms  23.983 ms clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  27.917 ms
+12  clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  25.758 ms clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  26.209 ms clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  25.953 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  29.097 ms  29.325 ms  29.751 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  30.192 ms  28.991 ms  29.552 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.327 ms  29.331 ms  29.350 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.521 ms  30.380 ms  29.854 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.108.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.464 ms  3.066 ms  2.641 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  6.058 ms  6.040 ms  6.022 ms
+ 3  * * *
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  3.735 ms  4.019 ms *
+ 5  lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  5.926 ms  5.911 ms lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  5.893 ms
+ 6  lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  11.312 ms lag-27.vinnva0510w-bcr00.netops.charter.com (66.109.6.66)  11.978 ms lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  12.246 ms
+ 7  lag-31.asbnva1611w-bcr00.netops.charter.com (107.14.18.82)  17.629 ms *  13.908 ms
+ 8  lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  11.038 ms lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  10.710 ms lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  12.928 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  11.854 ms  11.837 ms  12.506 ms
+10  199.218.20.129 (199.218.20.129)  23.503 ms  23.889 ms  23.897 ms
+11  schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  24.362 ms clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  28.353 ms  27.842 ms
+12  clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.778 ms  26.111 ms  26.468 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.219 ms  28.181 ms  28.161 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  28.993 ms  29.177 ms  29.449 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  29.691 ms  29.590 ms  29.017 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.631 ms  29.916 ms  29.262 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.12.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.334 ms  2.437 ms  2.714 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  2.689 ms  3.123 ms  3.102 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  5.949 ms  6.216 ms  6.439 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  3.632 ms  4.391 ms  4.377 ms
+ 5  lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  4.365 ms lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  3.911 ms  4.333 ms
+ 6  lag-415.vinnva0510w-bcr00.netops.charter.com (66.109.6.12)  11.495 ms lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  10.748 ms lag-27.vinnva0510w-bcr00.netops.charter.com (66.109.6.66)  10.840 ms
+ 7  * lag-11.asbnva1611w-bcr00.netops.charter.com (66.109.6.30)  12.917 ms lag-21.asbnva1611w-bcr00.netops.charter.com (66.109.3.24)  11.389 ms
+ 8  lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  13.494 ms lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  12.270 ms lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  14.070 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  11.586 ms  12.229 ms  12.213 ms
+10  199.218.20.129 (199.218.20.129)  23.972 ms  23.391 ms  23.587 ms
+11  schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  23.478 ms clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  27.590 ms  28.029 ms
+12  clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  24.651 ms clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.329 ms clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  24.665 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.991 ms  28.777 ms  29.336 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  29.397 ms  29.310 ms  28.993 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.789 ms  28.629 ms  28.684 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.274 ms  30.872 ms  29.823 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.108.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.402 ms  2.707 ms  3.134 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  3.120 ms  3.108 ms  3.361 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  5.775 ms  5.763 ms  5.747 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  4.714 ms  5.404 ms  4.689 ms
+ 5  lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  3.689 ms lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  4.047 ms lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  4.631 ms
+ 6  lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  11.202 ms lag-27.vinnva0510w-bcr00.netops.charter.com (66.109.6.66)  10.628 ms lag-415.vinnva0510w-bcr00.netops.charter.com (66.109.6.12)  11.024 ms
+ 7  lag-31.asbnva1611w-bcr00.netops.charter.com (107.14.18.82)  13.590 ms lag-11.asbnva1611w-bcr00.netops.charter.com (66.109.6.30)  13.573 ms *
+ 8  lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  22.075 ms  22.392 ms lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  22.698 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  11.756 ms  12.049 ms  12.907 ms
+10  199.218.20.129 (199.218.20.129)  23.540 ms  23.548 ms  23.852 ms
+11  schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  24.248 ms  24.414 ms clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  27.817 ms
+12  clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  25.873 ms  25.222 ms  25.074 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.590 ms  28.803 ms  29.180 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  29.805 ms  29.452 ms  29.124 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.107 ms  28.420 ms  28.361 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  28.886 ms  29.078 ms  29.260 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.108.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  6.304 ms  3.698 ms  6.888 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  3.152 ms  3.357 ms  3.631 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  5.753 ms  5.737 ms  5.722 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  3.964 ms  5.677 ms  4.227 ms
+ 5  lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  5.636 ms lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  5.619 ms lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  5.605 ms
+ 6  lag-27.vinnva0510w-bcr00.netops.charter.com (66.109.6.66)  11.628 ms lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  11.781 ms lag-27.vinnva0510w-bcr00.netops.charter.com (66.109.6.66)  11.763 ms
+ 7  lag-21.asbnva1611w-bcr00.netops.charter.com (66.109.3.24)  13.191 ms  12.865 ms lag-11.asbnva1611w-bcr00.netops.charter.com (66.109.6.30)  11.802 ms
+ 8  lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  11.844 ms lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  12.129 ms lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  12.088 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  41.851 ms  41.836 ms  41.819 ms
+10  199.218.20.129 (199.218.20.129)  23.749 ms  23.976 ms  23.419 ms
+11  clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  27.627 ms schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  23.488 ms clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  29.011 ms
+12  clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  26.326 ms clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  25.325 ms  25.655 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  29.208 ms  28.688 ms  28.283 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  28.911 ms  28.544 ms  29.127 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.076 ms  28.194 ms  28.202 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  30.484 ms  29.616 ms  29.703 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.108.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.524 ms  2.575 ms  2.941 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  3.257 ms  3.603 ms  3.581 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  5.266 ms  5.897 ms  5.870 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  4.080 ms  5.173 ms  5.149 ms
+ 5  lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  3.735 ms lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  5.164 ms lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  5.143 ms
+ 6  lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  11.767 ms  10.590 ms  10.744 ms
+ 7  * lag-31.asbnva1611w-bcr00.netops.charter.com (107.14.18.82)  13.638 ms *
+ 8  lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  11.799 ms lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  12.165 ms lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  15.627 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  11.951 ms  12.200 ms  12.510 ms
+10  199.218.20.129 (199.218.20.129)  23.707 ms  23.765 ms  24.166 ms
+11  clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  37.638 ms  33.272 ms schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  23.587 ms
+12  clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  24.594 ms clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.070 ms  24.941 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.826 ms  28.864 ms  28.931 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  29.135 ms  28.454 ms  28.972 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.878 ms  28.498 ms  28.177 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.226 ms  29.616 ms  29.559 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.12.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.600 ms  2.847 ms  3.281 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  3.276 ms  3.523 ms  3.518 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  5.399 ms  5.395 ms  5.390 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  3.796 ms  4.380 ms  4.716 ms
+ 5  lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  4.463 ms lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  4.807 ms  4.802 ms
+ 6  lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  11.512 ms lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  11.135 ms lag-27.vinnva0510w-bcr00.netops.charter.com (66.109.6.66)  11.441 ms
+ 7  * * *
+ 8  lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  15.220 ms  13.742 ms  10.963 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  11.733 ms  11.739 ms  12.270 ms
+10  199.218.20.129 (199.218.20.129)  23.888 ms  23.928 ms  23.494 ms
+11  schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  24.170 ms  23.168 ms  23.233 ms
+12  clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.340 ms  25.189 ms clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  24.667 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.157 ms  28.188 ms  28.823 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  28.634 ms  29.539 ms  30.533 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.883 ms  29.304 ms  29.099 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  31.790 ms  32.027 ms  31.798 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.12.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.307 ms  2.492 ms  3.095 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  3.075 ms  3.345 ms  3.793 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  4.404 ms  4.390 ms  5.673 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  4.360 ms  4.346 ms  4.964 ms
+ 5  lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  4.366 ms lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  4.107 ms  4.333 ms
+ 6  lag-27.vinnva0510w-bcr00.netops.charter.com (66.109.6.66)  11.305 ms lag-415.vinnva0510w-bcr00.netops.charter.com (66.109.6.12)  10.730 ms lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  11.399 ms
+ 7  lag-21.asbnva1611w-bcr00.netops.charter.com (66.109.3.24)  30.798 ms lag-31.asbnva1611w-bcr00.netops.charter.com (107.14.18.82)  31.026 ms lag-11.asbnva1611w-bcr00.netops.charter.com (66.109.6.30)  13.594 ms
+ 8  lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  23.640 ms lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  24.343 ms lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  11.149 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  26.350 ms  26.338 ms  26.326 ms
+10  199.218.20.129 (199.218.20.129)  25.592 ms  25.882 ms  25.880 ms
+11  schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  24.740 ms  23.684 ms  23.818 ms
+12  clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  24.793 ms clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.067 ms  24.838 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  29.082 ms  31.841 ms  30.086 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  31.045 ms  30.793 ms  30.630 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  29.935 ms  30.403 ms  29.900 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.736 ms  30.869 ms  30.207 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.12.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  5.785 ms  8.174 ms  8.156 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  8.136 ms  8.118 ms  8.102 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  8.275 ms  8.259 ms  8.242 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  8.225 ms  8.210 ms  8.194 ms
+ 5  lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  8.031 ms lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  8.014 ms  7.998 ms
+ 6  lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  12.146 ms  10.634 ms  10.637 ms
+ 7  lag-21.asbnva1611w-bcr00.netops.charter.com (66.109.3.24)  12.970 ms lag-31.asbnva1611w-bcr00.netops.charter.com (107.14.18.82)  10.905 ms *
+ 8  * lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  11.112 ms  12.413 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  12.408 ms  11.708 ms  11.217 ms
+10  199.218.20.129 (199.218.20.129)  25.599 ms  26.216 ms  26.206 ms
+11  clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  31.656 ms  31.892 ms schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  27.269 ms
+12  clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.610 ms  25.716 ms clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  24.618 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  29.249 ms  29.163 ms  29.144 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  31.118 ms  31.074 ms  31.441 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  30.777 ms  30.721 ms  33.195 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  34.648 ms  34.592 ms  34.575 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.12.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.610 ms  2.956 ms  3.217 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  3.662 ms  4.031 ms  4.305 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  5.203 ms  5.985 ms  6.567 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  4.574 ms  4.558 ms  4.928 ms
+ 5  lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  4.869 ms  4.852 ms  4.836 ms
+ 6  lag-415.vinnva0510w-bcr00.netops.charter.com (66.109.6.12)  11.891 ms  12.077 ms lag-27.vinnva0510w-bcr00.netops.charter.com (66.109.6.66)  11.731 ms
+ 7  * lag-11.asbnva1611w-bcr00.netops.charter.com (66.109.6.30)  31.147 ms *
+ 8  lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  13.656 ms lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  11.887 ms lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  26.494 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  11.922 ms  12.522 ms  12.506 ms
+10  199.218.20.129 (199.218.20.129)  24.834 ms  24.219 ms  24.361 ms
+11  schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  23.882 ms  23.650 ms clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  28.180 ms
+12  clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  26.892 ms  26.837 ms  26.822 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  29.160 ms  28.957 ms  28.832 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  29.619 ms  29.789 ms  29.996 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  29.066 ms  28.817 ms  28.177 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.189 ms  29.275 ms  29.641 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.108.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  3.271 ms  3.224 ms  3.331 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  5.905 ms  5.888 ms  5.872 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  5.162 ms  5.839 ms  5.823 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  4.538 ms  4.940 ms  4.922 ms
+ 5  lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  4.078 ms lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  4.848 ms  4.830 ms
+ 6  lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  11.655 ms  12.186 ms lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  12.146 ms
+ 7  lag-11.asbnva1611w-bcr00.netops.charter.com (66.109.6.30)  13.326 ms * *
+ 8  lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  12.598 ms  11.958 ms lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  12.179 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  12.530 ms  12.493 ms  11.325 ms
+10  199.218.20.129 (199.218.20.129)  24.562 ms  24.547 ms  24.533 ms
+11  clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  29.147 ms  28.528 ms  27.536 ms
+12  clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.131 ms  25.628 ms  25.204 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.548 ms  28.859 ms  29.142 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  29.288 ms  28.787 ms  29.452 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.621 ms  28.886 ms  28.086 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.551 ms  29.544 ms  29.152 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.108.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.432 ms  2.745 ms  3.003 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  3.334 ms  3.320 ms  3.304 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  20.258 ms  20.240 ms  20.222 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  4.902 ms  5.158 ms  5.142 ms
+ 5  lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  3.691 ms  4.247 ms lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  4.957 ms
+ 6  lag-415.vinnva0510w-bcr00.netops.charter.com (66.109.6.12)  11.516 ms  11.418 ms lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  11.351 ms
+ 7  lag-21.asbnva1611w-bcr00.netops.charter.com (66.109.3.24)  12.515 ms *  13.537 ms
+ 8  lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  15.004 ms lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  13.053 ms lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  14.918 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  12.671 ms  12.317 ms  12.280 ms
+10  199.218.20.129 (199.218.20.129)  24.055 ms  23.659 ms  24.574 ms
+11  schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  24.400 ms clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  28.765 ms  28.295 ms
+12  clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  26.059 ms clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  26.057 ms  26.114 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.940 ms  28.628 ms  28.835 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  28.701 ms  29.017 ms  29.631 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.082 ms  28.233 ms  28.652 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.574 ms  29.684 ms  29.632 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.108.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  3.177 ms  3.133 ms  3.570 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  3.919 ms  3.904 ms  3.889 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  6.166 ms  6.891 ms  6.873 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  6.858 ms  6.842 ms  7.204 ms
+ 5  lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  4.191 ms lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  6.824 ms lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  6.806 ms
+ 6  lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  11.752 ms lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  12.452 ms  12.076 ms
+ 7  lag-21.asbnva1611w-bcr00.netops.charter.com (66.109.3.24)  25.798 ms * *
+ 8  lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  12.135 ms lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  15.733 ms lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  12.578 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  26.423 ms  26.389 ms  26.375 ms
+10  199.218.20.129 (199.218.20.129)  24.898 ms  25.385 ms  26.321 ms
+11  schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  31.764 ms clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  41.923 ms schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  23.575 ms
+12  clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  24.786 ms  24.901 ms  25.304 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.458 ms  29.351 ms  29.086 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  29.455 ms  29.736 ms  29.976 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.749 ms  29.085 ms  28.224 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.216 ms  29.282 ms  29.390 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.12.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.483 ms  2.782 ms  3.102 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  3.463 ms  4.145 ms  4.142 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  7.121 ms  7.117 ms  7.113 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  5.590 ms  5.586 ms  5.582 ms
+ 5  lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  112.795 ms lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  112.811 ms  112.811 ms
+ 6  lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  12.136 ms lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  11.852 ms lag-415.vinnva0510w-bcr00.netops.charter.com (66.109.6.12)  11.422 ms
+ 7  lag-31.asbnva1611w-bcr00.netops.charter.com (107.14.18.82)  13.323 ms lag-11.asbnva1611w-bcr00.netops.charter.com (66.109.6.30)  13.239 ms *
+ 8  lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  13.894 ms  12.635 ms lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  18.786 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  11.806 ms  11.761 ms  12.021 ms
+10  199.218.20.129 (199.218.20.129)  24.284 ms  23.748 ms  25.001 ms
+11  schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  24.328 ms  23.916 ms clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  28.051 ms
+12  clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  26.009 ms clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  25.111 ms  24.643 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.068 ms  28.199 ms  28.564 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  28.822 ms  28.697 ms  28.775 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.065 ms  28.145 ms  28.312 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.425 ms  29.915 ms  29.650 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.12.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.327 ms  2.645 ms  2.755 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  32.834 ms  33.232 ms  33.509 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  5.986 ms  5.970 ms  5.951 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  4.979 ms  3.727 ms  4.945 ms
+ 5  lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  4.928 ms lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  4.263 ms lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  5.177 ms
+ 6  lag-27.vinnva0510w-bcr00.netops.charter.com (66.109.6.66)  11.386 ms lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  10.574 ms lag-415.vinnva0510w-bcr00.netops.charter.com (66.109.6.12)  10.725 ms
+ 7  lag-31.asbnva1611w-bcr00.netops.charter.com (107.14.18.82)  14.426 ms *  12.797 ms
+ 8  lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  12.090 ms lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  12.036 ms  12.112 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  11.816 ms  11.561 ms  11.882 ms
+10  199.218.20.129 (199.218.20.129)  23.481 ms  24.694 ms  23.465 ms
+11  clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  27.518 ms  28.301 ms  27.907 ms
+12  clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  24.688 ms clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.897 ms  25.880 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  29.681 ms  29.319 ms  29.273 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  29.818 ms  28.930 ms  29.644 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  29.583 ms  29.528 ms  29.510 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.951 ms  30.066 ms  29.254 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.108.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.571 ms  4.488 ms  5.928 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  5.915 ms  5.902 ms  5.890 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  6.145 ms  6.131 ms  6.118 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  6.105 ms  6.093 ms  6.076 ms
+ 5  lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  112.951 ms  112.966 ms  112.818 ms
+ 6  lag-415.vinnva0510w-bcr00.netops.charter.com (66.109.6.12)  11.868 ms  11.523 ms lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  10.673 ms
+ 7  * * *
+ 8  lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  21.729 ms lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  11.354 ms lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  11.341 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  11.321 ms  11.383 ms  11.917 ms
+10  199.218.20.129 (199.218.20.129)  23.728 ms  23.448 ms  23.261 ms
+11  schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  23.446 ms  23.896 ms  24.044 ms
+12  clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  25.286 ms  25.595 ms clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.839 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.469 ms  28.413 ms  28.537 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  28.640 ms  28.827 ms  28.698 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.321 ms  28.209 ms  29.185 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.299 ms  29.415 ms  29.274 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.108.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.173 ms  2.393 ms  2.766 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  3.023 ms  3.364 ms  3.347 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  5.841 ms  5.824 ms  6.350 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  4.995 ms  5.426 ms  5.413 ms
+ 5  lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  4.555 ms lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  5.306 ms  5.291 ms
+ 6  lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  12.070 ms lag-415.vinnva0510w-bcr00.netops.charter.com (66.109.6.12)  10.554 ms  10.614 ms
+ 7  * lag-21.asbnva1611w-bcr00.netops.charter.com (66.109.3.24)  17.079 ms *
+ 8  lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  11.521 ms lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  28.243 ms lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  11.306 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  13.892 ms  14.105 ms  14.434 ms
+10  199.218.20.129 (199.218.20.129)  24.208 ms  23.824 ms  24.044 ms
+11  clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  27.541 ms schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  23.422 ms clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  27.538 ms
+12  clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.090 ms clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  24.435 ms  24.431 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  29.226 ms  29.344 ms  29.344 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  29.673 ms  29.049 ms  28.897 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.175 ms  27.975 ms  27.948 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.408 ms  29.117 ms  29.263 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.108.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.532 ms  2.518 ms  3.953 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  3.935 ms  3.917 ms  3.902 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  7.445 ms  7.429 ms  8.606 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  4.840 ms  6.944 ms  6.930 ms
+ 5  lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  4.802 ms lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  4.786 ms  4.771 ms
+ 6  lag-415.vinnva0510w-bcr00.netops.charter.com (66.109.6.12)  12.078 ms lag-27.vinnva0510w-bcr00.netops.charter.com (66.109.6.66)  11.704 ms lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  11.601 ms
+ 7  lag-31.asbnva1611w-bcr00.netops.charter.com (107.14.18.82)  14.589 ms * *
+ 8  lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  14.537 ms lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  12.405 ms lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  12.645 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  14.188 ms  15.123 ms  13.040 ms
+10  199.218.20.129 (199.218.20.129)  23.496 ms  23.792 ms  24.338 ms
+11  clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  27.401 ms schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  23.320 ms  24.720 ms
+12  clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  26.157 ms clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  26.479 ms clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  26.171 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  27.991 ms  28.316 ms  28.786 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  29.466 ms  29.427 ms  28.315 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  27.828 ms  27.791 ms  27.878 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.169 ms  28.983 ms  29.544 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.12.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.784 ms  2.930 ms  3.317 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  3.670 ms  3.983 ms  3.968 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  5.465 ms  5.449 ms  5.435 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  4.546 ms  4.812 ms  4.799 ms
+ 5  lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  4.531 ms  4.517 ms lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  4.760 ms
+ 6  lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  11.757 ms lag-27.vinnva0510w-bcr00.netops.charter.com (66.109.6.66)  11.028 ms lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  11.243 ms
+ 7  * * lag-31.asbnva1611w-bcr00.netops.charter.com (107.14.18.82)  43.428 ms
+ 8  lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  13.187 ms lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  13.483 ms lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  12.554 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  11.491 ms  11.700 ms  11.926 ms
+10  199.218.20.129 (199.218.20.129)  25.313 ms  24.654 ms  26.479 ms
+11  clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  29.951 ms schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  27.488 ms  26.541 ms
+12  clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  26.851 ms  27.364 ms  26.976 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.612 ms  28.445 ms  28.740 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  41.084 ms  28.950 ms  28.666 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.996 ms  29.848 ms  31.880 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  33.178 ms  33.199 ms  31.665 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.12.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.462 ms *  2.585 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  2.914 ms  3.157 ms  3.482 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  5.421 ms  5.660 ms  5.641 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  5.055 ms  5.037 ms  5.018 ms
+ 5  lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  3.748 ms lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  5.029 ms lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  4.009 ms
+ 6  lag-415.vinnva0510w-bcr00.netops.charter.com (66.109.6.12)  11.579 ms lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  12.471 ms lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  12.627 ms
+ 7  lag-21.asbnva1611w-bcr00.netops.charter.com (66.109.3.24)  18.263 ms lag-11.asbnva1611w-bcr00.netops.charter.com (66.109.6.30)  14.771 ms *
+ 8  lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  12.844 ms lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  14.161 ms  40.304 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  11.960 ms  12.215 ms  12.193 ms
+10  199.218.20.129 (199.218.20.129)  24.282 ms  24.253 ms  24.597 ms
+11  clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  27.517 ms schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  23.729 ms  23.431 ms
+12  clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  26.010 ms clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  25.277 ms  25.543 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.890 ms  29.137 ms  28.816 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  28.998 ms  29.407 ms  28.631 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.303 ms  28.367 ms  28.988 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.925 ms  29.036 ms  30.439 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.12.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  3.299 ms * *
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  3.515 ms  4.647 ms  4.892 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  5.894 ms  5.880 ms  5.864 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  5.851 ms  6.177 ms  6.163 ms
+ 5  lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  5.528 ms  5.516 ms  5.772 ms
+ 6  lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  12.325 ms lag-27.vinnva0510w-bcr00.netops.charter.com (66.109.6.66)  13.512 ms lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  13.207 ms
+ 7  * * lag-31.asbnva1611w-bcr00.netops.charter.com (107.14.18.82)  13.101 ms
+ 8  lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  12.393 ms lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  15.019 ms lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  12.783 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  13.072 ms  13.059 ms  13.046 ms
+10  199.218.20.129 (199.218.20.129)  29.842 ms  29.138 ms  28.318 ms
+11  clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  30.420 ms  31.042 ms schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  27.777 ms
+12  clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  27.283 ms  27.258 ms  26.694 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.369 ms  28.311 ms  28.655 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  29.303 ms  28.775 ms  33.273 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  32.664 ms  31.637 ms  32.961 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  36.307 ms  36.275 ms  35.472 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.108.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.718 ms  2.661 ms  2.638 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  3.082 ms  3.063 ms  3.971 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  6.990 ms  6.970 ms  6.949 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  4.871 ms  5.436 ms  6.020 ms
+ 5  lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  6.380 ms  6.361 ms  6.342 ms
+ 6  lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  12.671 ms lag-415.vinnva0510w-bcr00.netops.charter.com (66.109.6.12)  11.144 ms lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  10.620 ms
+ 7  lag-21.asbnva1611w-bcr00.netops.charter.com (66.109.3.24)  13.149 ms lag-11.asbnva1611w-bcr00.netops.charter.com (66.109.6.30)  13.286 ms *
+ 8  lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  11.844 ms lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  11.173 ms lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  11.299 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  11.765 ms  11.374 ms  11.656 ms
+10  199.218.20.129 (199.218.20.129)  23.938 ms  23.365 ms  23.706 ms
+11  schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  24.305 ms clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  27.425 ms  28.332 ms
+12  clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  25.194 ms  25.341 ms clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.598 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.539 ms  29.053 ms  28.399 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  28.763 ms  29.633 ms  29.241 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.750 ms  28.009 ms  29.018 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.700 ms  28.882 ms  29.332 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.108.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.887 ms  2.834 ms  2.814 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  3.263 ms  3.244 ms  3.226 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  5.592 ms  5.936 ms  6.157 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  4.501 ms  4.790 ms  4.773 ms
+ 5  lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  3.488 ms lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  3.791 ms  4.739 ms
+ 6  lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  11.423 ms lag-27.vinnva0510w-bcr00.netops.charter.com (66.109.6.66)  10.393 ms lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  10.718 ms
+ 7  lag-31.asbnva1611w-bcr00.netops.charter.com (107.14.18.82)  12.223 ms * lag-21.asbnva1611w-bcr00.netops.charter.com (66.109.3.24)  13.174 ms
+ 8  lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  13.335 ms lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  12.348 ms lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  11.851 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  12.604 ms  12.625 ms  12.612 ms
+10  199.218.20.129 (199.218.20.129)  23.888 ms  23.319 ms  23.935 ms
+11  clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  27.549 ms  27.851 ms  27.637 ms
+12  clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  24.373 ms clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  26.098 ms  26.635 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  29.377 ms  29.704 ms  28.969 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  29.568 ms  29.331 ms  29.431 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.989 ms  28.754 ms  28.437 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.231 ms  29.209 ms  29.252 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.108.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.611 ms  2.570 ms  3.100 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  3.084 ms  3.516 ms  3.500 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  5.694 ms  5.681 ms  5.666 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  5.652 ms  3.975 ms  5.623 ms
+ 5  lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  4.884 ms  4.871 ms  4.857 ms
+ 6  lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  11.566 ms  12.441 ms lag-415.vinnva0510w-bcr00.netops.charter.com (66.109.6.12)  12.426 ms
+ 7  lag-11.asbnva1611w-bcr00.netops.charter.com (66.109.6.30)  12.590 ms * *
+ 8  lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  12.806 ms lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  15.420 ms lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  19.325 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  11.318 ms  11.656 ms  11.256 ms
+10  199.218.20.129 (199.218.20.129)  24.601 ms  24.583 ms  24.571 ms
+11  schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  24.610 ms clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  27.624 ms schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  23.479 ms
+12  clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  25.887 ms clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  26.093 ms  25.978 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  29.720 ms  29.678 ms  28.938 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  28.890 ms  28.484 ms  28.853 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  29.487 ms  29.168 ms  29.458 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.342 ms  29.372 ms  29.393 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.108.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.876 ms  6.348 ms  6.343 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  3.208 ms  3.515 ms  3.926 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  5.743 ms  5.739 ms  5.735 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  4.423 ms  5.487 ms  5.482 ms
+ 5  lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  5.477 ms  5.471 ms  5.468 ms
+ 6  lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  11.982 ms lag-27.vinnva0510w-bcr00.netops.charter.com (66.109.6.66)  11.023 ms lag-415.vinnva0510w-bcr00.netops.charter.com (66.109.6.12)  11.328 ms
+ 7  * lag-11.asbnva1611w-bcr00.netops.charter.com (66.109.6.30)  14.409 ms *
+ 8  lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  10.602 ms  12.732 ms lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  11.237 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  12.137 ms  11.840 ms  12.618 ms
+10  199.218.20.129 (199.218.20.129)  24.083 ms  24.368 ms  23.635 ms
+11  clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  27.530 ms  27.558 ms  27.548 ms
+12  clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  24.459 ms clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.429 ms  25.569 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.212 ms  28.630 ms  28.628 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  29.260 ms  29.801 ms  28.981 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.249 ms  28.093 ms  28.026 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.920 ms  29.820 ms  29.461 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.108.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.615 ms  2.800 ms  3.171 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  3.574 ms  3.562 ms  3.548 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  5.149 ms  5.429 ms  6.786 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  3.862 ms  4.227 ms  4.531 ms
+ 5  lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  4.548 ms lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  4.537 ms  4.525 ms
+ 6  lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  11.913 ms lag-27.vinnva0510w-bcr00.netops.charter.com (66.109.6.66)  10.769 ms lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  11.934 ms
+ 7  lag-21.asbnva1611w-bcr00.netops.charter.com (66.109.3.24)  13.401 ms * *
+ 8  lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  16.104 ms lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  12.340 ms lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  18.820 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  12.763 ms  12.903 ms  12.736 ms
+10  199.218.20.129 (199.218.20.129)  24.924 ms  24.818 ms  25.131 ms
+11  clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  29.101 ms schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  23.791 ms clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  28.214 ms
+12  clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  26.490 ms  26.674 ms clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  25.610 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  29.269 ms  29.239 ms  28.308 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  28.572 ms  28.331 ms  28.876 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  29.081 ms  29.147 ms  28.730 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.166 ms  30.326 ms  29.826 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.108.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.350 ms  2.618 ms  2.894 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  3.664 ms  3.647 ms  3.632 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  6.442 ms  6.427 ms  6.412 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  4.339 ms  5.175 ms  5.159 ms
+ 5  lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  5.152 ms lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  5.383 ms  5.124 ms
+ 6  lag-415.vinnva0510w-bcr00.netops.charter.com (66.109.6.12)  11.519 ms lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  10.462 ms lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  10.691 ms
+ 7  lag-11.asbnva1611w-bcr00.netops.charter.com (66.109.6.30)  13.003 ms * lag-21.asbnva1611w-bcr00.netops.charter.com (66.109.3.24)  13.185 ms
+ 8  lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  12.841 ms lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  11.161 ms lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  10.607 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  14.140 ms  14.421 ms  14.748 ms
+10  199.218.20.129 (199.218.20.129)  23.548 ms  23.504 ms  23.847 ms
+11  schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  24.461 ms  23.335 ms clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  27.903 ms
+12  clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  25.319 ms clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.097 ms clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  25.117 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.286 ms  28.584 ms  28.712 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  29.007 ms  28.960 ms  29.432 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  27.969 ms  27.933 ms  28.237 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.155 ms  29.189 ms  29.593 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.12.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.618 ms  2.793 ms  3.040 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  3.478 ms  3.459 ms  3.439 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  15.044 ms  15.378 ms  15.848 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  3.901 ms  4.189 ms  4.590 ms
+ 5  lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  4.583 ms lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  4.566 ms  5.165 ms
+ 6  lag-415.vinnva0510w-bcr00.netops.charter.com (66.109.6.12)  11.736 ms lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  10.593 ms lag-27.vinnva0510w-bcr00.netops.charter.com (66.109.6.66)  11.138 ms
+ 7  * * lag-21.asbnva1611w-bcr00.netops.charter.com (66.109.3.24)  13.169 ms
+ 8  lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  23.416 ms lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  11.692 ms lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  12.023 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  25.989 ms  26.233 ms  26.575 ms
+10  199.218.20.129 (199.218.20.129)  24.026 ms  23.485 ms  23.601 ms
+11  schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  23.916 ms clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  28.681 ms  28.873 ms
+12  clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.118 ms  25.405 ms clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  24.746 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.594 ms  28.810 ms  29.021 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  29.202 ms  29.156 ms  29.200 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  29.421 ms  28.872 ms  29.210 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.977 ms  29.545 ms  29.710 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.108.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.767 ms  2.721 ms  3.231 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  3.607 ms  3.592 ms  3.577 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  4.755 ms  4.738 ms  5.132 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  3.808 ms  4.512 ms  4.675 ms
+ 5  lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  4.495 ms  4.480 ms lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  4.157 ms
+ 6  lag-415.vinnva0510w-bcr00.netops.charter.com (66.109.6.12)  12.506 ms lag-27.vinnva0510w-bcr00.netops.charter.com (66.109.6.66)  11.820 ms lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  11.488 ms
+ 7  * * lag-31.asbnva1611w-bcr00.netops.charter.com (107.14.18.82)  12.734 ms
+ 8  lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  11.534 ms lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  12.113 ms lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  12.270 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  11.917 ms  12.235 ms  12.225 ms
+10  199.218.20.129 (199.218.20.129)  23.945 ms  24.937 ms  24.275 ms
+11  clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  28.565 ms schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  23.576 ms clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  28.032 ms
+12  clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  24.889 ms clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.290 ms  26.156 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.650 ms  28.784 ms  28.995 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  29.303 ms  29.290 ms  28.404 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.375 ms  28.195 ms  28.263 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.951 ms  29.420 ms  29.514 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.12.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.627 ms  2.931 ms *
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  3.279 ms  3.270 ms  3.909 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  5.867 ms  6.248 ms  6.874 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  4.901 ms  4.894 ms  4.887 ms
+ 5  lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  4.944 ms lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  4.206 ms lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  4.930 ms
+ 6  lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  11.526 ms * lag-415.vinnva0510w-bcr00.netops.charter.com (66.109.6.12)  11.711 ms
+ 7  lag-21.asbnva1611w-bcr00.netops.charter.com (66.109.3.24)  12.167 ms lag-11.asbnva1611w-bcr00.netops.charter.com (66.109.6.30)  12.821 ms *
+ 8  lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  12.765 ms  12.093 ms lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  11.501 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  12.067 ms  12.031 ms  12.024 ms
+10  199.218.20.129 (199.218.20.129)  23.527 ms  23.627 ms  23.245 ms
+11  clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  27.655 ms schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  23.725 ms  23.984 ms
+12  clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  26.030 ms  25.583 ms clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.605 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  30.077 ms  30.436 ms  30.807 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  30.704 ms  30.697 ms  29.223 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.179 ms  28.116 ms  28.033 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.324 ms  29.250 ms  29.563 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+traceroute to case.edu (129.22.108.21), 30 hops max, 60 byte packets
+ 1  rrcs-147-0-59-1.central.biz.rr.com (147.0.59.1)  2.517 ms  2.833 ms  3.276 ms
+ 2  065-189-185-113.inf.spectrum.com (65.189.185.113)  3.260 ms  3.245 ms  3.232 ms
+ 3  lag-15.clhgohcc02h.netops.charter.com (65.189.187.51)  4.702 ms  4.689 ms  5.453 ms
+ 4  lag-38.clhgohcc01r.netops.charter.com (24.164.236.2)  3.825 ms  4.402 ms  4.389 ms
+ 5  lag-25.rcr01clevohek.netops.charter.com (65.29.1.32)  4.072 ms lag-30.rcr01clevohek.netops.charter.com (65.29.1.110)  4.421 ms  4.407 ms
+ 6  lag-17.vinnva0510w-bcr00.netops.charter.com (66.109.6.70)  12.516 ms lag-416.vinnva0510w-bcr00.netops.charter.com (66.109.6.164)  12.000 ms lag-27.vinnva0510w-bcr00.netops.charter.com (66.109.6.66)  11.413 ms
+ 7  * * *
+ 8  lag-311.pr2.dca10.netops.charter.com (24.27.236.9)  14.090 ms lag-0.pr2.dca10.netops.charter.com (66.109.5.117)  11.733 ms lag-310.pr2.dca10.netops.charter.com (209.18.43.59)  25.883 ms
+ 9  eqix-dc2.ohiostateuniv-oarnet.com (206.126.237.96)  11.977 ms  12.271 ms  12.235 ms
+10  199.218.20.129 (199.218.20.129)  26.002 ms  25.894 ms  25.880 ms
+11  clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  27.427 ms schrd-r4-et-2-0-0s100.core.oar.net (199.218.39.242)  23.666 ms clmbn-r7-et-4-0-0s100.core.oar.net (199.218.20.109)  29.807 ms
+12  clmbr-r9-ge-1-1-2s100.bb.oar.net (199.218.38.6)  24.712 ms clmbn-r5-et-2-3-0s100.core.oar.net (199.218.20.105)  25.001 ms  25.208 ms
+13  clevb-r7-et-1-1-0s100.core.oar.net (199.218.39.254)  28.416 ms  28.679 ms  28.246 ms
+14  clevb-r5-et-5-0-4s100.core.oar.net (199.218.20.93)  28.929 ms  28.823 ms  29.551 ms
+15  clevs-r5-et-3-2-0s100.core.oar.net (199.218.39.197)  28.872 ms  28.126 ms  28.324 ms
+16  cwru-r4-vl445.bb.oar.net (199.18.156.68)  29.568 ms  29.445 ms  29.563 ms
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
 30  * * *

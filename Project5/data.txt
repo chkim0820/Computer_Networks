@@ -1,0 +1,7 @@
+Name: Chaehyeon Kim
+Case ID: cxk445
+Filename: data.txt
+Date created: 12/08/2023
+Description: Included is a link to the Google Drive folder containing all the data collected
+
+https://drive.google.com/drive/folders/1wY546FmbDXHbYu2er26eol3LVOr5iZPk?usp=drive_link

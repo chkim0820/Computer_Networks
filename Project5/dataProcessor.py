@@ -10,6 +10,12 @@ import matplotlib.pyplot as plt
 
 # A list of websites the network traffics lead to
 websiteList = ["Amazon", "Canvas", "Case", "Google", "Instagram", "Youtube"]
+fullDomain = {"Amazon": "amazon.com", 
+              "Canvas": "canvas.case.edu", 
+              "Case": "case.edu", 
+              "Google": "google.com", 
+              "Instagram": "instagram.com", 
+              "Youtube": "youtube.com"}
 # Color map for plotting 6 different websites
 colors = ['tab:blue', 'tab:orange', 'tab:green', 'tab:pink', 'tab:purple', 'tab:olive']
 
@@ -162,9 +168,12 @@ def plotPlots(network, data, measurement, unit, numCols=6, individual=False):
         siteName = websiteList[website]
         if (individual==True): # Show individual plots for each website
             plt.clf() # Clear the figure for other websites
+            plt.title(f"{measurement} of {network} to {fullDomain[siteName]}")
+            plt.xlabel(f"ith {measurement} Request")
+            plt.ylabel(f"{measurement} in {unit}")
             plt.plot(x, y, color=colors[website])
-            # plt.savefig(f"{network}_{siteName}_{measurement}_Plot")
-            plt.show()
+            plt.savefig(f"{network}_{siteName}_{measurement}_Plot")
+            # plt.show()
         else: # Add to the plot if not showing
             plt.plot(x, y, label=f"{siteName}", color=colors[website])
     plt.legend()
@@ -188,13 +197,13 @@ def plotTable(network, data, measurement, unit, numCols=6, dataParsed=False):
 
 # Plotting plots and graphs for RTT
 def plotRTT(network, dataframe, rttInfo):
-    plotPlots(network, dataframe["Round Trip Time"], "Round Trip Time", "ms")
+    plotPlots(network, dataframe["Round Trip Time"], "Round Trip Time", "ms", individual=True)
     # Shifting around columns (min, avg, max) to (avg, min, max)
     for row in rttInfo:
         avg = row[1]
         row[1] = row[0]
         row[0] = avg
-    plotTable(network, rttInfo, "Round Trip Time", "ms", dataParsed=True)
+    # plotTable(network, rttInfo, "Round Trip Time", "ms", dataParsed=True)
 
 # Creating a table for packets lost
 def plotPacketLoss(network, dataframe):
@@ -219,26 +228,26 @@ def plotPacketLoss(network, dataframe):
 # Plotting plots and graphs for jitter
 def plotJitter(network, dataframe):
     data = dataframe["Jitter"].iloc[1:len(dataframe)] # Exclude the first row
-    plotPlots(network, data, "Jitter", "ms")
-    plotTable(network, data, "Jitter", "ms")
+    plotPlots(network, data, "Jitter", "ms", individual=True)
+    # plotTable(network, data, "Jitter", "ms")
 
 # Plotting plots and graphs for number of hops
 def plotHops(network, dataframe):
     data = dataframe["Number of Hops"]
-    plotPlots(network, data, "Number of Hops", "Total")
-    plotTable(network, data, "Number of Hops", "Total")
+    plotPlots(network, data, "Number of Hops", "Total", individual=True)
+    # plotTable(network, data, "Number of Hops", "Total")
 
 # Plotting plots and graphs for throughput
 def plotThroughput(network, dataframe):
     data = dataframe["Throughput"]
-    plotPlots(network, data, "Throughput", "GBytes", numCols=1)
-    plotTable(network, data, "Throughput", "GBytes", numCols=1)
+    plotPlots(network, data, "Throughput", "GBytes", numCols=1, individual=True)
+    # plotTable(network, data, "Throughput", "GBytes", numCols=1)
 
 # Plotting plots and graphs for bandwidth
 def plotBandwidth(network, dataframe):
     data = dataframe["Bandwidth"]
-    plotPlots(network, data, "Bandwidth", "Gbits/sec", numCols=1)
-    plotTable(network, data, "Bandwidth", "Gbits/sec", numCols=1)
+    plotPlots(network, data, "Bandwidth", "Gbits/sec", numCols=1, individual=True)
+    # plotTable(network, data, "Bandwidth", "Gbits/sec", numCols=1)
 
 # Plotting plots and graphs for retransmission rate
 def plotRetransmission(network, dataframe):
@@ -253,6 +262,7 @@ def plotRetransmission(network, dataframe):
 
 # The main function
 if __name__ == '__main__':
+    # Run dataCollector.sh separately
     # Initializing the dataframes for both Spectrum and CaseWireless
     columns = ["Round Trip Time", "Packet Loss", "Jitter", "Number of Hops", "Throughput", "Bandwidth", "Retransmission"] # Types of measurements
     spectrumData = pd.DataFrame(index=np.arange(1000), columns=columns) # Number of rows preset to 1000 & columns as measurements
@@ -270,10 +280,10 @@ if __name__ == '__main__':
 
         # Creating plots, tables, etc. for data representation
         plotRTT(network, df, rttInfo)
-        plotPacketLoss(network, df)
+        # plotPacketLoss(network, df)
         plotJitter(network, df)
         plotHops(network, df)
         plotThroughput(network, df)
         plotBandwidth(network, df)
-        plotRetransmission(network, df)
+        # plotRetransmission(network, df)
     

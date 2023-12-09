@@ -5,5 +5,5 @@ Date created: 12/08/2023
 Description: To be considered during grading process.
 
  -  I am aware that each measurement should have thousands of data points, and two of my measurements (packet loss and retransmission) are technically 'countable-by-hands' small. However, I still included them as separate measurements because their values, which I am working with here, are the results gathered from thousands of transmissions over time. Plus, I found both of them to be useful measurements for gauging network performances. I am hoping that they can be counted as separate, valid measurements.
-     -  I also confirmed my plans and details regarding the measurements with the TAs and Professor Allman via email prior to taking the measurements. So I am hoping they are not going to be unexpected troubles.
+     -  I also confirmed my plans outlining the details regarding the measurements with the TAs and Professor Allman via email. So I am hoping the measurements still qualify as valid.
     

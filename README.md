@@ -1,6 +1,4 @@
 # Computer-Networks
-For class projects
-
 **Project 2**: a simple command line-based web client
 
 **Project 3**: a simple web server

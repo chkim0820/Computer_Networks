@@ -1,7 +1,13 @@
 # Computer-Networks
 For class projects
 
+Project 2: a simple command line-based web client
+Project 3: a simple web server
+Project 4: processing a packet trace file
+Project 5: conducting measurements of local and school networks
+
 Notes to myself:
+
 Logging into the remoteclass server:
 chkm823@BigBoiL:~$ ssh cxk445@eecslab-12.case.edu
 cd home/CSDS325/[project folder]

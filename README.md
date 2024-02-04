@@ -1,6 +1,7 @@
-# CSDS-325-Networks
-For CSDS 325 class projects
+# Computer-Networks
+For class projects
 
+Notes to myself:
 Logging into the remoteclass server:
 chkm823@BigBoiL:~$ ssh cxk445@eecslab-12.case.edu
 cd home/CSDS325/[project folder]
